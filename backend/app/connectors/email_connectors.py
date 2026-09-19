@@ -15,12 +15,15 @@ from __future__ import annotations
 import base64
 import json
 import os
+import time
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Iterable, Optional
 
 import httpx
+
+from app.file_security import UnsafeUpload, max_file_bytes, resolve_bundle_attachment, safe_filename, validate_attachment_count, validate_file_size
 
 
 @dataclass
@@ -48,7 +51,14 @@ class BundleConnector(BaseConnector):
         files = sorted((self.folder / "inbox").glob("email_*.json"))[:limit]
         for p in files:
             raw = json.loads(p.read_text(encoding="utf-8"))
-            blobs = {a: (self.folder / a).read_bytes() for a in raw.get("attachments", []) if (self.folder / a).exists()}
+            validate_attachment_count(len(raw.get("attachments", [])))
+            blobs = {}
+            for attachment_path in raw.get("attachments", []):
+                candidate = resolve_bundle_attachment(self.folder, attachment_path)
+                if candidate.exists():
+                    validate_file_size(candidate.stat().st_size)
+                    data = candidate.read_bytes()
+                    blobs[attachment_path] = data
             yield InboundMessage(raw=raw, blobs=blobs, provider="bundle")
 
 
@@ -71,20 +81,37 @@ class GraphConnector(BaseConnector):
         self.secret = os.environ["MS_CLIENT_SECRET"]
         self.mailbox = os.environ["MS_MAILBOX"]
         self._token: Optional[str] = None
+        self._token_expires_at = 0.0
 
     def token(self) -> str:
-        if self._token:
+        if self._token and time.monotonic() < self._token_expires_at:
             return self._token
         r = httpx.post(self.AUTH.format(tenant=self.tenant), data={
             "client_id": self.client_id, "client_secret": self.secret, "scope": "https://graph.microsoft.com/.default", "grant_type": "client_credentials",
         }, timeout=30)
         r.raise_for_status()
-        self._token = r.json()["access_token"]
+        payload = r.json()
+        self._token = payload["access_token"]
+        lifetime = max(int(payload.get("expires_in", 3600)), 1)
+        self._token_expires_at = time.monotonic() + max(lifetime - min(60, lifetime * 0.1), 0)
         return self._token
 
+    def _request(self, method: str, url: str, **kwargs) -> httpx.Response:
+        """Make an authenticated Graph request, refreshing once after a 401."""
+        base_headers = dict(kwargs.pop("headers", {}) or {})
+        for attempt in range(2):
+            headers = dict(base_headers)
+            headers["Authorization"] = f"Bearer {self.token()}"
+            response = httpx.request(method, url, headers=headers, **kwargs)
+            if response.status_code != 401 or attempt:
+                response.raise_for_status()
+                return response
+            self._token = None
+            self._token_expires_at = 0.0
+        raise RuntimeError("unreachable")
+
     def _get(self, path: str, **params) -> dict[str, Any]:
-        r = httpx.get(f"{self.GRAPH}{path}", headers={"Authorization": f"Bearer {self.token()}"}, params=params, timeout=60)
-        r.raise_for_status()
+        r = self._request("GET", f"{self.GRAPH}{path}", params=params, timeout=60)
         return r.json()
 
     def fetch(self, since: Optional[datetime] = None, limit: int = 50) -> Iterable[InboundMessage]:
@@ -98,12 +125,18 @@ class GraphConnector(BaseConnector):
             paths: list[str] = []
             if m.get("hasAttachments"):
                 atts = self._get(f"/users/{self.mailbox}/messages/{m['id']}/attachments").get("value", [])
+                validate_attachment_count(len(atts))
                 for a in atts:
                     if a.get("@odata.type") != "#microsoft.graph.fileAttachment":
                         continue  # item/reference attachments are not downloaded
-                    name = a.get("name", "attachment.bin")
+                    name = safe_filename(a.get("name", "attachment.bin"))
                     path = f"attachments/{name}"
-                    blobs[path] = base64.b64decode(a.get("contentBytes", ""))
+                    encoded = a.get("contentBytes", "")
+                    if len(encoded) > ((max_file_bytes() + 2) // 3) * 4 + 4:
+                        raise UnsafeUpload("Graph attachment exceeds maximum size")
+                    data = base64.b64decode(encoded, validate=True)
+                    validate_file_size(len(data))
+                    blobs[path] = data
                     paths.append(path)
             body = m.get("body", {}).get("content", "") or ""
             if m.get("body", {}).get("contentType") == "html":
@@ -121,8 +154,7 @@ class GraphConnector(BaseConnector):
         payload = {"message": {"subject": subject, "body": {"contentType": "Text", "content": body},
                                "toRecipients": [{"emailAddress": {"address": a}} for a in to],
                                "ccRecipients": [{"emailAddress": {"address": a}} for a in (cc or [])]}, "saveToSentItems": True}
-        r = httpx.post(f"{self.GRAPH}/users/{self.mailbox}/sendMail", headers={"Authorization": f"Bearer {self.token()}"}, json=payload, timeout=30)
-        r.raise_for_status()
+        r = self._request("POST", f"{self.GRAPH}/users/{self.mailbox}/sendMail", json=payload, timeout=30)
         return {"status": r.status_code}
 
 

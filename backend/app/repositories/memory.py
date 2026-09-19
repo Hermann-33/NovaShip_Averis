@@ -137,6 +137,9 @@ class MemoryRepository(BaseRepository):
     def get_user(self, user_id: str) -> Optional[UserRecord]:
         return self.users.get(user_id)
 
+    def get_user_by_auth_subject(self, subject: str) -> Optional[UserRecord]:
+        return next((u for u in self.users.values() if u.auth_user_id == subject), None)
+
     def save_user(self, user: UserRecord) -> None:
         with self._lock:
             self.users[user.id] = user

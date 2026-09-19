@@ -139,13 +139,13 @@ def test_e2e_mismatch_flow_with_notify_party_and_audit():
     assert [f["field"] for f in preview["payload"]["fields"]] == ["container_count"]  # only the mismatch is shared
     assert "Attached are the SI" not in preview["preview"]  # original email body not leaked
     sent = client.post(f"/cases/{cid}/share/{preview['share']['id']}/confirm", headers=SUP).json()
-    assert sent["requires_confirmation"] is False and sent["share"]["status"] == "SENT"
+    assert sent["requires_confirmation"] is False and sent["share"]["status"] == "SIMULATED"
     assert client.get(f"/cases/{cid}", headers=OPS).json()["status"] == "AWAITING_RESPONSE"
 
     # approve draft (supervisor) -> sent (simulated) ; complete
     d = client.get(f"/cases/{cid}", headers=OPS).json()["drafts"][0]
     ok = client.post(f"/cases/{cid}/approve", json={"draft_id": d["id"]}, headers=SUP)
-    assert ok.status_code == 200 and ok.json()["drafts"][0]["status"] == "SENT"
+    assert ok.status_code == 200 and ok.json()["drafts"][0]["status"] == "SIMULATED"
     done = client.post(f"/cases/{cid}/complete", json={"note": "done"}, headers=OPS).json()
     assert done["status"] == "COMPLETED"
 
@@ -153,10 +153,10 @@ def test_e2e_mismatch_flow_with_notify_party_and_audit():
     audit = client.get(f"/cases/{cid}/audit", headers=SUP).json()
     actions = [e["action"] for e in audit["events"]]
     for expected in ["CASE_CREATED", "SECURITY_CLASSIFIED", "INTENT_CLASSIFIED", "ATTACHMENT_CLASSIFIED", "EXTRACTION_COMPLETED", "COMPARISON_STARTED",
-                     "FIELD_RESULT", "MISMATCH_DETECTED", "POLICY_APPLIED", "DRAFT_GENERATED", "NOTIFY_PARTY_STARTED", "SHARE_CREATED", "NOTIFY_PARTY_SENT",
-                     "DRAFT_APPROVED", "NOTIFICATION_SENT", "COMPLETED", "STATUS_CHANGED", "ASK_AI"]:
+                     "FIELD_RESULT", "MISMATCH_DETECTED", "POLICY_APPLIED", "DRAFT_GENERATED", "NOTIFY_PARTY_STARTED", "SHARE_CREATED", "NOTIFY_PARTY_SIMULATED",
+                     "DRAFT_APPROVED", "NOTIFICATION_SIMULATED", "COMPLETED", "STATUS_CHANGED", "ASK_AI"]:
         assert expected in actions, f"missing audit action {expected}"
-    assert len(audit["shares"]) >= 1 and audit["shares"][-1]["status"] == "SENT"
+    assert len(audit["shares"]) >= 1 and audit["shares"][-1]["status"] == "SIMULATED"
 
 
 def test_all_match_gives_no_mismatch_message_and_confirmation_draft():

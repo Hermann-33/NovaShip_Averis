@@ -22,6 +22,18 @@ from app.contracts.schemas import (
 )
 
 
+class StorageError(RuntimeError):
+    """Base class for visible backend storage failures."""
+
+
+class StorageAuthorizationError(StorageError):
+    pass
+
+
+class StorageProviderError(StorageError):
+    pass
+
+
 class BaseRepository(ABC):
     # ---- emails -----------------------------------------------------------
     @abstractmethod
@@ -86,6 +98,10 @@ class BaseRepository(ABC):
     def get_user_by_email(self, email: str) -> Optional[UserRecord]:
         target = (email or "").strip().lower()
         return next((u for u in self.list_users() if u.email.lower() == target), None)
+
+    def get_user_by_auth_subject(self, subject: str) -> Optional[UserRecord]:
+        """Resolve a Supabase Auth subject to an application identity."""
+        return next((u for u in self.list_users() if u.auth_user_id == subject), None)
 
     def save_user(self, user: UserRecord) -> None:
         raise NotImplementedError("this repository does not support self-registration")
