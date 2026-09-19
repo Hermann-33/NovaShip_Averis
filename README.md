@@ -8,7 +8,7 @@
 | **Live demo (local)** | UI `http://localhost:3000` · API `http://localhost:8000/docs` |
 | **One-command run** | `docker compose up --build` (offline demo, no keys needed) |
 | **Hackathon score on the SDOC bundle** | `FINAL SCORE = 1.0000` — stage-1 macro-F1 1.000 · defect-F1 1.000 · end-to-end 46/46 · escalation F1 1.000 (see [Impact Metrics](#10-user-feedback-and-impact-metrics)) |
-| **Tests** | `55 passed` — comparator, normalization, extraction, security, RBAC, Notify Party, E2E, LangGraph interrupt/resume, RAG scoping |
+| **Tests** | `58 passed` — comparator, normalization, extraction, security, RBAC, trained intent classifier, Notify Party, E2E, LangGraph interrupt/resume, RAG scoping |
 | **AI agent docs** | [AGENT.md](AGENT.md) — every AI file, LangGraph workflow, RAG, keys, Docker rebuild, test scenarios |
 | **Team guides** | [P1.md](P1.md) AI & Verification · [P2.md](P2.md) Assistant & Safety · [P3.md](P3.md) Backend/Supabase/Cloud · [P4.md](P4.md) Frontend & E2E |
 
@@ -79,7 +79,7 @@ NovaShip Averis is a production-style, AI-assisted operations platform with twel
 | # | Capability | Where |
 |---|---|---|
 | 1 | **Ingest and secure** every email: immutable message id, sender, recipients, CC, subject, body, time, thread id, attachment metadata + checksums; spam / suspicious-sender / blocked-type / duplicate / flood / policy-bypass checks → `SAFE · SPAM · SUSPICIOUS · SECURITY_REVIEW`. Attachments are parsed to text, **never executed**. | `backend/app/ai/security_precheck.py`, `readers/document_reader.py` |
-| 2 | **Classify intent + action need** (9 intents, priority, confidence, evidence-grounded rationale). Rules from the real subject-line grammar first; LLM only for ambiguous mail. Informational mail is saved, summarised, marked **No Reply Needed** and stays searchable. | `ai/intent_classifier.py` |
+| 2 | **Classify intent + action need** (9 intents, priority, confidence, evidence-grounded rationale). High-confidence rules run first, a trained TF-IDF + logistic-regression model handles ambiguous mail, and the optional LLM is the final fallback. Informational mail is saved, summarised, marked **No Reply Needed** and stays searchable. | `ai/intent_classifier.py`, `ai/trained_intent_classifier.py` |
 | 3 | **Detect and organise attachments** — SI / Draft BL / Invoice / Supporting / Unknown from content, with confidence. Wrong document type or unreadable scan ⇒ `WAITING_DOCUMENTS` / `HUMAN_REVIEW` with the exact reason, never a fabricated value. | `ai/attachment_classifier.py` |
 | 4 | **Create a trackable case** with an 18-state status model and a visual timeline. | `pipeline/orchestrator.py`, UI timeline |
 | 5 | **Compare SI ↔ Draft BL on exactly seven fields**, SI as source of truth, each field independent, safe normalisation only (case, whitespace, `22,000 KG` = `22000 kg`, `3 x 40'HC` = 3, UN/LOCODE stripped; **no legal-name rewriting**). All seven match ⇒ the exact phrase **`No mismatch detected.`** | `core/comparator.py`, `core/normalizer.py` |
@@ -101,7 +101,7 @@ Plus: versioned admin policies, unusual-behaviour signals, language detection + 
 flowchart TD
     A[📧 Email arrives<br/>Outlook / Graph · webhook · bundle] --> B[1 · Security precheck<br/>spam · sender · attachment type · duplicates · flood · bypass]
     B -->|SECURITY_REVIEW| SR[🛑 Quarantine → Supervisor]
-    B --> C[2 · Intent classifier<br/>rules on real subject grammar → LLM tie-break]
+    B --> C[2 · Intent classifier<br/>rules → trained text model → optional LLM]
     C -->|INFORMATION_ONLY / SPAM| NA[💤 No Reply Needed<br/>saved · summarised · searchable]
     C -->|SI request / invoice query| OT[Case + info draft]
     C -->|DOCUMENT_VERIFICATION| D[3 · Attachment classifier<br/>SI · Draft BL · Invoice · Supporting · Unknown]
@@ -133,14 +133,14 @@ The extracted **Notify Party is a comparison value only**. Sharing requires an e
 |---|---|---|
 | Frontend | **Next.js 14 (App Router) · React 18 · TypeScript · Tailwind** | fast operator UI, static + dynamic routes, Vercel-native |
 | Backend | **FastAPI · Pydantic v2** | typed contracts, OpenAPI docs for free, async-ready |
-| AI orchestration | LangGraph-style node pipeline (`pipeline/orchestrator.py`); **OpenAI** optional via `LLM_PROVIDER` | deterministic business logic stays outside the LLM; runs fully offline with rules |
+| AI orchestration | LangGraph-style node pipeline; trained TF-IDF classifier; **OpenAI** optional via `LLM_PROVIDER` | deterministic business logic stays outside the LLM; classifier and rules run fully offline |
 | Document parsing | `pypdf`, `python-docx`, `openpyxl`, optional `pytesseract` OCR | text-layer extraction; image-only PDFs flagged, not guessed |
 | Database | **Supabase (PostgreSQL)** — 24 tables, RLS, append-only audit trigger, private `documents` bucket with signed URLs | tenant-aware persistence, auth, storage in one place |
 | Persistence abstraction | `MemoryRepository` (fixtures/tests/offline) ↔ `SupabaseRepository` (prod) selected by `REPO_BACKEND` | Person 1/2/4 never wait on the database |
 | Email connector | Microsoft Graph (Outlook 365) adapter, bundle adapter, Gmail stub | adapter-based per spec §2 |
 | Auth / RBAC | Supabase JWT (HS256) or demo `X-User-Id`; 14 permissions × 4 roles | least privilege |
 | Deployment | Docker (multi-stage), `docker-compose.yml`, Vercel for the frontend, any container host for the API | reproducible local ↔ cloud |
-| Testing | `pytest` (49 tests) + official SDOC scorer + browser walkthrough | acceptance tests from the spec are executable |
+| Testing | `pytest` (58 tests) + official SDOC scorer + browser walkthrough | acceptance tests from the spec are executable |
 
 ## 6. System Architecture, AI and Cloud Integration
 
@@ -174,7 +174,7 @@ flowchart LR
 | Node | Deterministic rules | LLM (optional) | Guard |
 |---|---|---|---|
 | Security precheck | ✔ phrases, domains, links, blocked types, duplicates, bypass requests | — | signals carry evidence; never accuses without it |
-| Intent | ✔ subject grammar (`TO CONFIRM DOCS`, `AIE - POD - CARRIER(BL#)…`, `REQUEST SI`, `MISSING GR`, `_RPA_`…) | tie-break when rule confidence < 0.75 | `decided_by` recorded |
+| Intent | ✔ subject grammar plus local TF-IDF/logistic-regression classifier | final tie-break when rules and local model remain uncertain | confidence margin prevents a weaker model from overriding a stronger rule; `decided_by` recorded |
 | Attachment type | ✔ title lines, distinctive fields, filename hints | — | unreadable ⇒ type confidence capped 0.5 |
 | Seven-field extraction | ✔ label-synonym regex, PDF two-line layout, table-header exclusion | fallback only for fields rules missed | LLM value accepted **only if its quoted snippet literally exists** in the document |
 | Normalisation | ✔ | — | refuses letter/digit mixes, imperial units, ambiguous counts |
@@ -184,6 +184,8 @@ flowchart LR
 | Translation | passthrough | LLM with identifier masking | company names, ports, numbers, units, refs restored verbatim |
 
 **LangGraph agent (human-in-the-loop automation)**: `backend/app/agents/` builds a `StateGraph` per case: `security_precheck -> security_agent -> classify -> detect_documents -> extract -> compare (deterministic tool) -> summarize_and_draft -> human_review (interrupt) -> notify`. The graph pauses at `human_review` and resumes only with a person's decision (`POST /agent/resume/{id}`), executed through the same RBAC-checked services as the UI. The security agent is an LLM that reasons over the deterministic signals and may only escalate. RAG for Ask AI: Gemini `text-embedding-004` or OpenAI embeddings over `backend/data/*.md` plus per-case chunks, stored in Supabase pgvector (`0003_vector.sql`) or a local index; questions on one case can never retrieve another. Details: [AGENT.md](AGENT.md).
+
+**Intent-model training and evaluation**: from `backend/`, run `python scripts/train_intent_classifier.py`. It keeps 25–30% of emails in a template-grouped holdout, fits only the development partition, and writes the model, split manifest, and rule/model/hybrid metrics under `backend/models/`. Missing or incompatible artifacts automatically fall back to rules.
 
 **Cloud integration**: `REPO_BACKEND=supabase` swaps persistence with no contract change; migrations in [`supabase/migrations`](supabase/migrations) (schema + RLS + storage policies); seed for every table in [`supabase/seed`](supabase/seed) generated from the bundle (`python -m app.seed.make_seed [--push]`); JWT verification with `SUPABASE_JWT_SECRET`; signed URLs (300 s) for document originals; Docker images for API and UI; Vercel for the frontend.
 

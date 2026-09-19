@@ -30,6 +30,7 @@ os.environ.setdefault("LLM_PROVIDER", "none")
 
 import joblib  # noqa: E402
 import numpy as np  # noqa: E402
+import sklearn  # noqa: E402
 from sklearn.feature_extraction.text import TfidfVectorizer  # noqa: E402
 from sklearn.linear_model import LogisticRegression  # noqa: E402
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score  # noqa: E402
@@ -117,6 +118,9 @@ def split_samples(samples: list[dict[str, Any]], test_size: float, seed: int) ->
     splitter = GroupShuffleSplit(n_splits=1000, test_size=test_size, random_state=seed)
     candidates: list[tuple[float, np.ndarray, np.ndarray]] = []
     for train_idx, test_idx in splitter.split(indices, groups=groups):
+        test_fraction = len(test_idx) / len(samples)
+        if not 0.25 <= test_fraction <= test_size:
+            continue
         train_strata = {samples[int(i)]["stratum"] for i in train_idx}
         test_strata = {samples[int(i)]["stratum"] for i in test_idx}
         train_labels = {samples[int(i)]["label"] for i in train_idx}
@@ -214,6 +218,11 @@ def main() -> int:
         "trained_at": datetime.now(timezone.utc).isoformat(),
         "training_count": len(train),
         "categories": CATEGORIES,
+        "library_versions": {
+            "scikit_learn": sklearn.__version__,
+            "joblib": joblib.__version__,
+            "numpy": np.__version__,
+        },
         "seed": args.seed,
         "split_method": split_method,
     }
@@ -230,6 +239,7 @@ def main() -> int:
         "seed": args.seed,
         "train_count": len(train),
         "test_count": len(test),
+        "test_fraction": round(len(test) / len(samples), 6),
         "train_distribution": counts(train),
         "test_distribution": counts(test),
         "rule_baseline": metric_block(actual, rule_pred),
@@ -239,6 +249,7 @@ def main() -> int:
     split_manifest = {
         "seed": args.seed,
         "test_size_requested": args.test_size,
+        "test_fraction_actual": round(len(test) / len(samples), 6),
         "split_method": split_method,
         "train_ids": [s["id"] for s in train],
         "test_ids": [s["id"] for s in test],

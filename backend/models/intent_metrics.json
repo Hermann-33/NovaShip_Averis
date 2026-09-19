@@ -1,0 +1,301 @@
+{
+  "model_version": "tfidf-logreg-v1-5bf8f9037ff0",
+  "split_method": "template_grouped",
+  "seed": 42,
+  "train_count": 370,
+  "test_count": 150,
+  "test_fraction": 0.288462,
+  "train_distribution": {
+    "BL_COMPARISON": 149,
+    "GENERAL": 53,
+    "INVOICE_QUERY": 53,
+    "SI_REQUEST": 88,
+    "SPAM": 27
+  },
+  "test_distribution": {
+    "BL_COMPARISON": 71,
+    "GENERAL": 7,
+    "INVOICE_QUERY": 22,
+    "SI_REQUEST": 37,
+    "SPAM": 13
+  },
+  "rule_baseline": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "classification_report": {
+      "BL_COMPARISON": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 71.0
+      },
+      "SI_REQUEST": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 37.0
+      },
+      "INVOICE_QUERY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 22.0
+      },
+      "GENERAL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7.0
+      },
+      "SPAM": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 13.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 150.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 150.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        71,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        37,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        22,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        7,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        13
+      ]
+    ],
+    "confusion_labels": [
+      "BL_COMPARISON",
+      "SI_REQUEST",
+      "INVOICE_QUERY",
+      "GENERAL",
+      "SPAM"
+    ]
+  },
+  "trained_model": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "classification_report": {
+      "BL_COMPARISON": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 71.0
+      },
+      "SI_REQUEST": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 37.0
+      },
+      "INVOICE_QUERY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 22.0
+      },
+      "GENERAL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7.0
+      },
+      "SPAM": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 13.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 150.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 150.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        71,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        37,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        22,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        7,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        13
+      ]
+    ],
+    "confusion_labels": [
+      "BL_COMPARISON",
+      "SI_REQUEST",
+      "INVOICE_QUERY",
+      "GENERAL",
+      "SPAM"
+    ]
+  },
+  "hybrid": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "classification_report": {
+      "BL_COMPARISON": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 71.0
+      },
+      "SI_REQUEST": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 37.0
+      },
+      "INVOICE_QUERY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 22.0
+      },
+      "GENERAL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7.0
+      },
+      "SPAM": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 13.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 150.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 150.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        71,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        37,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        22,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        7,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        13
+      ]
+    ],
+    "confusion_labels": [
+      "BL_COMPARISON",
+      "SI_REQUEST",
+      "INVOICE_QUERY",
+      "GENERAL",
+      "SPAM"
+    ]
+  }
+}
