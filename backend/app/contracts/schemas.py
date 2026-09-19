@@ -312,7 +312,7 @@ class IntentClassification(BaseModel):
     priority: Priority
     confidence: float
     rationale: str
-    decided_by: Literal["rule", "llm", "hybrid"] = "rule"
+    decided_by: Literal["rule", "model", "llm", "hybrid"] = "rule"
     language: str = "en"
 
 

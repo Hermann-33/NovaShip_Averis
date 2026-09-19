@@ -41,7 +41,12 @@ DEFAULT_POLICY: dict[str, Any] = {
         "trusted_domains": ["aprilasia.com", "april.com.my"],
         "partner_domains": ["fujitogrp.com", "safqa.co.ke", "psabdp.com", "roxcel.at", "ifpla.com", "algurg.ae", "vitalsolutions.sg"],
     },
-    "intent": {"intent_llm_threshold": 0.75},
+    "intent": {
+        "intent_model_threshold": 0.65,
+        "intent_model_rule_ceiling": 0.98,
+        "intent_model_override_margin": 0.05,
+        "intent_llm_threshold": 0.75,
+    },
 }
 
 

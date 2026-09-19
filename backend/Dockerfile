@@ -7,6 +7,7 @@ COPY backend/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/app ./app
 COPY backend/scripts ./scripts
+COPY backend/models ./models
 COPY backend/pytest.ini ./pytest.ini
 COPY backend/data ./data
 # demo fixtures + seed snapshot (mounted read-only in compose; copied here so the image is self-contained)

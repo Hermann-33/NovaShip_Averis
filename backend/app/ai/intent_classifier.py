@@ -10,6 +10,7 @@ import re
 from typing import Optional
 
 from app.ai.llm import get_llm
+from app.ai.trained_intent_classifier import predict_trained_intent
 from app.contracts.schemas import (
     INTENT_TO_CATEGORY,
     EmailMessage,
@@ -56,6 +57,9 @@ def _strip_thread(body: str) -> str:
 
 def classify_intent(email: EmailMessage, security: SecurityAssessment, has_attachments: bool, policy: Optional[dict] = None) -> IntentClassification:
     policy = policy or {}
+    model_threshold = float(policy.get("intent_model_threshold", 0.65))
+    model_rule_ceiling = float(policy.get("intent_model_rule_ceiling", 0.98))
+    model_override_margin = float(policy.get("intent_model_override_margin", 0.05))
     llm_threshold = float(policy.get("intent_llm_threshold", 0.75))
 
     if security.outcome == SecurityOutcome.SPAM:
@@ -106,19 +110,40 @@ def classify_intent(email: EmailMessage, security: SecurityAssessment, has_attac
     margin = ranked[0] - (ranked[1] if len(ranked) > 1 else 0.0)
     confidence = 0.5 if best_score == 0 else min(0.99, 0.55 + best_score * 0.25 + margin * 0.2)
     decided_by = "rule"
+    decision_note = ""
     if best_score == 0:
         best = HackathonCategory.GENERAL
 
-    # LLM tie-break for weak/ambiguous rule outcomes
+    # A locally trained TF-IDF model handles weak/ambiguous rule outcomes.
+    # Strong rule matches remain deterministic, and a missing model is safe.
+    if confidence < model_rule_ceiling:
+        prediction = predict_trained_intent(email, has_attachments)
+        if prediction and prediction.confidence >= model_threshold:
+            rule_best = best
+            agrees = prediction.category == rule_best
+            can_override = prediction.confidence >= confidence + model_override_margin
+            if agrees or can_override:
+                best = prediction.category
+                confidence = max(confidence, prediction.confidence) if agrees else prediction.confidence
+                decided_by = "hybrid" if agrees else "model"
+                decision_note = (
+                    f"trained model {prediction.model_version} predicted {best.value} "
+                    f"with confidence {prediction.confidence:.2f}"
+                )
+
+    # LLM is the last tie-break when neither rules nor the local model is confident.
     if confidence < llm_threshold and get_llm().enabled:
         llm_cat = _llm_category(email)
         if llm_cat:
             decided_by = "llm" if llm_cat != best else "hybrid"
             best = llm_cat
             confidence = max(confidence, 0.8)
+            decision_note = f"LLM tie-break selected {best.value}"
 
     intent, action_required, priority = _intent_from_category(best, top, has_attachments)
-    rationale = "; ".join(evidence[best][:3]) if evidence[best] else "No strong pattern matched; defaulted to GENERAL."
+    rationale = "; ".join(evidence[best][:3]) if evidence[best] else f"No strong rule pattern matched for {best.value}."
+    if decision_note:
+        rationale = f"{decision_note}; {rationale}"
     return IntentClassification(
         intent=intent, hackathon_category=best, action_required=action_required, priority=priority,
         confidence=round(confidence, 2), rationale=rationale, decided_by=decided_by,
