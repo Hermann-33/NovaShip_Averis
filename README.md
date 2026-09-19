@@ -155,7 +155,7 @@ flowchart LR
     subgraph "API container (FastAPI)"
         API[REST API<br/>RBAC · audit on every mutation]
         PIPE[Pipeline nodes 1-12]
-        AI[AI adapters<br/>Claude / OpenAI / rules]
+        AI[AI adapters<br/>rules / trained classifier / OpenAI]
         CMP[[Deterministic<br/>seven-field comparator]]
         REPO[Repository layer<br/>memory ⇄ supabase]
     end
@@ -218,26 +218,201 @@ Business model (illustrative): per-mailbox SaaS subscription for forwarders/expo
 
 ## 9. Quick start
 
+### 9.1 Run the full application with Docker (recommended)
+
+Docker is the easiest way for every teammate to run the same Python, Node and ML dependency versions. It starts the FastAPI backend and Next.js frontend; Supabase is optional and is not started locally by the default Compose file.
+
+Prerequisites: Docker Desktop (or Docker Engine with the Compose plugin) and the repository's `sdoc-hackathon-bundle/` fixture folder.
+
 ```bash
-# 0) prerequisites: Python 3.11+, Node 20+, (Docker optional)
-cp .env.example .env                      # defaults = offline demo, no keys needed
+# macOS/Linux: create a private environment file
+cp .env.example .env
 
-# 1) backend
-cd backend && pip install -r requirements.txt
-python -m app.seed.make_seed              # builds supabase/seed/* + snapshot.json from the bundle (≈5 s)
-uvicorn app.main:app --reload --port 8000 # http://localhost:8000/docs
+# Build and start the API and web app in the background
+docker compose up -d --build
 
-# 2) frontend
-cd frontend && npm install && npm run dev   # http://localhost:3000
-
-# 3) tests + official scoreboard
-cd backend && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q
-python scripts/run_bundle.py              # writes ../submission.json, prints FINAL SCORE
-
-# or everything in Docker
-docker compose up --build
+# Check health and follow backend logs
+docker compose ps
+docker compose logs -f api
 ```
-Switch users in the header (Operations · Supervisor · Admin · Auditor) to see RBAC in action. Go live: set `REPO_BACKEND=supabase` + `SUPABASE_*` (run the two migrations, then `python -m app.seed.make_seed --push`), and/or `LLM_PROVIDER=openai` + `OPENAI_API_KEY`.
+
+PowerShell equivalent for the first command:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Open:
+
+- Web application: `http://localhost:3000`
+- AI agent console: `http://localhost:3000/agent`
+- FastAPI/Swagger: `http://localhost:8000/docs`
+- Health check: `http://localhost:8000/health`
+
+Common Docker commands:
+
+```bash
+# Rebuild only after backend/model changes
+docker compose build api
+docker compose up -d api
+
+# Rebuild only after frontend or NEXT_PUBLIC_API_BASE changes
+docker compose build --no-cache web
+docker compose up -d web
+
+# Stop the stack; this does not delete source files or built images
+docker compose down
+```
+
+The API image includes the trained classifier artifact, fixture bundle, seed snapshot and a local offline RAG index. Compose mounts the fixture paths at `/data/bundle` and `/data/seed/snapshot.json`, so host-relative `.env` paths cannot override their locations inside the container.
+
+### 9.2 OpenAI, Gemini and environment variables
+
+The providers are independent and optional:
+
+| Component | Provider | Purpose | Required variables |
+|---|---|---|---|
+| Deterministic rules and seven-field comparison | local | Core classification, extraction and every MATCH/MISMATCH verdict | none |
+| Trained classifier | local scikit-learn | Resolves weak or ambiguous email categories | `INTENT_MODEL_ENABLED=1`, `INTENT_MODEL_PATH=./models/intent_classifier.joblib` |
+| Chat/reasoning | OpenAI | Security explanation, final intent tie-break, verified extraction fallback, draft polish, Ask AI and translation | `LLM_PROVIDER=openai`, `OPENAI_API_KEY`, `LLM_MODEL` |
+| RAG embeddings | Gemini | Embeds policy and case chunks for grounded retrieval | `EMBEDDING_PROVIDER=gemini`, `GOOGLE_API_KEY`, `GEMINI_EMBEDDING_MODEL` |
+| RAG embeddings alternative | OpenAI | Replaces Gemini for embeddings | `EMBEDDING_PROVIDER=openai`, `OPENAI_API_KEY`, `OPENAI_EMBEDDING_MODEL` |
+
+The default `.env.example` is offline-safe:
+
+```dotenv
+LLM_PROVIDER=none
+EMBEDDING_PROVIDER=local
+VECTOR_STORE=local
+LANGGRAPH_CHECKPOINT=memory
+```
+
+To enable OpenAI chat/reasoning:
+
+```dotenv
+LLM_PROVIDER=openai
+OPENAI_API_KEY=sk-proj-your-private-key
+LLM_MODEL=gpt-4.1-mini
+```
+
+To additionally use Gemini for RAG embeddings:
+
+```dotenv
+EMBEDDING_PROVIDER=gemini
+GOOGLE_API_KEY=your-private-google-key
+GEMINI_EMBEDDING_MODEL=models/text-embedding-004
+VECTOR_STORE=local
+RAG_DATA_DIR=./data
+```
+
+After editing `.env`, recreate the API so it receives the new values. Rebuild the RAG index whenever the embedding provider/model changes because local, Gemini and OpenAI vectors have different dimensions:
+
+```bash
+docker compose up -d --force-recreate api
+curl -X POST http://localhost:8000/rag/reindex \
+  -H "Content-Type: application/json" \
+  -H "X-User-Id: u_admin_1" \
+  -d '{}'
+curl http://localhost:8000/rag/info -H "X-User-Id: u_admin_1"
+```
+
+OpenAI is not allowed to decide the seven-field verdict. The LLM may read, explain and draft; `app/core/comparator.py` alone decides MATCH/MISMATCH. The Google key is used only for embeddings in the current implementation, not Gemini chat.
+
+Never commit `.env` or place service-role/API keys in `NEXT_PUBLIC_*` variables. For production, also configure the variables relevant to the deployment:
+
+- Supabase persistence: `REPO_BACKEND=supabase`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET`.
+- Durable paused agents: `LANGGRAPH_CHECKPOINT=postgres`, `LANGGRAPH_PG_URL`.
+- Production authentication: `AUTH_MODE=jwt`.
+- Outlook ingestion/sending: `EMAIL_PROVIDER=graph`, `MS_TENANT_ID`, `MS_CLIENT_ID`, `MS_CLIENT_SECRET`, `MS_MAILBOX`; keep `EMAIL_SEND_MODE=simulate` until the approval flow is verified.
+- Public URLs: `CORS_ORIGINS` for the API and `NEXT_PUBLIC_API_BASE` when building the frontend.
+
+### 9.3 Intent-classifier model
+
+The application does not fine-tune OpenAI or Gemini. It trains a small local text classifier:
+
+```text
+high-confidence rules -> TF-IDF + logistic regression -> optional OpenAI tie-break
+```
+
+Training uses a deterministic template-grouped split: 370 development emails and an untouched 150-email test set (28.85%). It writes:
+
+- `backend/models/intent_classifier.joblib` — deployable inference artifact;
+- `backend/models/intent_metrics.json` — rule/model/hybrid reports and confusion matrices;
+- `backend/models/intent_split.json` — reproducible train/test IDs and template groups.
+
+Train locally with Python 3.11:
+
+```bash
+cd backend
+pip install -r requirements.txt
+python scripts/train_intent_classifier.py
+```
+
+Or train inside the same Docker environment used by the application:
+
+```bash
+docker compose build api
+docker compose run --rm --no-deps \
+  -v "${PWD}:/workspace" \
+  -w /workspace/backend \
+  -e LLM_PROVIDER=none \
+  api python scripts/train_intent_classifier.py
+```
+
+Training explicitly disables the LLM, so it does not require or spend OpenAI/Google API credits. Do not tune rules, synonyms or hyperparameters against the test IDs in `intent_split.json`; add newly labelled messages to a new development set and keep a separate future/out-of-time test set. Other people can deploy the existing `.joblib` artifact without the organiser ground truth. If the artifact is missing or incompatible, runtime safely falls back to deterministic rules.
+
+### 9.4 Run without Docker
+
+Prerequisites: Python 3.11+ and Node 20+.
+
+```bash
+# Start the backend
+cd backend
+pip install -r requirements.txt
+python -m app.seed.make_seed
+uvicorn app.main:app --reload --port 8000
+
+# In a second terminal, start the frontend
+cd frontend
+npm install
+npm run dev
+```
+
+### 9.5 Tests, scoreboard and acceptance checks
+
+Local Python:
+
+```bash
+cd backend
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q
+python scripts/run_bundle.py
+python -m pytest -q -k container_3_vs_4
+python -m pytest -q -k all_seven_match
+```
+
+Docker (also works on a machine without local Python):
+
+```bash
+docker compose run --rm --no-deps \
+  -v "${PWD}:/workspace" -w /workspace/backend \
+  -e LLM_PROVIDER=none api pytest -q
+
+docker compose run --rm --no-deps \
+  -v "${PWD}:/workspace" -w /workspace/backend \
+  -e LLM_PROVIDER=none api python scripts/run_bundle.py --out /workspace/submission.json
+```
+
+Expected baseline: `58 passed` and `FINAL SCORE = 1.0000`. Keep `LLM_PROVIDER=none` for the scoreboard so it is deterministic, fast and free of network/API dependencies.
+
+Troubleshooting:
+
+- Cases suddenly show unreadable/missing attachments in Docker: confirm the Compose service uses `/data/bundle` and `/data/seed/snapshot.json`, then recreate the API.
+- RAG reports chunks but returns no hits after switching providers: run `/rag/reindex`; the stored vector dimensions do not match the new provider.
+- The model cannot load: install the pinned `scikit-learn` and `joblib` versions from `backend/requirements.txt`, or rebuild the API image.
+- `.env` changed but behaviour did not: `docker compose up -d --force-recreate api`.
+- Frontend API URL changed: rebuild `web`; `NEXT_PUBLIC_API_BASE` is embedded during the Next.js build.
+
+Switch users in the header (Operations · Supervisor · Admin · Auditor) to see RBAC in action. The full AI-agent architecture and provider-specific test scenarios are documented in [AGENT.md](AGENT.md).
 
 ## 10. User Feedback and Impact Metrics
 
@@ -255,7 +430,7 @@ Switch users in the header (Operations · Supervisor · Admin · Auditor) to see
 | All-seven-match message | exactly `No mismatch detected.` ✔ |
 | Notify Party acceptance test | mismatch → HUMAN_REVIEW → NOTIFY_PARTY → recipient picker → external requires confirmation → preview contains only intended fields → `NOTIFY_PARTY_SENT` audit event → AWAITING_RESPONSE ✔ |
 | Security tests | ops role cannot notify external party (403 + `SHARE_DENIED` audit) · unapproved party blocked · `.exe` attachment ⇒ SECURITY_REVIEW, never executed · duplicate message ⇒ no second case ✔ |
-| Automated tests | 55 passed (incl. LangGraph pause/resume, security agent routing, RAG case scoping) |
+| Automated tests | 58 passed (incl. trained-classifier holdout/runtime tests, LangGraph pause/resume, security agent routing, RAG case scoping) |
 
 ### Estimated operational impact (assumptions stated)
 * Manual seven-field check ≈ 5 min/pair → automated < 0.05 s: **≈ 9 operator-hours saved per 109 comparisons**, redirected to the 46 real exceptions.
