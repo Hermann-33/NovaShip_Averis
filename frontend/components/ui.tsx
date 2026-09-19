@@ -19,7 +19,7 @@ export const RESULT_STYLES: Record<string, { badge: string; row: string; label: 
 };
 
 export function Badge({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <span className={`inline-flex items-center rounded-md border border-transparent px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${className}`}>{children}</span>;
+  return <span className={`inline-flex items-center rounded-full border border-transparent px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] ${className}`}>{children}</span>;
 }
 export function StatusBadge({ status }: { status: string }) {
   return <Badge className={STATUS_COLORS[status] || "bg-ink-100 text-ink-700"}>{status.replace(/_/g, " ")}</Badge>;
@@ -29,15 +29,15 @@ export function Confidence({ value, label = "confidence" }: { value: number; lab
   const color = value >= 0.85 ? "bg-match" : value >= 0.6 ? "bg-review" : "bg-mismatch";
   return (
     <span className="inline-flex items-center gap-1.5 text-xs text-ink-500" title={`${label}: ${value.toFixed(2)}`}>
-      <span className="h-1.5 w-12 overflow-hidden rounded bg-ink-100"><span className={`block h-full ${color}`} style={{ width: `${pct}%` }} /></span>
+      <span className="h-1.5 w-12 overflow-hidden rounded-full bg-ink-100"><span className={`block h-full rounded-full ${color}`} style={{ width: `${pct}%` }} /></span>
       <span className="font-mono">{value.toFixed(2)}</span>
     </span>
   );
 }
 export function Card({ title, children, className = "", right }: { title?: React.ReactNode; children: React.ReactNode; className?: string; right?: React.ReactNode }) {
   return (
-    <section className={`rounded-xl border border-ink-200 bg-white shadow-card ${className}`}>
-      {title && <header className="flex items-center justify-between border-b border-ink-100 px-4 py-2.5"><h3 className="text-sm font-semibold text-ink-800">{title}</h3>{right}</header>}
+    <section className={`rounded-2xl border border-ink-200 bg-white/95 shadow-card ${className}`}>
+      {title && <header className="flex items-center justify-between border-b border-ink-100 px-5 py-3"><h3 className="text-sm font-semibold text-ink-800">{title}</h3>{right}</header>}
       <div className="p-4">{children}</div>
     </section>
   );
@@ -48,13 +48,13 @@ export function Button({ children, onClick, kind = "default", disabled, type = "
     danger: "border-mismatch bg-white text-mismatch hover:bg-mismatch-bg", ghost: "border-transparent bg-transparent text-ink-600 hover:bg-ink-100",
     success: "border-match bg-match text-white hover:bg-green-700",
   }[kind];
-  return <button type={type} title={title} disabled={disabled} onClick={onClick} className={`rounded-md border px-2.5 py-1.5 text-xs font-medium transition disabled:cursor-not-allowed disabled:opacity-50 ${styles} ${className}`}>{children}</button>;
+  return <button type={type} title={title} disabled={disabled} onClick={onClick} className={`rounded-lg border px-3 py-2 text-xs font-semibold transition duration-200 hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50 ${styles} ${className}`}>{children}</button>;
 }
 export function KV({ k, v, mono }: { k: string; v: React.ReactNode; mono?: boolean }) {
   return <div className="flex gap-2 text-sm"><span className="w-40 shrink-0 text-ink-500">{k}</span><span className={`min-w-0 break-words text-ink-900 ${mono ? "font-mono text-xs" : ""}`}>{v ?? "—"}</span></div>;
 }
-export function Empty({ text }: { text: string }) { return <div className="rounded-lg border border-dashed border-ink-200 p-6 text-center text-sm text-ink-500">{text}</div>; }
+export function Empty({ text }: { text: string }) { return <div className="rounded-xl border border-dashed border-ink-200 bg-ink-50/50 p-6 text-center text-sm text-ink-500">{text}</div>; }
 export function fmtDate(s?: string | null) { if (!s) return "—"; const d = new Date(s); return isNaN(d.getTime()) ? s : d.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" }); }
 export function Toast({ msg, kind }: { msg: string; kind: "ok" | "err" }) {
-  return <div className={`fixed bottom-4 right-4 z-50 rounded-lg px-4 py-2 text-sm shadow-lg ${kind === "ok" ? "bg-ink-900 text-white" : "bg-mismatch text-white"}`}>{msg}</div>;
+  return <div className={`fixed bottom-4 right-4 z-50 rounded-xl px-4 py-3 text-sm shadow-lg ${kind === "ok" ? "bg-ink-900 text-white" : "bg-mismatch text-white"}`}>{msg}</div>;
 }

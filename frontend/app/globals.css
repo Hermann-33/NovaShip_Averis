@@ -4,10 +4,18 @@
 
 :root { color-scheme: light; }
 html { font-size: 14px; }
-body { background: #ffffff; }
+body { background: #f8f7f4; font-family: Georgia, "Times New Roman", serif; }
+.dashboard-type { font-family: Georgia, "Times New Roman", serif; }
+.dashboard-number { font-family: Georgia, "Times New Roman", serif; letter-spacing: -.045em; }
+.hero-dashboard-number { font-family: "Bahnschrift", "Segoe UI Variable Display", "Aptos Display", sans-serif; }
 table { border-collapse: collapse; }
 th { font-weight: 600; }
 .scrollbar-thin::-webkit-scrollbar { height: 8px; width: 8px; }
 .scrollbar-thin::-webkit-scrollbar-thumb { background: #e7e5e4; border-radius: 8px; }
-:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px; }
+:focus-visible { outline: 2px solid #f36c13; outline-offset: 3px; }
+.novaship-wordmark { position: relative; display: inline-flex; align-items: end; font-size: 22px; font-weight: 800; font-style: italic; letter-spacing: -1.55px; line-height: 1; color: #1b1a18; }
+.novaship-wordmark::before { content: ""; position: absolute; top: -8px; left: 6px; width: 27px; height: 10px; border-radius: 100% 0 100% 0; background: #f36c13; transform: rotate(-8deg) skewX(-17deg); }
+.dashboard-surface { background: radial-gradient(circle at 95% 0%, rgba(243,108,19,.10), transparent 24rem), #f8f7f4; }
+.table-row-action { opacity: .3; transition: opacity .18s ease; }
+tr:hover .table-row-action, tr:focus-within .table-row-action { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }

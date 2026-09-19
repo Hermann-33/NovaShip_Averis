@@ -32,13 +32,14 @@ export default function CasePage() {
   const act = async (path: string, body?: any) => { try { await post(`/cases/${c.id}${path}`, body); say("Done"); load(); } catch (x: any) { say(x.message, "err"); } };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {toast && <Toast {...toast} />}
-      <div className="rounded-xl border border-ink-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-ink-200 bg-white/95 p-5 shadow-card">
         <div className="flex flex-wrap items-start gap-3">
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2 text-xs text-ink-500"><Link href="/" className="hover:underline">← Inbox</Link><span>·</span><span className="font-mono">{c.id}</span><span>·</span><Link href={`/cases/${c.id}?tab=email`} onClick={() => setTab("email")} className="text-accent hover:underline">source email {e.id}</Link></div>
-            <h1 className="mt-1 truncate text-lg font-semibold text-ink-900">{e.subject}</h1>
+            <div className="mt-3 text-[10px] font-bold uppercase tracking-[0.18em] text-accent">Case command view</div>
+            <h1 className="mt-1 truncate text-xl font-semibold tracking-tight text-ink-900">{e.subject}</h1>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-ink-600">
               <span className="font-mono">{e.sender}</span><span>·</span><span>{fmtDate(e.received_at)}</span><span>·</span>
               <Badge className="bg-ink-100 text-ink-700">{c.intent.replace(/_/g, " ")}</Badge>
@@ -73,8 +74,8 @@ export default function CasePage() {
         </div>
       )}
 
-      <div className="flex flex-wrap gap-1 border-b border-ink-200">
-        {TABS.map(([k, label]) => <button key={k} onClick={() => { setTab(k); router.replace(`/cases/${c.id}?tab=${k}`); }} className={`-mb-px border-b-2 px-3 py-2 text-sm ${tab === k ? "border-accent font-semibold text-accent-fg" : "border-transparent text-ink-500 hover:text-ink-800"}`}>{label}{k === "compare" && c.mismatch_count > 0 && <span className="ml-1 rounded-full bg-mismatch px-1.5 text-[10px] text-white">{c.mismatch_count}</span>}{k === "drafts" && c.drafts.length > 0 && <span className="ml-1 rounded-full bg-accent px-1.5 text-[10px] text-white">{c.drafts.length}</span>}</button>)}
+      <div className="flex flex-wrap gap-1 rounded-xl border border-ink-200 bg-white/80 p-1.5 shadow-sm">
+        {TABS.map(([k, label]) => <button key={k} onClick={() => { setTab(k); router.replace(`/cases/${c.id}?tab=${k}`); }} className={`rounded-lg px-3 py-2 text-sm transition ${tab === k ? "bg-ink-900 font-semibold text-white shadow-sm" : "text-ink-500 hover:bg-ink-100 hover:text-ink-800"}`}>{label}{k === "compare" && c.mismatch_count > 0 && <span className="ml-1 rounded-full bg-mismatch px-1.5 text-[10px] text-white">{c.mismatch_count}</span>}{k === "drafts" && c.drafts.length > 0 && <span className="ml-1 rounded-full bg-accent px-1.5 text-[10px] text-white">{c.drafts.length}</span>}</button>)}
       </div>
 
       {tab === "overview" && (

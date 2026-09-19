@@ -27,7 +27,7 @@ export default function Dashboard() {
   const [toast, setToast] = useState<{ msg: string; kind: "ok" | "err" } | null>(null);
   const [busy, setBusy] = useState(false);
   const [apiDown, setApiDown] = useState(false);
-  const limit = 25;
+  const limit = 5;
 
   const say = (msg: string, kind: "ok" | "err" = "ok") => { setToast({ msg, kind }); setTimeout(() => setToast(null), 3500); };
 
@@ -70,10 +70,7 @@ export default function Dashboard() {
   const kpis = useMemo<Kpi[]>(() => m ? ([
     { label: "Action required", value: m.action_required, tone: "accent", hint: "open cases that need a person", preset: { sort: "priority" } },
     { label: "Mismatches", value: m.mismatches_detected, tone: "mismatch", hint: `${mismatchRate}% of verified pairs`, preset: { mismatch: "yes" } },
-    { label: "Human review", value: m.human_review, tone: "review", hint: "waiting for a decision", preset: { status: "HUMAN_REVIEW" } },
-    { label: "Waiting for documents", value: m.waiting_for_documents, tone: "review", hint: "SI or Draft BL missing", preset: { status: "WAITING_DOCUMENTS" } },
-    { label: "Security flagged", value: m.security_flagged, tone: "mismatch", hint: "spam, suspicious, review", preset: { security: "SPAM" } },
-    { label: "No reply needed", value: m.no_action_required, tone: "ink", hint: "filed and searchable", preset: { status: "NO_ACTION_INFO" } },
+    { label: "Human review", value: m.human_review, tone: "review", hint: "waiting for a Human decision", preset: { status: "HUMAN_REVIEW" } },
   ] as Kpi[]) : [], [m, mismatchRate]);
 
   const statusRows = useMemo(() => {
@@ -90,66 +87,35 @@ export default function Dashboard() {
   const secCounts: Record<string, number> = (security || []).reduce((acc: Record<string, number>, r) => ({ ...acc, [r.outcome]: (acc[r.outcome] || 0) + 1 }), {} as Record<string, number>);
 
   return (
-    <div className="space-y-4">
+    <div className="dashboard-type space-y-3">
       {toast && <Toast {...toast} />}
+      <div className="relative overflow-hidden pb-4 pt-2"><img src="/domain-logo.jpe" alt="" aria-hidden className="pointer-events-none absolute right-3 top-0 h-44 w-44 rounded-[2.5rem] object-cover opacity-[0.08] mix-blend-multiply sm:right-12 sm:h-56 sm:w-56" /><div className="relative z-10 text-xs font-bold uppercase tracking-[.18em] text-accent-fg">Dashboard</div><h1 className="hero-dashboard-number relative z-10 mt-2 max-w-5xl text-5xl font-semibold leading-[.98] tracking-[-.055em] text-[#4b2818] sm:text-6xl lg:text-7xl">Shipping operations,<br /><span className="bg-gradient-to-r from-[#e85f0b] via-[#f5832d] to-[#c97532] bg-clip-text text-transparent">under human command.</span></h1><p className="relative z-10 mt-5 text-lg text-[#927968]">Your case control center is ready.</p></div>
 
-      {/* ---- headline strip -------------------------------------------------- */}
-      <section className="overflow-hidden rounded-2xl bg-gradient-to-r from-accent via-[#f26a1b] to-[#fb923c] p-5 text-white shadow-glow">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <div className="text-xs font-medium uppercase tracking-wide text-orange-100">Operations inbox</div>
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight">{m ? `${m.incoming_emails} emails, ${m.action_required} need a person, ${m.mismatches_detected} mismatches found` : apiDown ? "API offline" : "Loading the inbox"}</h1>
-            <p className="mt-1 max-w-[70ch] text-sm text-orange-50">SI is the source of truth. Seven fields compared per case. Nothing leaves the mailbox without an approval.</p>
-          </div>
-          <div className="flex gap-6 text-right">
-            <Stat label="Verified pairs" value={verified} />
-            <Stat label="Mismatch rate" value={`${mismatchRate}%`} />
-            <Stat label="Avg pipeline" value={m ? `${m.avg_processing_ms} ms` : "-"} />
-            <Stat label="Completed" value={m?.completed ?? 0} />
-          </div>
-        </div>
-      </section>
-
-      {/* ---- KPI tiles (clickable presets) ----------------------------------- */}
-      <section className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6" aria-label="Key metrics">
-        {(kpis.length ? kpis : Array.from({ length: 6 }, () => null)).map((k, i) => k ? (
-          <button key={k.label} onClick={() => applyPreset(k.preset)} className="group rounded-xl border border-ink-200 bg-white p-3 text-left shadow-card transition hover:-translate-y-[1px] hover:border-accent-ring hover:shadow-glow active:scale-[0.98]">
-            <div className="flex items-center justify-between text-[11px] uppercase tracking-wide text-ink-500"><span>{k.label}</span><span className={`h-2 w-2 rounded-full ${k.tone === "accent" ? "bg-accent" : k.tone === "mismatch" ? "bg-mismatch" : k.tone === "review" ? "bg-review" : "bg-ink-300"}`} aria-hidden /></div>
-            <div className={`mt-1 text-3xl font-semibold tabular-nums ${k.tone === "accent" ? "text-accent" : k.tone === "mismatch" ? "text-mismatch" : k.tone === "review" ? "text-review-fg" : "text-ink-800"}`}>{k.value}</div>
-            <div className="mt-0.5 text-[11px] text-ink-500">{k.hint}</div>
-            <div className="mt-1 text-[11px] font-medium text-accent opacity-0 transition group-hover:opacity-100">Show these cases</div>
+      <section className="grid grid-cols-2 gap-3 lg:grid-cols-[repeat(3,minmax(0,1fr))_minmax(0,1.3fr)]" aria-label="Key metrics">
+        {(kpis.length ? kpis : Array.from({ length: 3 }, () => null)).map((k, i) => k ? (
+          <button key={k.label} onClick={() => applyPreset(k.preset)} className={`group min-h-[122px] rounded-2xl border border-orange-100 p-3.5 text-left shadow-card transition duration-200 hover:-translate-y-1 hover:scale-[1.015] hover:shadow-glow active:scale-[0.99] ${i === 0 ? "bg-[radial-gradient(circle_at_85%_85%,rgba(230,104,19,.28),transparent_46%),linear-gradient(135deg,#fffdfb_15%,#f9eee6)]" : i === 1 ? "bg-[radial-gradient(circle_at_82%_16%,rgba(247,139,54,.25),transparent_47%),linear-gradient(135deg,#fffdfb_15%,#fff2e5)]" : "bg-[radial-gradient(circle_at_80%_85%,rgba(255,154,58,.34),transparent_47%),linear-gradient(135deg,#fffdfb_15%,#fff4e7)]"}`}>
+            <div className="text-sm font-bold uppercase tracking-[.08em] text-accent">{k.label}</div>
+            <div className="mt-2 flex items-end justify-between gap-2"><div className="dashboard-number text-4xl font-semibold tabular-nums leading-none text-[#4b2818]">{k.value}</div>{i < 2 && <Trend direction={i === 0 ? "up" : "down"} />}</div>
+            <div className="mt-2 text-xs text-ink-600">{k.label === "Human review" ? <>waiting for a <span className="font-bold text-accent">Human</span> decision</> : k.hint}</div>
           </button>
-        ) : <div key={i} className="h-[92px] animate-pulse rounded-xl bg-ink-100" aria-busy />)}
+        ) : <div key={i} className="h-[122px] animate-pulse rounded-2xl bg-ink-100" aria-busy />)}
+        <section className="min-h-[122px] rounded-2xl border border-orange-100 bg-[radial-gradient(circle_at_82%_16%,rgba(247,139,54,.25),transparent_47%),linear-gradient(135deg,#fffdfb_15%,#fff2e5)] p-3.5 shadow-card transition duration-200 hover:-translate-y-1 hover:scale-[1.015] hover:shadow-glow">
+          <div className="text-sm font-bold uppercase tracking-[.08em] text-accent">All email status</div>
+          <div className="mt-2 text-lg font-semibold tracking-tight text-[#4b2818]">{m ? <>{m.incoming_emails} emails, {m.action_required} need a <span className="font-bold text-accent">Human</span></> : apiDown ? "API offline" : "Loading"}</div>
+          <div className="mt-3 flex gap-3"><Stat label="Verified" value={verified} /><Stat label="Pipeline" value={m ? `${m.avg_processing_ms} ms` : ""} /><Stat label="Done" value={m?.completed ?? 0} /></div>
+        </section>
       </section>
 
       {/* ---- analytics row ---------------------------------------------------- */}
-      <section className="grid gap-3 lg:grid-cols-3">
-        <Panel title="Seven fields, mismatches by field" link={{ href: "/verification", label: "All cases per field" }}>
-          {fields.length === 0 ? <Skeleton n={7} /> : (
-            <ul className="space-y-1.5">
-              {fields.map((x, i) => (
-                <li key={x.field}>
-                  <Link href="/verification" className="group flex items-center gap-2 text-xs">
-                    <span className="w-5 text-ink-400">{i + 1}</span>
-                    <span className="w-32 shrink-0 text-ink-700 group-hover:text-accent">{FIELD_LABELS[x.field]}</span>
-                    <span className="h-2.5 flex-1 overflow-hidden rounded bg-ink-100"><span className="block h-full rounded bg-gradient-to-r from-accent to-[#fb923c]" style={{ width: `${(x.mismatch / fieldMax) * 100}%` }} /></span>
-                    <span className="w-8 text-right font-mono font-semibold text-ink-800">{x.mismatch}</span>
-                    <span className="hidden w-16 text-right text-[10px] text-ink-400 sm:inline">{x.review} review</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </Panel>
-
+      <section className="grid gap-3 lg:grid-cols-2">
         <Panel title="Where cases are in the workflow" link={{ href: "", label: "" }}>
           {statusRows.length === 0 ? <Skeleton n={7} /> : (
             <ul className="space-y-1.5">
               {statusRows.map((r) => (
                 <li key={r.s}>
                   <button onClick={() => applyPreset({ status: r.s })} className="group flex w-full items-center gap-2 text-xs">
-                    <span className="w-36 shrink-0 truncate text-left text-ink-700 group-hover:text-accent">{r.s.replace(/_/g, " ").toLowerCase()}</span>
-                    <span className="h-2.5 flex-1 overflow-hidden rounded bg-ink-100"><span className={`block h-full rounded ${STATUS_TONE[r.s] || "bg-accent"}`} style={{ width: `${r.pct}%` }} /></span>
+                    <span className="w-36 shrink-0 truncate text-left text-ink-700 transition group-hover:text-accent">{r.s.replace(/[_-]+/g, " ").toLowerCase()}</span>
+                    <span className="h-2.5 flex-1 overflow-hidden rounded bg-ink-100"><span className={`block h-full rounded bg-gradient-to-r from-[#f68b3b] to-[#a77a72] ${STATUS_TONE[r.s] === "bg-mismatch" ? "!from-[#cb5a4f] !to-[#8e4039]" : ""}`} style={{ width: `${r.pct}%` }} /></span>
                     <span className="w-8 text-right font-mono font-semibold text-ink-800">{r.n}</span>
                   </button>
                 </li>
@@ -158,54 +124,35 @@ export default function Dashboard() {
           )}
         </Panel>
 
-        <div className="grid gap-3">
-          <Panel title="What people are asking for" link={{ href: "", label: "" }}>
-            {intentRows.length === 0 ? <Skeleton n={4} /> : (
-              <div>
-                <div className="flex h-3 w-full overflow-hidden rounded-full bg-ink-100" role="img" aria-label="Intent distribution">
-                  {intentRows.map((r, i) => <span key={r.k} title={`${r.k} ${r.v}`} style={{ width: `${r.pct}%`, opacity: 1 - i * 0.12 }} className="h-full bg-accent" />)}
-                </div>
-                <ul className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1 text-[11px]">
-                  {intentRows.slice(0, 6).map((r) => <li key={r.k}><button onClick={() => applyPreset({ intent: r.k })} className="flex w-full justify-between hover:text-accent"><span className="truncate text-ink-600">{r.k.replace(/_/g, " ").toLowerCase()}</span><span className="font-mono text-ink-800">{r.v}</span></button></li>)}
-                </ul>
-              </div>
-            )}
-          </Panel>
-          <Panel title="Security agent" link={{ href: "/security", label: "Open queue" }}>
-            {security === null ? <Skeleton n={2} /> : (
-              <div className="flex items-center gap-3">
-                <Ring value={m ? m.security_flagged : 0} total={m ? m.incoming_emails : 1} />
-                <ul className="flex-1 space-y-1 text-[11px]">
-                  {[["SECURITY_REVIEW", "bg-mismatch"], ["SUSPICIOUS", "bg-review"], ["SPAM", "bg-ink-400"]].map(([k, c]) => (
-                    <li key={k} className="flex items-center gap-2"><span className={`h-2 w-2 rounded-full ${c}`} aria-hidden /><span className="flex-1 text-ink-600">{k.replace("_", " ").toLowerCase()}</span><span className="font-mono font-semibold text-ink-800">{secCounts[k] || 0}</span></li>
-                  ))}
-                  <li className="pt-1 text-ink-400">attachments are parsed, never executed</li>
-                </ul>
-              </div>
-            )}
-          </Panel>
-        </div>
-      </section>
-
-      {/* ---- attention queue + activity -------------------------------------- */}
-      <section className={`grid gap-3 ${activity ? "lg:grid-cols-[2fr_1fr]" : ""}`}>
-        <Panel title="Needs your attention now" link={{ href: "", label: "" }} right={<span className="text-[11px] text-ink-500">highest priority first</span>}>
-          {attention === null ? <Skeleton n={5} /> : attention.length === 0 ? <div className="rounded-lg border border-dashed border-ink-200 p-5 text-center text-sm text-ink-500">Queue is clear.</div> : (
-            <ul className="divide-y divide-ink-100">
-              {attention.map((r) => (
-                <li key={r.id} className="flex flex-wrap items-center gap-2 py-2 text-xs">
-                  <span className={`w-16 font-semibold ${PRIORITY_COLORS[r.priority]}`}>{r.priority}</span>
-                  <Link href={`/cases/${r.id}`} className="min-w-0 flex-1 truncate font-medium text-ink-900 hover:text-accent">{r.subject || "(no subject)"}</Link>
-                  {r.mismatch_count > 0 ? <Badge className="bg-mismatch text-white">{r.mismatch_count} mismatch</Badge> : r.review_reason ? <Badge className="bg-review-bg text-review-fg">{r.review_reason.replace(/_/g, " ")}</Badge> : <StatusBadge status={r.status} />}
-                  <span className="hidden text-ink-500 md:inline">{r.summary.slice(0, 70)}{r.summary.length > 70 ? "…" : ""}</span>
-                  <Button kind="primary" onClick={() => router.push(`/cases/${r.id}`)}>Open</Button>
-                </li>
-              ))}
+        <Panel title="Needs your attention now" link={{ href: "", label: "" }}>
+          {attention === null ? <Skeleton n={3} /> : attention.length === 0 ? <div className="py-8 text-center text-sm text-ink-500">Queue is clear.</div> : (
+            <ul className="space-y-2">
+              {attention.slice(0, 3).map((r) => <li key={r.id} className="group flex items-center gap-2 rounded-xl border-l-4 border-mismatch bg-white/80 px-3 py-2 shadow-sm transition hover:-translate-y-0.5 hover:bg-[#fff4ed]">
+                <div className="min-w-0 flex-1"><div className="text-[10px] font-bold text-mismatch">{r.priority}</div><Link href={`/cases/${r.id}`} className="block truncate text-xs font-semibold text-ink-900 group-hover:text-accent">{r.subject || "No subject"}</Link></div>
+                {r.mismatch_count > 0 && <Badge className="bg-mismatch text-white">{r.mismatch_count} mismatch</Badge>}
+                <Button kind="primary" onClick={() => router.push(`/cases/${r.id}`)}>Open</Button>
+              </li>)}
             </ul>
           )}
         </Panel>
-        {activity && (
-          <Panel title="Latest activity" link={{ href: "/audit", label: "Full audit" }}>
+      </section>
+
+      {activity && (
+        <section className="grid gap-3 lg:grid-cols-[1.2fr_.8fr]">
+          <div className="contents">
+          <Panel className="lg:col-start-2 lg:row-start-1" title="Security agent" link={{ href: "/security", label: "Open queue" }}>
+            {security === null ? <Skeleton n={2} /> : (
+              <div className="flex items-center gap-2.5">
+                <Ring value={m ? m.security_flagged : 0} total={m ? m.incoming_emails : 1} />
+                <ul className="flex-1 space-y-1 text-[11px]">
+                  {[["SECURITY_REVIEW", "bg-mismatch"], ["SUSPICIOUS", "bg-review"], ["SPAM", "bg-ink-400"]].map(([k, c]) => (
+                    <li key={k} className="flex items-center gap-1.5"><span className={`h-1.5 w-1.5 rounded-full ${c}`} aria-hidden /><span className="flex-1 text-ink-600">{k.replace(/[_-]+/g, " ").toLowerCase()}</span><span className="font-mono font-semibold text-ink-800">{secCounts[k] || 0}</span></li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </Panel>
+          <Panel className="lg:col-start-1 lg:row-span-2" title="Latest activity" link={{ href: "/audit", label: "Full audit" }}>
             <ul className="space-y-1.5 text-[11px]">
               {activity.map((e) => (
                 <li key={e.event_id} className="flex gap-2">
@@ -214,12 +161,17 @@ export default function Dashboard() {
                 </li>
               ))}
             </ul>
+            <ActivityTrend events={activity} />
           </Panel>
-        )}
-      </section>
+          <Panel className="lg:col-start-2 lg:row-start-2" title="Seven field checks" link={{ href: "/verification", label: "View all" }}>
+            {fields.length === 0 ? <Skeleton n={4} /> : <ul className="grid gap-x-5 gap-y-1.5 sm:grid-cols-2">{fields.map((x, i) => <li key={x.field}><Link href="/verification" className="group flex items-center gap-2 text-xs"><span className="w-4 text-ink-400">{i + 1}</span><span className="min-w-0 flex-1 truncate text-ink-700 group-hover:text-accent">{FIELD_LABELS[x.field]}</span><span className="h-1.5 w-16 overflow-hidden rounded-full bg-ink-100"><span className="block h-full rounded-full bg-gradient-to-r from-[#f58a38] to-[#9d6b5d]" style={{ width: `${(x.mismatch / fieldMax) * 100}%` }} /></span><span className="font-mono text-ink-800">{x.mismatch}</span></Link></li>)}</ul>}
+          </Panel>
+          </div>
+        </section>
+      )}
 
       {/* ---- case table --------------------------------------------------------- */}
-      <div id="case-table" className="scroll-mt-16 rounded-xl border border-ink-200 bg-white shadow-card">
+      <div id="case-table" className="scroll-mt-16 overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-card">
         <div className="flex flex-wrap items-center gap-2 border-b border-ink-100 px-3 py-2">
           <span className="mr-1 text-sm font-semibold text-ink-800">All cases</span>
           <input placeholder="Search case, subject, sender, summary" value={f.q} onChange={(e) => setFilter("q", e.target.value)} className="w-60 rounded-md border border-ink-200 px-2 py-1.5 text-sm" aria-label="Search" />
@@ -267,7 +219,7 @@ export default function Dashboard() {
             <tbody>
               {rows === null && Array.from({ length: 6 }, (_, i) => <tr key={i} className="border-t border-ink-100"><td colSpan={15} className="px-2 py-2"><div className="h-6 animate-pulse rounded bg-ink-100" /></td></tr>)}
               {rows?.map((r) => (
-                <tr key={r.id} className={`border-t border-ink-100 align-top hover:bg-accent-bg/30 ${sel.has(r.id) ? "bg-accent-bg/40" : ""}`}>
+                <tr key={r.id} className={`border-t border-ink-100 align-top transition hover:bg-accent-bg/30 ${sel.has(r.id) ? "bg-accent-bg/40" : ""}`}>
                   <td className="px-2 py-2"><input type="checkbox" aria-label={`Select ${r.id}`} checked={sel.has(r.id)} onChange={() => toggle(r.id)} /></td>
                   <td className="px-2 py-2 font-mono text-[11px]"><Link href={`/cases/${r.id}`} className="text-accent hover:underline">{r.id.replace("case_", "")}</Link></td>
                   <td className="max-w-[360px] px-2 py-2">
@@ -289,7 +241,7 @@ export default function Dashboard() {
                   <td className="px-2 py-2"><StatusBadge status={r.status} />{r.errors > 0 && <div className="mt-0.5 text-[10px] text-mismatch">{r.errors} error(s)</div>}</td>
                   <td className="whitespace-nowrap px-2 py-2 text-[11px] text-ink-500">{fmtDate(r.updated_at)}</td>
                   <td className="px-2 py-2">
-                    <div className="flex flex-nowrap gap-1">
+                    <div className="table-row-action flex flex-nowrap gap-1">
                       <Button kind="primary" onClick={() => router.push(`/cases/${r.id}`)}>Open</Button>
                       <Button onClick={() => quick(r.id, "/compare")} title="Re-run extraction and the deterministic comparison">Compare</Button>
                       <Button onClick={() => router.push(`/cases/${r.id}?tab=ask`)}>Ask AI</Button>
@@ -314,17 +266,25 @@ export default function Dashboard() {
 }
 
 function Stat({ label, value }: { label: string; value: React.ReactNode }) {
-  return <div><div className="text-2xl font-semibold tabular-nums leading-none">{value}</div><div className="mt-1 text-[11px] uppercase tracking-wide text-orange-100">{label}</div></div>;
+  return <div><div className="dashboard-number text-xl font-semibold tabular-nums leading-none text-[#4b2818]">{value}</div><div className="mt-1 text-[9px] font-medium uppercase tracking-wide text-ink-500">{label}</div></div>;
 }
-function Panel({ title, children, link, right }: { title: string; children: React.ReactNode; link: { href: string; label: string }; right?: React.ReactNode }) {
+function Panel({ title, children, link, right, className = "" }: { title: string; children: React.ReactNode; link: { href: string; label: string }; right?: React.ReactNode; className?: string }) {
   return (
-    <section className="rounded-xl border border-ink-200 bg-white p-4 shadow-card">
-      <header className="mb-3 flex items-center justify-between"><h2 className="text-sm font-semibold text-ink-800">{title}</h2>{right}{link.href && link.label && <Link href={link.href} className="text-[11px] font-medium text-accent hover:underline">{link.label}</Link>}</header>
+    <section className={`rounded-2xl border border-orange-100 bg-[radial-gradient(circle,rgba(236,122,42,.18)_1px,transparent_1.2px)] bg-[size:14px_14px] p-3.5 shadow-card transition duration-200 hover:-translate-y-0.5 hover:border-orange-200 hover:shadow-glow ${className}`}>
+      <header className="mb-3 flex items-center justify-between"><h2 className="text-lg font-bold text-accent-fg [font-family:Georgia,'Times_New_Roman',serif]">{title}</h2>{right}{link.href && link.label && <Link href={link.href} className="text-[11px] font-semibold text-accent hover:underline">{link.label} →</Link>}</header>
       {children}
     </section>
   );
 }
 function Skeleton({ n }: { n: number }) { return <div className="space-y-2" aria-busy>{Array.from({ length: n }, (_, i) => <div key={i} className="h-3.5 animate-pulse rounded bg-ink-100" />)}</div>; }
+function Trend({ direction }: { direction: "up" | "down" }) {
+  const points = direction === "up" ? "2,20 11,16 18,17 27,9 36,12 46,4" : "2,6 11,10 18,9 27,16 36,13 46,21";
+  return <svg viewBox="0 0 48 24" className="h-7 w-14 overflow-visible" aria-label={`${direction}ward trend`}><polyline points={points} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#4b2818]" /><path d={direction === "up" ? "M42 4h4v4" : "M42 21h4v-4"} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-[#4b2818]" /></svg>;
+}
+function ActivityTrend({ events }: { events: any[] }) {
+  const heights = events.slice(0, 8).map((event, index) => event.actor_type === "USER" ? 72 - index * 3 : event.actor_type === "AI" ? 52 - index * 2 : 34 + index * 2);
+  return <div className="mt-4 border-t border-orange-100 pt-3"><div className="mb-2 text-[10px] font-bold uppercase tracking-[.12em] text-accent">Activity pulse</div><div className="flex h-12 items-end gap-1.5">{heights.map((height, index) => <span key={index} className="flex-1 rounded-t-full bg-gradient-to-t from-[#d66a1d] to-[#f7b46f] opacity-85" style={{ height: `${Math.max(18, height)}%` }} />)}</div></div>;
+}
 function Ring({ value, total }: { value: number; total: number }) {
   const pct = total ? Math.min(100, Math.round((value / total) * 100)) : 0;
   const r = 26, c = 2 * Math.PI * r;

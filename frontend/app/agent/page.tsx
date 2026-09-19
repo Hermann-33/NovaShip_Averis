@@ -10,7 +10,7 @@ const NODES = [
   ["classify", "Intent + priority + action needed. Rules on the real subject grammar; LLM tie-break under 0.75."],
   ["detect_documents", "SI / Draft BL / invoice / supporting / unknown; routes to waiting-documents or unreadable."],
   ["extract", "Seven-field extraction with label-synonym resolution and evidence (page, line, snippet)."],
-  ["compare", "Deterministic tool: the only place a MATCH or MISMATCH is decided."],
+  ["compare", "The final check that decides whether fields match or differ."],
   ["summarize_and_draft", "Policy evaluation, recommendation, summary, draft (never sent), RAG context."],
   ["human_review", "interrupt(): the graph pauses here until a person approves, edits, rejects, reassigns, notifies or retries."],
   ["notify", "Executes only what the human approved, then writes GRAPH_COMPLETED to the audit log."],
@@ -38,32 +38,32 @@ export default function AgentPage() {
   const alias: Record<string, string> = { classify: "intent_classifier", detect_documents: "attachment_classifier", extract: "document_extractor", compare: "seven_field_comparator", summarize_and_draft: "summary_and_draft", notify: "notifier" };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       {toast && <Toast {...toast} />}
       <header>
-        <h1 className="text-xl font-semibold text-ink-900">AI agent (LangGraph)</h1>
-        <p className="max-w-[75ch] text-sm text-ink-600">One StateGraph per case. AI nodes classify, extract, summarise and draft; the compare node is a deterministic tool; the human_review node pauses the graph with an interrupt until a person decides. Code: <code>backend/app/agents/</code> (state, prompts, tools, nodes, graph, rag).</p>
+        <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-accent-fg transition hover:-translate-x-1 hover:text-accent">← <span>Back to inbox</span></Link>
+        <h1 className="dashboard-number mt-6 text-5xl font-bold tracking-[-.04em] text-[#583521] sm:text-6xl">AI agent</h1>
+        <p className="mt-3 max-w-3xl text-lg font-semibold leading-relaxed text-[#7d6251]">The AI agent classifies, extracts, summarises and prepares drafts for each case. When a human decision is needed, the case pauses until someone reviews it.</p>
       </header>
 
       <div className="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
-        <Card title="Graph nodes" right={rag && <span className="text-[11px] text-ink-500">RAG: {rag.embedding_provider} embeddings, {rag.vector_store} store, {rag.chunks} chunks</span>}>
+        <Card className="border-orange-200 transition duration-200 hover:-translate-y-1 hover:border-orange-300 hover:shadow-md" title={<span className="text-lg font-bold text-accent">Graph nodes</span>} right={rag && <span className="text-[11px] text-ink-500">RAG: {rag.embedding_provider} embeddings, {rag.vector_store} store, {rag.chunks} chunks</span>}>
           <ol className="space-y-1.5">
             {NODES.map(([n, desc], i) => {
               const hit = traceNodes.has(n) || traceNodes.has(alias[n] || "");
               const paused = st?.paused && st?.next?.includes(n);
               return (
-                <li key={n} className={`flex gap-3 rounded-lg border p-2 text-xs ${paused ? "border-review bg-review-bg/50" : hit ? "border-match/40 bg-match-bg/30" : "border-ink-100"}`}>
+                <li key={n} className={`flex gap-3 rounded-lg border p-2 text-xs transition duration-200 hover:-translate-y-0.5 hover:shadow-sm ${paused ? "border-review bg-review-bg/50" : hit ? "border-match/40 bg-match-bg/30" : "border-orange-100 bg-[#fffdf9]"}`}>
                   <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-full text-[11px] font-semibold ${paused ? "bg-review text-white" : hit ? "bg-match text-white" : "bg-ink-100 text-ink-600"}`}>{i + 1}</span>
                   <div><div className="font-mono font-semibold text-ink-900">{n}{n === "compare" && <Badge className="ml-2 bg-ink-900 text-white">deterministic</Badge>}{n === "human_review" && <Badge className="ml-2 bg-review text-white">interrupt</Badge>}</div><div className="text-ink-600">{desc}</div></div>
                 </li>
               );
             })}
           </ol>
-          {graph && <details className="mt-3 text-xs"><summary className="cursor-pointer text-accent">Mermaid definition (paste into mermaid.live)</summary><pre className="mt-1 max-h-64 overflow-auto rounded bg-ink-50 p-2 font-mono text-[10px]">{graph.mermaid}</pre></details>}
         </Card>
 
         <div className="space-y-4">
-          <Card title="Run on a case">
+          <Card className="border-orange-200 transition duration-200 hover:-translate-y-1 hover:border-orange-300 hover:shadow-md" title={<span className="text-lg font-bold text-accent">Run on a case</span>}>
             <div className="flex gap-2">
               <input value={caseId} onChange={(e) => setCaseId(e.target.value)} className="flex-1 rounded-md border border-ink-200 px-2 py-1.5 font-mono text-xs" aria-label="Case id" />
               <Button kind="primary" disabled={busy} onClick={run}>Run graph</Button>
@@ -72,7 +72,7 @@ export default function AgentPage() {
             <p className="mt-2 text-xs text-ink-500">Try case_email_004 (two mismatches, pauses), case_email_001 (all match, no pause), case_email_015 (spam), case_email_512 (scanned PDF).</p>
           </Card>
 
-          <Card title="Graph state">
+          <Card className="border-orange-200 transition duration-200 hover:-translate-y-1 hover:border-orange-300 hover:shadow-md" title={<span className="text-lg font-bold text-accent">Graph state</span>}>
             {!st ? <Empty text="Run the graph or refresh the state for a case." /> : (
               <div className="space-y-2 text-sm">
                 <KV k="Paused" v={st.paused ? <Badge className="bg-review text-white">waiting for human</Badge> : <Badge className="bg-match-bg text-match-fg">not paused</Badge>} />
