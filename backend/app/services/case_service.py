@@ -77,17 +77,18 @@ class CaseService:
         mode = os.environ.get("EMAIL_SEND_MODE", "simulate").strip().lower()
         if mode == "simulate":
             return "simulate"
-        if mode != "graph":
-            raise ValueError("EMAIL_SEND_MODE must be simulate or graph")
-        from app.connectors.email_connectors import GraphConnector
+        from app.connectors.email_connectors import get_outbound_connector
 
-        GraphConnector().send(recipients, subject, body, copies)
-        return "graph"
+        connector = get_outbound_connector(mode)
+        if connector is None:  # pragma: no cover - simulate returned above
+            raise RuntimeError("configured outbound connector is unavailable")
+        connector.send(recipients, subject, body, copies)
+        return mode
 
     def _delivery_failure(self, case: CaseRecord, user: UserRecord, item_id: str, exc: Exception) -> None:
         err = ProcessingError(id=_id("err_notify"), case_id=case.id, category=ErrorCategory.NOTIFICATION_ERROR, step="outbound_email",
                               message="Outbound email provider rejected or could not accept the message.", safe_details=type(exc).__name__,
-                              recovery="Check Graph credentials/network and retry the approved item.", retryable=True)
+                              recovery="Check the configured email provider credentials/network and retry the approved item.", retryable=True)
         case.errors.append(err)
         self.repo.save_error(err)
         self.pipe.audit(case.id, ActorType.SYSTEM, "notifier", "NOTIFICATION_FAILED",
@@ -169,10 +170,11 @@ class CaseService:
             self._delivery_failure(case, user, d.id or dec.draft_id, exc)
             self.repo.save_case(case)
             raise HTTPException(502, detail={"error": "outbound email was not accepted; the approved draft can be retried", "category": "NOTIFICATION_ERROR", "retryable": True})
-        d.status = DraftStatus.SENT if mode == "graph" else DraftStatus.SIMULATED
-        action = "NOTIFICATION_SENT" if mode == "graph" else "NOTIFICATION_SIMULATED"
+        accepted = mode in {"gmail", "graph"}
+        d.status = DraftStatus.SENT if accepted else DraftStatus.SIMULATED
+        action = "NOTIFICATION_SENT" if accepted else "NOTIFICATION_SIMULATED"
         self.pipe.audit(case.id, ActorType.SYSTEM, "notifier", action,
-                        after={"channel": "email", "to": d.to, "subject": d.subject, "draft_id": d.id, "mode": mode, "provider_accepted": mode == "graph"})
+                        after={"channel": "email", "to": d.to, "subject": d.subject, "draft_id": d.id, "mode": mode, "provider_accepted": accepted})
         self._status(case, CaseStatus.AWAITING_RESPONSE, user)
         self.repo.save_case(case)
         return case
@@ -292,8 +294,9 @@ class CaseService:
                 self._delivery_failure(case, user, share.id, exc)
                 self.repo.save_case(case)
                 raise HTTPException(502, detail={"error": "outbound share was not accepted; confirmation can be retried", "category": "NOTIFICATION_ERROR", "retryable": True})
-            share.status = "SENT" if mode == "graph" else "SIMULATED"
-            audit_action = "NOTIFY_PARTY_SENT" if mode == "graph" else "NOTIFY_PARTY_SIMULATED"
+            accepted = mode in {"gmail", "graph"}
+            share.status = "SENT" if accepted else "SIMULATED"
+            audit_action = "NOTIFY_PARTY_SENT" if accepted else "NOTIFY_PARTY_SIMULATED"
         else:
             share.status = "SENT"
             audit_action = "SHARE_SENT"
