@@ -1,7 +1,10 @@
-# NovaShip Averis — full stack
-#   docker compose up --build
-#   API  -> http://localhost:8000  (Swagger: /docs)
-#   UI   -> http://localhost:3000
+# NovaShip Averis — full stack (baked images; rebuild after code changes)
+#   docker compose up -d --build
+#   .\scripts\dev.ps1 docker          # stops local npm/uvicorn first, then Compose
+#   API  -> http://localhost:${API_PORT:-8000}  (Swagger: /docs)
+#   UI   -> http://localhost:${WEB_PORT:-3000}
+# Live reload (bind-mounts): docker-compose.dev.yml or .\scripts\dev.ps1 docker-dev
+# Do not run local `npm run dev` / `uvicorn --port 8000` at the same time as this stack.
 # Default = offline demo (in-memory repo seeded from the SDOC bundle, rule-based AI).
 # Set REPO_BACKEND=supabase + SUPABASE_* and/or LLM_PROVIDER + API key in .env to go live.
 services:
@@ -20,7 +23,7 @@ services:
       VECTOR_STORE: ${VECTOR_STORE:-local}
       LANGGRAPH_CHECKPOINT: ${LANGGRAPH_CHECKPOINT:-memory}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
-    ports: ["8000:8000"]
+    ports: ["${API_PORT:-8000}:8000"]
     volumes:
       - ./sdoc-hackathon-bundle:/data/bundle:ro
       - ./supabase/seed/snapshot.json:/data/seed/snapshot.json:ro
@@ -34,7 +37,7 @@ services:
         NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-http://localhost:8000}
     environment:
       NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-http://localhost:8000}
-    ports: ["3000:3000"]
+    ports: ["${WEB_PORT:-3000}:3000"]
     depends_on: [api]
     restart: unless-stopped
 

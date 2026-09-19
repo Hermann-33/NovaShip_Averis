@@ -1,0 +1,38 @@
+# Live-reload overlay. Source mounts mean UI and API pick up host edits
+# without an image rebuild. Do not use this file together with local
+# `npm run dev` / `uvicorn --port 8000` — they share 3000 and 8000.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+#   .\scripts\dev.ps1 docker-dev
+#
+services:
+  api:
+    environment:
+      WATCHFILES_FORCE_POLLING: "true"
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/scripts:/app/scripts
+      - ./backend/models:/app/models
+      - ./sdoc-hackathon-bundle:/data/bundle:ro
+      - ./supabase/seed/snapshot.json:/data/seed/snapshot.json:ro
+      - ./backend/data:/app/data
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+      args:
+        NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-http://localhost:8000}
+    environment:
+      NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-http://localhost:8000}
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
+      WATCHPACK_POLLING_INTERVAL: "1000"
+    volumes:
+      - ./frontend:/app
+      - web_node_modules:/app/node_modules
+    command: ["npm", "run", "dev"]
+
+volumes:
+  web_node_modules:

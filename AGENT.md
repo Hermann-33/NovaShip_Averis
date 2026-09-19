@@ -126,21 +126,29 @@ Order of operations for P3: run `0001_schema.sql`, `0002_rls.sql`, `0003_vector.
 
 Without any key the whole system runs (rules only). Keys add reasoning quality; they never change the seven-field verdict.
 
-## 7. Docker: rebuild after changes, and removing services while building
+## 7. Docker: rebuild after changes, live reload, mixed local
+
+Full run-mode table: [README §9](README.md#9-quick-start).
 
 ```bash
-docker compose up --build                     # first run: builds api + web
-# after backend code changes
+# Baked images (must rebuild after code changes)
+./scripts/dev.sh docker                         # or: docker compose up -d --build
 docker compose build api && docker compose up -d api
-# after frontend changes (NEXT_PUBLIC_API_BASE is baked in at build time)
 docker compose build web --no-cache && docker compose up -d web
-# after regenerating the seed (supabase/seed/snapshot.json) the api image copies it: rebuild api
+
+# Live reload inside Docker (bind-mount frontend + backend/app)
+./scripts/dev.sh docker-dev
+# docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+
+# After regenerating the seed
 python -m app.seed.make_seed && docker compose build api && docker compose up -d api
-# logs / health
 docker compose logs -f api ; curl localhost:8000/health
 ```
 
+Do not bind host `npm run dev` and Compose `web` to 3000 at the same time, or host uvicorn and Compose `api` to 8000. `./scripts/dev.sh stop` frees both.
+
 Temporarily leave a service out while iterating:
+* `./scripts/dev.sh frontend` (local Next + Docker API) or `./scripts/dev.sh backend` (local uvicorn + Docker UI).
 * `docker compose up api` (only the API, no web) or `docker compose up web --no-deps`.
 * Comment the service out in `docker-compose.yml` or give it `profiles: ["disabled"]` (services with a profile are skipped unless `--profile disabled` is passed). The organiser scorer already uses `profiles: ["scoring"]`.
 * `docker compose stop web` / `docker compose rm -f web` removes the running container without touching the image.

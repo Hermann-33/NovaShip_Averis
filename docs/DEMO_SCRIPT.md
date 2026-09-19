@@ -1,7 +1,7 @@
 # 5-minute demo script
 
 Demo case: **`case_email_004`** (REQUEST BL DRAFT — Consignee + Notify Party mismatch) · clean case: **`case_email_001`** · undecidable: **`case_email_512`** (scanned PDF) · spam: **`case_email_015`**.
-Before recording: `python -m app.seed.make_seed && uvicorn app.main:app --port 8000` and `npm run dev` (or `docker compose up`). Act as **Hari Mardianto · SUPERVISOR**.
+Before recording: `.\scripts\dev.ps1 docker` (or `docker-dev` / local uvicorn + `npm run dev`). Act as **Hari Mardianto · SUPERVISOR**. Do not run Compose web and host `npm run dev` on port 3000 at the same time.
 
 | Time | Who | Screen | Say |
 |---|---|---|---|

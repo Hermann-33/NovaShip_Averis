@@ -16,8 +16,23 @@ def env(name: str, default: str = "") -> str:
     return os.environ.get(name, default)
 
 
-BUNDLE_DIR = Path(env("BUNDLE_DIR", str(ROOT_DIR / "sdoc-hackathon-bundle")))
-SEED_SNAPSHOT = Path(env("SEED_SNAPSHOT", str(ROOT_DIR / "supabase" / "seed" / "snapshot.json")))
+def resolve_path(value: str, base: Path) -> Path:
+    """Resolve relative env paths against the repo (or backend) root, not the process cwd."""
+    path = Path(value)
+    if path.is_absolute():
+        return path
+    rooted = (base / path).resolve()
+    cwd_path = (Path.cwd() / path).resolve()
+    if rooted.exists() or not cwd_path.exists():
+        return rooted
+    return cwd_path
+
+
+BUNDLE_DIR = resolve_path(env("BUNDLE_DIR", str(ROOT_DIR / "sdoc-hackathon-bundle")), ROOT_DIR)
+SEED_SNAPSHOT = resolve_path(
+    env("SEED_SNAPSHOT", str(ROOT_DIR / "supabase" / "seed" / "snapshot.json")),
+    ROOT_DIR,
+)
 REPO_BACKEND = env("REPO_BACKEND", "memory").lower()
 AUTO_SEED = env("AUTO_SEED", "1") == "1"
 DEMO_USER_ID = env("DEMO_USER_ID", "u_sup_1")
