@@ -45,7 +45,6 @@ export function Shell({ children }: { children: React.ReactNode }) {
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} aria-current={active(n.href) ? "page" : undefined} className={`whitespace-nowrap rounded-md px-2.5 py-1.5 ${active(n.href) ? "bg-accent-bg text-accent-fg" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900"}`}>{n.label}</Link>
             ))}
-            <a href={`${process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000"}/docs`} target="_blank" rel="noreferrer" className="rounded-md px-2.5 py-1.5 text-ink-600 hover:bg-ink-100 hover:text-ink-900">API</a>
           </nav>
           <button className="rounded-md border border-ink-200 px-2 py-1 text-xs text-ink-700 lg:hidden" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-nav">Menu</button>
           <div className="ml-auto flex items-center gap-3 text-xs">
