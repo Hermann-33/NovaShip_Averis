@@ -107,19 +107,19 @@ export function EmailPanel({ c }: { c: CaseView }) {
   const e = c.email!;
   const translate = async () => { const r = await post(`/cases/${c.id}/translate`, { target }); setTr(r.translated); };
   return (
-    <div className="space-y-3">
-      <div className="grid gap-1 rounded-lg bg-ink-50 p-3 text-sm">
+    <div className="min-w-0 space-y-3">
+      <div className="grid min-w-0 gap-1 rounded-lg bg-ink-50 p-3 text-sm">
         <KV k="From" v={<span className="font-mono text-xs">{e.sender}</span>} /><KV k="Subject" v={e.subject} /><KV k="Received" v={fmtDate(e.received_at)} />
         <KV k="Message ID" v={<span className="font-mono text-xs">{e.id}</span>} /><KV k="Language" v={e.language} /><KV k="Attachments" v={e.attachments.length} />
       </div>
-      <div className="flex items-center gap-2 text-xs">
+      <div className="flex flex-wrap items-center gap-2 text-xs">
         {(["original", "translated", "side"] as const).map((m) => <Button key={m} kind={mode === m ? "primary" : "default"} onClick={() => setMode(m)}>{m === "side" ? "Side-by-side" : m[0].toUpperCase() + m.slice(1)}</Button>)}
         <select value={target} onChange={(e) => setTarget(e.target.value)} className="rounded-md border border-ink-200 px-2 py-1"><option value="en">English</option><option value="zh">Chinese</option><option value="ms">Malay</option><option value="id">Indonesian</option><option value="vi">Vietnamese</option><option value="ko">Korean</option><option value="ar">Arabic</option></select>
         <Button onClick={translate}>Translate</Button><span className="text-ink-400">stored original is never replaced</span>
       </div>
       <div className={`grid gap-3 ${mode === "side" ? "md:grid-cols-2" : ""}`}>
-        {(mode !== "translated") && <pre className="whitespace-pre-wrap rounded-lg border border-ink-200 bg-white p-4 font-mono text-xs">{e.body}</pre>}
-        {(mode !== "original") && <pre className="whitespace-pre-wrap rounded-lg border border-accent/40 bg-accent-bg/20 p-4 font-mono text-xs">{tr ?? "Click Translate."}</pre>}
+        {(mode !== "translated") && <pre className="max-w-full overflow-x-auto whitespace-pre-wrap break-words rounded-lg border border-ink-200 bg-white p-3 font-mono text-xs sm:p-4">{e.body}</pre>}
+        {(mode !== "original") && <pre className="max-w-full overflow-x-auto whitespace-pre-wrap break-words rounded-lg border border-accent/40 bg-accent-bg/20 p-3 font-mono text-xs sm:p-4">{tr ?? "Click Translate."}</pre>}
       </div>
     </div>
   );
@@ -139,7 +139,7 @@ export function AttachmentsPanel({ c, onChange, say }: { c: CaseView; onChange: 
   return (
     <div className="space-y-3">
       {atts.length === 0 && <Empty text="No attachments on this email." />}
-      <table className="w-full text-xs">
+      <div className="max-w-full overflow-x-auto"><table className="w-full min-w-[760px] text-xs">
         <thead className="text-[11px] uppercase text-ink-500"><tr><th className="py-1 text-left">File</th><th className="text-left">Type</th><th className="text-left">Detected as</th><th className="text-left">Extraction</th><th className="text-left">Size / checksum</th><th /></tr></thead>
         <tbody>{atts.map((a) => (
           <tr key={a.id} className="border-t border-ink-100">
@@ -151,12 +151,12 @@ export function AttachmentsPanel({ c, onChange, say }: { c: CaseView; onChange: 
             <td className="whitespace-nowrap"><Button kind="ghost" onClick={() => setOpen(open === a.id ? null : a.id)}>{open === a.id ? "Hide text" : "View text"}</Button> <a className="text-accent hover:underline" href={`${API_BASE}/cases/${c.id}/documents/${a.id}/raw`} target="_blank" rel="noreferrer">original ↗</a></td>
           </tr>
         ))}</tbody>
-      </table>
+      </table></div>
       {open && <pre className="max-h-80 overflow-auto whitespace-pre-wrap rounded-lg border border-ink-200 bg-ink-50 p-3 font-mono text-[11px] scrollbar-thin">{atts.find((a) => a.id === open)?.raw_text || "(no extractable text — unreadable / image-only / empty)"}</pre>}
       <Card title="Upload / re-link a missing document">
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <select value={kind} onChange={(e) => setKind(e.target.value)} className="rounded-md border border-ink-200 px-2 py-1"><option value="SI">Shipping Instruction</option><option value="BL">Draft BL</option><option value="auto">Auto-detect</option></select>
-          <input ref={fileRef} type="file" accept=".txt,.pdf,.docx,.xlsx" className="text-xs" />
+          <input ref={fileRef} type="file" accept=".txt,.pdf,.docx,.xlsx" className="max-w-full text-xs" />
           <Button kind="primary" onClick={upload}>Upload & retry</Button>
           <span className="text-ink-500">Files are parsed to text only — never executed. Blocked types: .exe .bat .js .vbs …</span>
         </div>
