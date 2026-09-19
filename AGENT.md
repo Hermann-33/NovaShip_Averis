@@ -22,7 +22,7 @@ Both call the same deterministic functions. The LangGraph version is the "automa
 | File | Part | What it does | LLM? |
 |---|---|---|---|
 | `backend/app/ai/security_precheck.py` | node 1 | spam phrases, sender domain, links, blocked attachment types (.exe .js ...), duplicates, flood, policy-bypass requests. Output `SAFE / SPAM / SUSPICIOUS / SECURITY_REVIEW` with evidence. | no |
-| `backend/app/ai/intent_classifier.py` | node 3 | intent + category + priority + action_required from the real subject grammar (`TO CONFIRM DOCS`, `AIE - POD - CARRIER(BL#)`, `REQUEST SI`, `MISSING GR`, `_RPA_`). | tie-break only when rule confidence < 0.75 |
+| `backend/app/ai/intent_classifier.py` | node 3 | intent + category + priority + action_required from the real subject grammar (`TO CONFIRM DOCS`, `AIE - POD - CARRIER(BL#)`, `REQUEST SI`, `MISSING GR`, `_RPA_`) plus the local TF-IDF/logistic-regression classifier. | trained model for weak/ambiguous rule outcomes; LLM is the final tie-break only |
 | `backend/app/ai/attachment_classifier.py` | node 4 | SI / Draft BL / Invoice / Supporting / Unknown from content and file name. | no |
 | `backend/app/ai/extractor.py` | node 5 | the seven fields with label-synonym resolution and evidence (page, line, snippet). | fallback for fields the rules missed; accepted only if the quoted snippet exists in the document |
 | `backend/app/core/normalizer.py` | node 5b | safe normalisation (case, whitespace, kg, integer count, port code). | no |
@@ -117,7 +117,7 @@ Order of operations for P3: run `0001_schema.sql`, `0002_rls.sql`, `0003_vector.
 
 | Variable | Get it at | Unlocks |
 |---|---|---|
-| `LLM_PROVIDER=openai` + `OPENAI_API_KEY=sk-proj-...` | platform.openai.com -> API keys | security agent reasoning, intent tie-break, extraction fallback, draft polish, free-form Ask AI, translation (`LLM_MODEL=gpt-4o-mini` default) |
+| `LLM_PROVIDER=openai` + `OPENAI_API_KEY=sk-proj-...` | platform.openai.com -> API keys | security agent reasoning, intent tie-break, extraction fallback, draft polish, free-form Ask AI, translation (`LLM_MODEL=gpt-4.1-mini` in the example configuration) |
 | `EMBEDDING_PROVIDER=gemini` + `GOOGLE_API_KEY=AIzaSy...` | aistudio.google.com/app/apikey | Gemini `text-embedding-004` for RAG |
 | `EMBEDDING_PROVIDER=openai` | (uses `OPENAI_API_KEY`) | OpenAI embeddings for RAG |
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET` | Supabase -> Project Settings -> API | persistence, RLS, storage, JWT auth |
@@ -151,7 +151,7 @@ Temporarily leave a service out while iterating:
 ### A. Before Supabase, email and keys (offline, memory repo)
 ```bash
 cd backend
-PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q            # 55 tests
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q            # 58 tests
 python scripts/run_bundle.py                                      # FINAL SCORE = 1.0000
 python -m app.agents.create_index                                 # local RAG index
 uvicorn app.main:app --port 8000                                  # then in another terminal:

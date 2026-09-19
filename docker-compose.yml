@@ -14,6 +14,8 @@ services:
       REPO_BACKEND: ${REPO_BACKEND:-memory}
       LLM_PROVIDER: ${LLM_PROVIDER:-none}
       AUTH_MODE: ${AUTH_MODE:-demo}
+      BUNDLE_DIR: /data/bundle
+      SEED_SNAPSHOT: /data/seed/snapshot.json
       EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-local}
       VECTOR_STORE: ${VECTOR_STORE:-local}
       LANGGRAPH_CHECKPOINT: ${LANGGRAPH_CHECKPOINT:-memory}
