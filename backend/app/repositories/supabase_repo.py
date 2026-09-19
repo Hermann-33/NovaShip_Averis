@@ -208,6 +208,28 @@ class SupabaseRepository(BaseRepository):
     def get_user(self, user_id: str) -> Optional[UserRecord]:
         return next((u for u in self.list_users() if u.id == user_id), None)
 
+    def save_user(self, user: UserRecord) -> None:
+        self._t("users").upsert({"id": user.id, "tenant_id": self.tenant, "email": user.email, "display_name": user.display_name,
+                                 "team_id": user.team_id, "is_external": user.is_external}).execute()
+        self._t("user_roles").delete().eq("user_id", user.id).execute()
+        if user.roles:
+            self._t("user_roles").insert([{"user_id": user.id, "role_id": r.value} for r in user.roles]).execute()
+
+    # local password login (migration 0004). Supabase Auth JWTs are accepted independently.
+    def get_password_hash(self, user_id: str) -> Optional[str]:
+        res = self._t("user_credentials").select("password_hash").eq("user_id", user_id).limit(1).execute()
+        return res.data[0]["password_hash"] if res.data else None
+
+    def set_password_hash(self, user_id: str, password_hash: str) -> None:
+        self._t("user_credentials").upsert({"user_id": user_id, "password_hash": password_hash, "updated_at": datetime.utcnow().isoformat()}).execute()
+
+    def revoke_session(self, session_id: str) -> None:
+        self._t("revoked_sessions").upsert({"session_id": session_id, "revoked_at": datetime.utcnow().isoformat()}).execute()
+
+    def is_session_revoked(self, session_id: str) -> bool:
+        res = self._t("revoked_sessions").select("session_id").eq("session_id", session_id).limit(1).execute()
+        return bool(res.data)
+
     def list_parties(self) -> list[PartyContact]:
         res = self._t("party_contacts").select("*").eq("tenant_id", self.tenant).execute()
         return [PartyContact(**r) for r in res.data]

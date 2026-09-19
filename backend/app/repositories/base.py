@@ -79,6 +79,29 @@ class BaseRepository(ABC):
     @abstractmethod
     def list_policy_versions(self) -> list[PolicyRecord]: ...
 
+    # ---- accounts (login / register / logout) ------------------------------
+    # Default implementations keep credentials and revoked sessions in process
+    # memory so any backend supports login; MemoryRepository persists them in
+    # its snapshot, SupabaseRepository stores them in `user_credentials`.
+    def get_user_by_email(self, email: str) -> Optional[UserRecord]:
+        target = (email or "").strip().lower()
+        return next((u for u in self.list_users() if u.email.lower() == target), None)
+
+    def save_user(self, user: UserRecord) -> None:
+        raise NotImplementedError("this repository does not support self-registration")
+
+    def get_password_hash(self, user_id: str) -> Optional[str]:
+        return self.__dict__.setdefault("_credentials", {}).get(user_id)
+
+    def set_password_hash(self, user_id: str, password_hash: str) -> None:
+        self.__dict__.setdefault("_credentials", {})[user_id] = password_hash
+
+    def revoke_session(self, session_id: str) -> None:
+        self.__dict__.setdefault("_revoked_sessions", set()).add(session_id)
+
+    def is_session_revoked(self, session_id: str) -> bool:
+        return session_id in self.__dict__.setdefault("_revoked_sessions", set())
+
     # ---- idempotency ------------------------------------------------------
     @abstractmethod
     def seen_job(self, job_key: str) -> bool: ...

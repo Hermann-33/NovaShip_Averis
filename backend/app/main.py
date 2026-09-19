@@ -22,6 +22,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.api.agent_routes import router as agent_router
+from app.api.auth_routes import router as auth_router, seed_demo_credentials
 from app.api.routes import router
 from app.config import get_repo
 
@@ -55,8 +56,10 @@ async def unhandled(request: Request, exc: Exception):
 @app.on_event("startup")
 def startup() -> None:
     repo = get_repo()
-    log.info("repository=%s cases=%d llm=%s", type(repo).__name__, len(repo.list_cases()), os.environ.get("LLM_PROVIDER", "none"))
+    seeded = seed_demo_credentials()
+    log.info("repository=%s cases=%d llm=%s demo_credentials_seeded=%d", type(repo).__name__, len(repo.list_cases()), os.environ.get("LLM_PROVIDER", "none"), seeded)
 
 
+app.include_router(auth_router)
 app.include_router(router)
 app.include_router(agent_router)

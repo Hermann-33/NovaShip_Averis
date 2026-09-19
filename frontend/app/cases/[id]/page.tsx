@@ -54,7 +54,7 @@ export default function CasePage() {
             <div className="flex flex-wrap justify-end gap-1">
               <Button onClick={() => act("/retry")} title="Re-run the whole pipeline">Retry</Button>
               <Button onClick={() => { setTab("drafts"); }}>Draft Reply</Button>
-              <Button onClick={() => { setTab("collab"); }}>Assign / Share</Button>
+              <Button onClick={() => { setTab("collab"); }}>Assign / Notify Party</Button>
               <Button onClick={() => act("/request-review", { note: "Manual review requested" })}>Request review</Button>
               {c.action_required && <Button onClick={() => act("/no-action")}>Mark no action</Button>}
               <Button kind="success" onClick={() => act("/complete", { note: "Completed from UI" })}>Mark complete</Button>

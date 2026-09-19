@@ -4,6 +4,8 @@
 supabase/
 ├── migrations/0001_schema.sql   24 tables, indexes, append-only audit trigger, private `documents` bucket
 ├── migrations/0002_rls.sql      RLS on every table: tenant-scoped reads, role-gated writes, storage policies
+├── migrations/0003_vector.sql   pgvector `case_embeddings` for RAG
+├── migrations/0004_accounts.sql `user_credentials` + `revoked_sessions` for the built-in login / register / logout
 └── seed/
     ├── seed.sql                 one idempotent transaction (ON CONFLICT DO UPDATE) — all tables, 520 cases
     ├── tables/<table>.json      row arrays per table (Table Editor → Import, or scripts)
@@ -16,7 +18,7 @@ supabase/
 `comparison_fields.field_name` is CHECK-constrained to exactly the seven baseline names; `audit_events` rejects UPDATE/DELETE via trigger.
 
 ## Apply
-1. SQL editor → run `0001_schema.sql`, then `0002_rls.sql`.
+1. SQL editor → run `0001_schema.sql`, `0002_rls.sql`, `0003_vector.sql`, then `0004_accounts.sql`.
 2. Seed: run `seed/seed.sql` (≈8 MB; if the editor times out use `psql` or `python -m app.seed.make_seed --push` with `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`).
 3. Regenerate after changing the pipeline: `cd backend && python -m app.seed.make_seed [--limit N]`.
 

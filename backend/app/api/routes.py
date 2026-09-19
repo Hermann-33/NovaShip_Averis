@@ -486,7 +486,7 @@ def export_submission(user: UserRecord = Depends(require("export_data"))):
 
 # ---------------------------------------------------------------- policies
 @router.get("/policies")
-def get_policy(user: UserRecord = Depends(require("view_case"))):
+def get_policy(user: UserRecord = Depends(require("view_policy"))):
     repo = get_repo()
     p = repo.get_active_policy()
     return {"active": p.model_dump(mode="json"), "effective": merged_policy(p.values), "explanation": explain_policy(merged_policy(p.values)), "versions": [v.model_dump(mode="json") for v in repo.list_policy_versions()]}

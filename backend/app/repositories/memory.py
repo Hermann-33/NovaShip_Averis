@@ -65,6 +65,8 @@ class MemoryRepository(BaseRepository):
             PolicyRecord(id="pol_default", version="v1", name="default", values=DEFAULT_POLICY, updated_by="system", updated_at=datetime.utcnow(), change_note="Initial policy")
         ]
         self.jobs: dict[str, dict[str, Any]] = {}
+        self.credentials: dict[str, str] = {}      # user_id -> password hash
+        self.revoked_sessions: set[str] = set()
 
     # emails
     def save_email(self, email: EmailMessage) -> None:
@@ -135,6 +137,23 @@ class MemoryRepository(BaseRepository):
     def get_user(self, user_id: str) -> Optional[UserRecord]:
         return self.users.get(user_id)
 
+    def save_user(self, user: UserRecord) -> None:
+        with self._lock:
+            self.users[user.id] = user
+
+    def get_password_hash(self, user_id: str) -> Optional[str]:
+        return self.credentials.get(user_id)
+
+    def set_password_hash(self, user_id: str, password_hash: str) -> None:
+        with self._lock:
+            self.credentials[user_id] = password_hash
+
+    def revoke_session(self, session_id: str) -> None:
+        self.revoked_sessions.add(session_id)
+
+    def is_session_revoked(self, session_id: str) -> bool:
+        return session_id in self.revoked_sessions
+
     def list_parties(self) -> list[PartyContact]:
         return list(self.parties.values())
 
@@ -169,6 +188,7 @@ class MemoryRepository(BaseRepository):
             "teams": self.teams,
             "parties": [p.model_dump(mode="json") for p in self.parties.values()],
             "policies": [p.model_dump(mode="json") for p in self.policies],
+            "credentials": dict(self.credentials),
         }
 
     def load(self, snapshot: dict[str, Any]) -> None:
@@ -184,6 +204,8 @@ class MemoryRepository(BaseRepository):
                 self.parties = {p["id"]: PartyContact(**p) for p in snapshot["parties"]}
             if snapshot.get("policies"):
                 self.policies = [PolicyRecord(**p) for p in snapshot["policies"]]
+            if snapshot.get("credentials"):
+                self.credentials = dict(snapshot["credentials"])
 
     def load_file(self, path: str | Path) -> None:
         p = Path(path)

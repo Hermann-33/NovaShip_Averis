@@ -10,7 +10,8 @@
 | **One-command run**                    | `.\scripts\dev.ps1 docker` or `docker compose up -d --build` (offline demo, no keys needed)                                                                             |
 | **Live reload in Docker**              | `.\scripts\dev.ps1 docker-dev` — host edits to `frontend/` and `backend/app/` apply without a rebuild                                                                   |
 | **Hackathon score on the SDOC bundle** | `FINAL SCORE = 1.0000` — stage-1 macro-F1 1.000 · defect-F1 1.000 · end-to-end 46/46 · escalation F1 1.000 (see [Impact Metrics](#10-user-feedback-and-impact-metrics)) |
-| **Tests**                              | `58 passed` — comparator, normalization, extraction, security, RBAC, trained intent classifier, Notify Party, E2E, LangGraph interrupt/resume, RAG scoping              |
+| **Sign in (test accounts)**            | Password `novaship123` for every seeded user, e.g. `faraz_ali@aprilasia.com` (Admin) · `hari_mardianto@aprilasia.com` (Supervisor) · `hanna_azhari@aprilasia.com` (Ops) · `sokyong_ooi@aprilasia.com` (Auditor) — full list in [§9.2](#92-sign-in-register-and-test-accounts) |
+| **Tests**                              | `65 passed` — comparator, normalization, extraction, security, RBAC, login/register/logout, trained intent classifier, Notify Party, E2E, LangGraph interrupt/resume, RAG scoping |
 | **AI agent docs**                      | [AGENT.md](AGENT.md) — every AI file, LangGraph workflow, RAG, keys, Docker rebuild, test scenarios                                                                     |
 | **Team guides**                        | [P1.md](P1.md) AI & Verification · [P2.md](P2.md) Assistant & Safety · [P3.md](P3.md) Backend/Supabase/Cloud · [P4.md](P4.md) Frontend & E2E                            |
 
@@ -99,14 +100,14 @@ NovaShip Averis is a production-style, AI-assisted operations platform with twel
 | 6   | **Evidence for every decision** — document id, page, line, the literal snippet and which label synonym was resolved (`Load Port` → Port of Loading). Original values are always shown next to normalised ones.                                                                                                                                | `ai/extractor.py`, Evidence tab                                     |
 | 7   | **Drafts instead of sends** — correction request, missing-document request, confirmation, info reply. LLM may polish wording but a guard rejects any draft that drops an SI/BL value.                                                                                                                                                         | `ai/summary_draft.py`                                               |
 | 8   | **Human approval gate** — Approve / Edit / Reject / Reassign / Share / Notify Party / Retry / Mark Complete; external sends require `approve_send` (Supervisor/Admin).                                                                                                                                                                        | `services/case_service.py`, Draft Actions tab                       |
-| 9   | **Selected-user / selected-party collaboration** — Notify Party flow: show SI vs BL Notify Party → choose an *authorised* recipient (internal user, team, approved party contact) → preview of exactly the fields that will be disclosed → human confirmation for external → send → audit → status.                                           | Collaboration tab                                                   |
+| 9   | **Selected-user / selected-party collaboration** — one stepped Notify Party card: show SI vs BL Notify Party → choose an *authorised* recipient (internal user, team, approved party contact) → preview of exactly the fields that will be disclosed → human confirmation for external → send → audit → status.                             | Collaboration tab (`components/collab.tsx`)                         |
 | 10  | **Append-only audit trail** — every node, field result, policy application, draft edit, approval, share, error and retry with actor type USER/AI/SYSTEM, before/after and policy version.                                                                                                                                                     | `audit_events` table + trigger                                      |
 | 11  | **Operations dashboard** plus dedicated pages: Seven fields (`/verification`, per-field mismatch statistics and every case per field), Security agent queue (`/security`), AI agent console (`/agent`), global Audit (`/audit`), Policies, Guide (`/welcome`).                                                                                | `frontend/app/`*                                                    |
 | 11b | **Operations dashboard** — 12 metrics, 15-column case table, 12 filters, batch actions (never batch external sends).                                                                                                                                                                                                                          | `frontend/app/page.tsx`                                             |
 | 12  | **Ask AI about this case** — grounded only in the email, SI, BL, deterministic comparison, audit history and policy; every answer cites evidence; refuses to invent values, bypass approval, send directly or leak other cases.                                                                                                               | `ai/assistant.py`                                                   |
 
 
-Plus: versioned admin policies, unusual-behaviour signals, language detection + translation views (original never replaced), recoverable error states with Retry / Upload / Reassign / Human review, RBAC with least privilege, Supabase schema with RLS, Docker deployment.
+Plus: versioned admin policies with a form-based editor (sliders, toggles, tag lists, per-field reset, change summary, mandatory audit note; raw JSON stays available under *Advanced*), login / register / logout with least-privilege self-registration, unusual-behaviour signals, language detection + translation views (original never replaced), recoverable error states with Retry / Upload / Reassign / Human review, RBAC with least privilege, Supabase schema with RLS, Docker deployment.
 
 ## 4. Flowchart
 
@@ -162,7 +163,7 @@ The extracted **Notify Party is a comparison value only**. Sharing requires an e
 | Database                | **Supabase (PostgreSQL)** — 24 tables, RLS, append-only audit trigger, private `documents` bucket with signed URLs | tenant-aware persistence, auth, storage in one place                                       |
 | Persistence abstraction | `MemoryRepository` (fixtures/tests/offline) ↔ `SupabaseRepository` (prod) selected by `REPO_BACKEND`               | Person 1/2/4 never wait on the database                                                    |
 | Email connector         | Microsoft Graph (Outlook 365) adapter, bundle adapter, Gmail stub                                                  | adapter-based per spec §2                                                                  |
-| Auth / RBAC             | Supabase JWT (HS256) or demo `X-User-Id`; 14 permissions × 4 roles                                                 | least privilege                                                                            |
+| Auth / RBAC             | Built-in login / register / logout (PBKDF2 password hashes, HMAC-signed 12 h session tokens, audited) · Supabase JWT (HS256) · demo `X-User-Id` for tests/curl; 15 permissions × 4 roles | least privilege                                                                            |
 | Deployment              | Docker (multi-stage), `docker-compose.yml`, Vercel for the frontend, any container host for the API                | reproducible local ↔ cloud                                                                 |
 | Testing                 | `pytest` (58 tests) + official SDOC scorer + browser walkthrough                                                   | acceptance tests from the spec are executable                                              |
 
@@ -192,7 +193,7 @@ flowchart LR
         AU[Auth · JWT]
     end
     O & W & BND --> API --> PIPE --> AI & CMP --> REPO --> PG & ST
-    FE -->|X-User-Id / Bearer JWT| API
+    FE -->|Bearer session token / Supabase JWT| API
     AU --> FE
 ```
 
@@ -282,11 +283,34 @@ URLs in every mode:
 
 If Hyper-V has reserved 8000 (`WinError 10013`) or 3000 is taken by another app, set `API_PORT` / `WEB_PORT` in `.env` (Compose) and keep `NEXT_PUBLIC_API_BASE` in sync, e.g. `NEXT_PUBLIC_API_BASE=http://localhost:8001`.
 
-### 9.2 Run the full application with Docker (recommended)
+### 9.2 Sign in, register and test accounts
+
+Opening `http://localhost:3000` sends you to **`/login`**. Every seeded user has the demo password **`novaship123`** (change it with `DEMO_PASSWORD` in `.env`). The login page also lists these accounts with a one-click *Use* button (demo mode only).
+
+
+| Role                 | Name             | Email                           | Password      | Can                                                                                 |
+| -------------------- | ---------------- | ------------------------------- | ------------- | ----------------------------------------------------------------------------------- |
+| **Admin**            | Syed Faraz Ali   | `faraz_ali@aprilasia.com`       | `novaship123` | everything, incl. **edit policy**, approve external sends, notify external parties  |
+| **Supervisor**       | Hari Mardianto   | `hari_mardianto@aprilasia.com`  | `novaship123` | approve / send drafts, notify external parties, batch actions, global audit, export |
+| **Supervisor**       | Teo Ei Leen      | `eileen_teo@aprilasia.com`      | `novaship123` | same as above (Asia desk)                                                           |
+| **Operations staff** | Najiha Nur Hanna | `hanna_azhari@aprilasia.com`    | `novaship123` | view, compare, edit drafts, share internally, assign, read Policies — **cannot** send externally or save policy |
+| **Operations staff** | Deswita Elvyani  | `deswita_elvyani@aprilasia.com` | `novaship123` | same as above                                                                       |
+| **Operations staff** | Willy Situmorang | `willy_ss@aprilasia.com`        | `novaship123` | same as above                                                                       |
+| **Operations staff** | Mitchelle Ting   | `mitchelle_ting@aprilasia.com`  | `novaship123` | same as above (Asia desk)                                                           |
+| **Auditor**          | Ooi Sok Yong     | `sokyong_ooi@aprilasia.com`     | `novaship123` | read-only cases + global audit log; no edits, no sends, no Policies page            |
+
+
+- **Register** (`/register`): creates an **Operations staff** account (least privilege). `REGISTER_ALLOWED_ROLES` in `.env` can widen the choice (never `ADMIN`); Supervisor / Auditor roles are granted by an Admin.
+- **Sign out**: button under your name in the sidebar. It revokes the session server-side and writes a `LOGOUT` audit event. `LOGIN`, `LOGIN_FAILED` and `REGISTER` are audited too (visible on `/audit` for Supervisor / Admin / Auditor).
+- Sessions are HMAC-signed tokens (`SESSION_SECRET`, 12 h by default). In the offline demo (`REPO_BACKEND=memory`) registered users live in memory until the API restarts; with Supabase run `supabase/migrations/0004_accounts.sql` so accounts persist.
+- Try RBAC: sign in as Najiha, open a mismatch case → *Collaboration* → pick an **External** recipient → *not permitted*; sign out, sign in as Hari → the same recipient is allowed and requires a confirmation click. Only Faraz (Admin) can save on */policies*.
+- API / curl: `POST /auth/login {"email","password"}` returns `{token, user, expires_at}`; send it as `Authorization: Bearer <token>`. In `AUTH_MODE=demo` the `X-User-Id: u_sup_1` header still works for scripts and tests.
+
+### 9.3 Run the full application with Docker (recommended)
 
 Docker is the easiest way for every teammate to run the same Python, Node and ML dependency versions. It starts the FastAPI backend and Next.js frontend; Supabase is optional and is not started locally by the default Compose file.
 
-**Baked images do not see later file edits.** After you change `backend/` or `frontend/`, either rebuild (`docker compose up -d --build`, and `docker compose build --no-cache web` if the UI layer is cached) **or** use [§9.3 Docker live reload](#93-docker-live-reload).
+**Baked images do not see later file edits.** After you change `backend/` or `frontend/`, either rebuild (`docker compose up -d --build`, and `docker compose build --no-cache web` if the UI layer is cached) **or** use [§9.4 Docker live reload](#94-docker-live-reload).
 
 Prerequisites: Docker Desktop (or Docker Engine with the Compose plugin) and the repository's `sdoc-hackathon-bundle/` fixture folder.
 
@@ -329,7 +353,7 @@ docker compose down
 
 The API image includes the trained classifier artifact, fixture bundle, seed snapshot and a local offline RAG index. Compose mounts the fixture paths at `/data/bundle` and `/data/seed/snapshot.json`, so host-relative `.env` paths cannot override their locations inside the container.
 
-### 9.3 Docker live reload
+### 9.4 Docker live reload
 
 Use this when you want Compose **and** host file edits without rebuilding:
 
@@ -345,7 +369,7 @@ docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 
 Switch back to baked demo images with `.\scripts\dev.ps1 docker` (that command rebuilds from `Dockerfile`, not `Dockerfile.dev`).
 
-### 9.4 OpenAI, Gemini and environment variables
+### 9.5 OpenAI, Gemini and environment variables
 
 The providers are independent and optional:
 
@@ -409,7 +433,7 @@ Never commit `.env` or place service-role/API keys in `NEXT_PUBLIC_*` variables.
 
 
 
-### 9.5 Intent-classifier model
+### 9.6 Intent-classifier model
 
 The application does not fine-tune OpenAI or Gemini. It trains a small local text classifier:
 
@@ -444,7 +468,7 @@ docker compose run --rm --no-deps \
 
 Training explicitly disables the LLM, so it does not require or spend OpenAI/Google API credits. Do not tune rules, synonyms or hyperparameters against the test IDs in `intent_split.json`; add newly labelled messages to a new development set and keep a separate future/out-of-time test set. Other people can deploy the existing `.joblib` artifact without the organiser ground truth. If the artifact is missing or incompatible, runtime safely falls back to deterministic rules.
 
-### 9.6 Local frontend and backend (no Docker)
+### 9.7 Local frontend and backend (no Docker)
 
 Prerequisites: Python 3.11+ and Node 20+. Stop Compose first so ports 3000 and 8000 are free (`.\scripts\dev.ps1 stop` or `.\scripts\dev.ps1 local`, which also opens the two terminals on Windows).
 
@@ -466,7 +490,7 @@ npm run dev
 
 `GET /` on the API returns 404; open `/docs` or `/health`. A healthy memory demo reports `"cases": 520`. If you see `cases=0`, the seed file was not found — use the commands above (do not start uvicorn from a nested folder with a broken relative `SEED_SNAPSHOT`).
 
-### 9.7 Mixed: Docker + local
+### 9.8 Mixed: Docker + local
 
 The browser calls `NEXT_PUBLIC_API_BASE` (default `http://localhost:8000`), so the UI container and a host Next.js app both talk to whatever is on port 8000.
 
@@ -488,7 +512,7 @@ The browser calls `NEXT_PUBLIC_API_BASE` (default `http://localhost:8000`), so t
 
 Leave the unused Compose service **stopped**. Running `docker compose up -d --build` while `npm run dev` still holds 3000 fails with `bind: Only one usage of each socket address`. Running host uvicorn on 8000 while the API container is up fails with `WinError 10013` or `EADDRINUSE`.
 
-### 9.8 Tests, scoreboard and acceptance checks
+### 9.9 Tests, scoreboard and acceptance checks
 
 Local Python:
 
@@ -512,19 +536,19 @@ docker compose run --rm --no-deps \
   -e LLM_PROVIDER=none api python scripts/run_bundle.py --out /workspace/submission.json
 ```
 
-Expected baseline: `58 passed` and `FINAL SCORE = 1.0000`. Keep `LLM_PROVIDER=none` for the scoreboard so it is deterministic, fast and free of network/API dependencies.
+Expected baseline: `65 passed` and `FINAL SCORE = 1.0000`. Keep `LLM_PROVIDER=none` for the scoreboard so it is deterministic, fast and free of network/API dependencies.
 
 Troubleshooting:
 
 - Port 3000 or 8000 already in use / `WinError 10013` / Compose `ports are not available`: `.\scripts\dev.ps1 stop` then start **one** mode from [§9.1](#91-run-modes). Do not run Docker web and `npm run dev` together, or Docker api and host uvicorn on 8000 together.
-- Docker UI looks unchanged after a rebuild: `docker compose build --no-cache web && docker compose up -d web`, or use [§9.3](#93-docker-live-reload).
+- Docker UI looks unchanged after a rebuild: `docker compose build --no-cache web && docker compose up -d web`, or use [§9.4](#94-docker-live-reload).
 - Cases suddenly show unreadable/missing attachments in Docker: confirm the Compose service uses `/data/bundle` and `/data/seed/snapshot.json`, then recreate the API.
 - RAG reports chunks but returns no hits after switching providers: run `/rag/reindex`; the stored vector dimensions do not match the new provider.
 - The model cannot load: install the pinned `scikit-learn` and `joblib` versions from `backend/requirements.txt`, or rebuild the API image.
 - `.env` changed but behaviour did not: `docker compose up -d --force-recreate api`.
 - Frontend API URL changed: rebuild `web`; `NEXT_PUBLIC_API_BASE` is embedded during the Next.js **production** build (not in `docker-dev` / `npm run dev`).
 
-Switch users in the header (Operations · Supervisor · Admin · Auditor) to see RBAC in action. The full AI-agent architecture and provider-specific test scenarios are documented in [AGENT.md](AGENT.md).
+Sign in as different test accounts ([§9.2](#92-sign-in-register-and-test-accounts): Operations · Supervisor · Admin · Auditor) to see RBAC in action. The full AI-agent architecture and provider-specific test scenarios are documented in [AGENT.md](AGENT.md).
 
 ## 10. User Feedback and Impact Metrics
 
@@ -545,7 +569,7 @@ Switch users in the header (Operations · Supervisor · Admin · Auditor) to see
 | All-seven-match message                                                                                                    | exactly `No mismatch detected.` ✔                                                                                                                                                          |
 | Notify Party acceptance test                                                                                               | mismatch → HUMAN_REVIEW → NOTIFY_PARTY → recipient picker → external requires confirmation → preview contains only intended fields → `NOTIFY_PARTY_SENT` audit event → AWAITING_RESPONSE ✔ |
 | Security tests                                                                                                             | ops role cannot notify external party (403 + `SHARE_DENIED` audit) · unapproved party blocked · `.exe` attachment ⇒ SECURITY_REVIEW, never executed · duplicate message ⇒ no second case ✔ |
-| Automated tests                                                                                                            | 58 passed (incl. trained-classifier holdout/runtime tests, LangGraph pause/resume, security agent routing, RAG case scoping)                                                               |
+| Automated tests                                                                                                            | 65 passed (incl. login/register/logout + session RBAC, trained-classifier holdout/runtime tests, LangGraph pause/resume, security agent routing, RAG case scoping)                        |
 
 
 

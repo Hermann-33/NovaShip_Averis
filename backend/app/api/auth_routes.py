@@ -1,0 +1,134 @@
+"""
+Login / register / logout. Every outcome (including failed logins) is audited.
+
+    POST /auth/register  {email, password, display_name, role?}  -> session
+    POST /auth/login     {email, password}                        -> session
+    POST /auth/logout                                             -> revokes the session
+    GET  /auth/session                                            -> current user + permissions
+    GET  /auth/config                                             -> what the register form may offer
+"""
+from __future__ import annotations
+
+import re
+from datetime import datetime
+from typing import Any, Optional
+
+from fastapi import APIRouter, Depends, Header, HTTPException
+from pydantic import BaseModel, Field
+
+from app.auth.accounts import DEMO_PASSWORD, REGISTER_ALLOWED_ROLES, decode_token, hash_password, issue_token, password_problem, verify_password
+from app.auth.rbac import AUTH_MODE, PERMISSIONS, current_user, has_permission
+from app.config import get_repo
+from app.contracts.schemas import ActorType, AuditEvent, Role, UserRecord
+
+router = APIRouter(prefix="/auth", tags=["auth"])
+
+_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+
+class RegisterRequest(BaseModel):
+    email: str
+    password: str
+    display_name: str = Field(min_length=2, max_length=80)
+    role: Optional[str] = None
+
+
+def _audit(actor_id: str, action: str, after: Optional[dict[str, Any]] = None) -> None:
+    repo = get_repo()
+    n = len(repo.list_audit())
+    repo.append_audit(AuditEvent(event_id=f"evt_auth_{n + 1:06d}_{int(datetime.utcnow().timestamp())}", case_id=None, timestamp=datetime.utcnow(),
+                                 actor_type=ActorType.USER, actor_id=actor_id, action=action, after=after))
+
+
+def _session_payload(user: UserRecord) -> dict[str, Any]:
+    token, payload = issue_token(user.id)
+    return {
+        "token": token,
+        "expires_at": datetime.utcfromtimestamp(payload["exp"]).isoformat() + "Z",
+        "user": {**user.model_dump(mode="json"), "permissions": [p for p in PERMISSIONS if has_permission(user, p)]},
+    }
+
+
+def seed_demo_credentials() -> int:
+    """Give every seeded user without a password the shared demo password (idempotent)."""
+    repo = get_repo()
+    n = 0
+    for u in repo.list_users():
+        if not repo.get_password_hash(u.id):
+            repo.set_password_hash(u.id, hash_password(DEMO_PASSWORD))
+            n += 1
+    return n
+
+
+@router.get("/config")
+def auth_config():
+    """Register-form options. In demo mode also lists the seeded accounts so the login page can offer one-click fills."""
+    out: dict[str, Any] = {"register_roles": [r for r in REGISTER_ALLOWED_ROLES if r in Role.__members__], "min_password_length": 8, "auth_mode": AUTH_MODE}
+    if AUTH_MODE == "demo":
+        out["demo_password"] = DEMO_PASSWORD
+        out["demo_accounts"] = [{"email": u.email, "display_name": u.display_name, "roles": [r.value for r in u.roles]}
+                                for u in get_repo().list_users() if u.id.startswith(("u_ops_", "u_sup_", "u_admin_", "u_audit_"))]
+    return out
+
+
+@router.post("/login")
+def login(req: LoginRequest):
+    repo = get_repo()
+    email = req.email.strip().lower()
+    user = repo.get_user_by_email(email)
+    if user and repo.get_password_hash(user.id) is None:
+        seed_demo_credentials()  # first login before startup seeding ran (tests / fresh Supabase)
+    if not user or not verify_password(req.password, repo.get_password_hash(user.id)):
+        _audit(user.id if user else email, "LOGIN_FAILED", {"email": email})
+        raise HTTPException(401, detail={"error": "invalid email or password", "category": "AUTH_ERROR"})
+    _audit(user.id, "LOGIN", {"email": email, "roles": [r.value for r in user.roles]})
+    return _session_payload(user)
+
+
+@router.post("/register", status_code=201)
+def register(req: RegisterRequest):
+    repo = get_repo()
+    email = req.email.strip().lower()
+    if not _EMAIL_RE.match(email):
+        raise HTTPException(400, detail={"error": "enter a valid email address", "category": "AUTH_ERROR"})
+    if (problem := password_problem(req.password)):
+        raise HTTPException(400, detail={"error": problem, "category": "AUTH_ERROR"})
+    if repo.get_user_by_email(email):
+        raise HTTPException(409, detail={"error": "an account with this email already exists - log in instead", "category": "AUTH_ERROR"})
+    allowed = [r for r in REGISTER_ALLOWED_ROLES if r in Role.__members__]
+    role_name = (req.role or (allowed[0] if allowed else "OPERATIONS_STAFF")).upper()
+    if role_name not in allowed:
+        raise HTTPException(403, detail={"error": f"self-registration may only pick {', '.join(allowed) or 'no role'}; ask an ADMIN for other roles", "category": "AUTH_ERROR"})
+    uid = "u_" + re.sub(r"[^a-z0-9]+", "_", email.split("@", 1)[0]).strip("_")[:24]
+    base, i = uid, 2
+    while repo.get_user(uid):
+        uid, i = f"{base}_{i}", i + 1
+    user = UserRecord(id=uid, email=email, display_name=req.display_name.strip(), roles=[Role(role_name)])
+    try:
+        repo.save_user(user)
+    except NotImplementedError:
+        raise HTTPException(501, detail={"error": "registration is not available on this backend", "category": "AUTH_ERROR"})
+    repo.set_password_hash(user.id, hash_password(req.password))
+    _audit(user.id, "REGISTER", {"email": email, "roles": [role_name]})
+    _audit(user.id, "LOGIN", {"email": email, "roles": [role_name]})
+    return _session_payload(user)
+
+
+@router.post("/logout")
+def logout(user: UserRecord = Depends(current_user), authorization: Optional[str] = Header(default=None)):
+    token = authorization.split(" ", 1)[1].strip() if authorization and " " in authorization else ""
+    payload = decode_token(token) or {}
+    if payload.get("sid"):
+        get_repo().revoke_session(payload["sid"])
+    _audit(user.id, "LOGOUT", {"session_revoked": bool(payload.get("sid"))})
+    return {"ok": True}
+
+
+@router.get("/session")
+def session(user: UserRecord = Depends(current_user)):
+    return {**user.model_dump(mode="json"), "permissions": [p for p in PERMISSIONS if has_permission(user, p)]}

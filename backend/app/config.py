@@ -35,7 +35,6 @@ SEED_SNAPSHOT = resolve_path(
 )
 REPO_BACKEND = env("REPO_BACKEND", "memory").lower()
 AUTO_SEED = env("AUTO_SEED", "1") == "1"
-DEMO_USER_ID = env("DEMO_USER_ID", "u_sup_1")
 
 
 @lru_cache(maxsize=1)

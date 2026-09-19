@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * Typed API client. Auth: demo mode sends X-User-Id (switchable in the header);
- * production sends the Supabase JWT as Authorization: Bearer.
+ * Typed API client. Auth: the session token from POST /auth/login is sent as
+ * `Authorization: Bearer`. A 401 clears the session and sends the person to /login.
  */
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
 
@@ -12,12 +12,44 @@ export const FIELD_LABELS: Record<string, string> = {
   port_of_discharge: "Port of Discharge", container_count: "Container Count", gross_weight_kg: "Gross Weight (kg)",
 };
 
-export function currentUserId(): string {
-  if (typeof window === "undefined") return "u_sup_1";
-  try { return localStorage.getItem("novaship.user") || "u_sup_1"; } catch { return "u_sup_1"; }
+// ------------------------------------------------------------------ session
+export type SessionUser = { id: string; email: string; display_name: string; roles: string[]; permissions: string[]; team_id?: string | null };
+export type Session = { token: string; expires_at: string; user: SessionUser };
+const SESSION_KEY = "novaship.session";
+export const AUTH_PATHS = ["/login", "/register"];
+
+export function getSession(): Session | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    const s = JSON.parse(raw) as Session;
+    if (!s?.token || (s.expires_at && new Date(s.expires_at).getTime() < Date.now())) { localStorage.removeItem(SESSION_KEY); return null; }
+    return s;
+  } catch { return null; }
 }
-export function setCurrentUserId(id: string) {
-  try { localStorage.setItem("novaship.user", id); } catch {}
+export function setSession(s: Session) { try { localStorage.setItem(SESSION_KEY, JSON.stringify(s)); } catch {} }
+export function clearSession() { try { localStorage.removeItem(SESSION_KEY); localStorage.removeItem("novaship.user"); localStorage.removeItem("novaship.jwt"); } catch {} }
+
+/** Send the browser to /login, remembering where it was. No-op on the auth pages themselves. */
+export function redirectToLogin() {
+  if (typeof window === "undefined") return;
+  const here = window.location.pathname + window.location.search;
+  if (AUTH_PATHS.some((p) => window.location.pathname.startsWith(p))) return;
+  window.location.assign(`/login?next=${encodeURIComponent(here)}`);
+}
+
+export async function login(email: string, password: string): Promise<Session> {
+  const s = await api<Session>("/auth/login", { method: "POST", body: JSON.stringify({ email, password }) }, { auth: false });
+  setSession(s); return s;
+}
+export async function register(body: { email: string; password: string; display_name: string; role?: string }): Promise<Session> {
+  const s = await api<Session>("/auth/register", { method: "POST", body: JSON.stringify(body) }, { auth: false });
+  setSession(s); return s;
+}
+export async function logout(): Promise<void> {
+  try { await api("/auth/logout", { method: "POST" }, { redirectOn401: false }); } catch {}
+  clearSession();
 }
 
 export class ApiError extends Error {
@@ -25,16 +57,16 @@ export class ApiError extends Error {
   constructor(status: number, detail: any) { super(typeof detail === "string" ? detail : detail?.error || `HTTP ${status}`); this.status = status; this.detail = detail; }
 }
 
-export async function api<T = any>(path: string, init: RequestInit = {}): Promise<T> {
-  const headers: Record<string, string> = { "X-User-Id": currentUserId(), ...(init.headers as any) };
-  let token: string | null = null;
-  try { token = localStorage.getItem("novaship.jwt"); } catch {}
-  if (token) headers["Authorization"] = `Bearer ${token}`;
+export async function api<T = any>(path: string, init: RequestInit = {}, opts: { auth?: boolean; redirectOn401?: boolean } = {}): Promise<T> {
+  const headers: Record<string, string> = { ...(init.headers as any) };
+  const session = opts.auth === false ? null : getSession();
+  if (session) headers["Authorization"] = `Bearer ${session.token}`;
   if (init.body && !(init.body instanceof FormData)) headers["Content-Type"] = "application/json";
   const res = await fetch(`${API_BASE}${path}`, { ...init, headers, cache: "no-store" });
   const text = await res.text();
   let data: any = text;
   try { data = text ? JSON.parse(text) : null; } catch {}
+  if (res.status === 401 && opts.auth !== false && opts.redirectOn401 !== false) { clearSession(); redirectToLogin(); }
   if (!res.ok) throw new ApiError(res.status, data?.detail ?? data);
   return data as T;
 }

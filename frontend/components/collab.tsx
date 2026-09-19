@@ -5,11 +5,17 @@ import { Badge, Button, Card, Empty, fmtDate } from "@/components/ui";
 
 type Recipient = { id: string; label: string; recipient_type: string; external: boolean; roles: string[]; allowed: boolean };
 
-/** Notify Party + selected-user sharing: Select Recipient -> Preview -> Confirm -> Send/Share -> Audit -> Status. */
+const STEPS = ["Notify Party values", "Select recipient", "Preview", "Send / share"] as const;
+
+/**
+ * Collaboration tab. The whole share flow lives inside the Notify Party card:
+ * Notify Party values -> Select recipient -> Preview -> Confirm -> Send/Share -> Audit -> Status.
+ */
 export function CollaborationPanel({ c, onChange, say }: { c: CaseView; onChange: () => void; say: (m: string, k?: "ok" | "err") => void }) {
   const [recips, setRecips] = useState<Recipient[]>([]);
-  const [np, setNp] = useState<any>(null);
+  const [started, setStarted] = useState(["NOTIFY_PARTY", "AWAITING_RESPONSE"].includes(c.status));
   const [pick, setPick] = useState<string>("");
+  const [filter, setFilter] = useState<"all" | "internal" | "external">("all");
   const [message, setMessage] = useState("");
   const [due, setDue] = useState("");
   const [fields, setFields] = useState<string[]>(c.comparison?.mismatch_fields || []);
@@ -27,7 +33,13 @@ export function CollaborationPanel({ c, onChange, say }: { c: CaseView; onChange
   useEffect(reload, [c.id, c.updated_at]);
 
   const chosen = recips.find((r) => r.id === pick);
-  const beginNotify = async () => { setBusy(true); try { const d = await post(`/cases/${c.id}/notify-party`); setNp(d); setRecips(d.recipients); say("Notify Party flow started — select an authorised recipient"); onChange(); } catch (e: any) { say(e.message, "err"); } finally { setBusy(false); } };
+  const step = preview ? 3 : chosen ? 2 : 1;
+
+  const beginNotify = async () => {
+    setBusy(true);
+    try { const d = await post(`/cases/${c.id}/notify-party`); setRecips(d.recipients); setStarted(true); say("Notify Party flow started — select an authorised recipient"); onChange(); }
+    catch (e: any) { say(e.message, "err"); } finally { setBusy(false); }
+  };
   const body = (preview_only: boolean, confirm_external = false) => ({
     recipient_type: chosen!.recipient_type, recipient_user_id: chosen!.external ? undefined : chosen!.id, recipient_party_id: chosen!.external ? chosen!.id : undefined,
     message: message || undefined, due_date: due || undefined, include_fields: fields, preview_only, confirm_external,
@@ -44,8 +56,85 @@ export function CollaborationPanel({ c, onChange, say }: { c: CaseView; onChange
   const ack = async (id: string) => { try { await post(`/shares/${id}/acknowledge`, { response: "Acknowledged" }); reload(); } catch (e: any) { say(e.message, "err"); } };
 
   const npField = c.comparison?.fields.find((f) => f.field === "notify_party");
+  const visible = recips.filter((r) => filter === "all" || (filter === "external") === r.external);
+
   return (
-    <div className="grid gap-4 lg:grid-cols-2">
+    <div className="grid gap-4 lg:grid-cols-[3fr_2fr]">
+      <Card title="Notify Party" right={!started ? <Button kind="primary" disabled={busy} onClick={beginNotify}>Start Notify Party flow</Button> : <Badge className="bg-accent-soft text-accent-fg">flow active</Badge>}>
+        <Stepper step={step} />
+
+        {/* Step 1 — the extracted values (comparison only, never authorisation) */}
+        <section className="mt-4">
+          <StepHeading n={1} title="Notify Party on the documents" done={step > 0} />
+          {npField ? (
+            <div className="mt-2 grid gap-2 text-sm sm:grid-cols-2">
+              <div className="rounded-md bg-ink-50 p-2"><div className="text-[11px] uppercase text-ink-500">On SI (source of truth)</div><div className="font-mono text-xs">{npField.si_original || "—"}</div></div>
+              <div className="rounded-md bg-ink-50 p-2"><div className="text-[11px] uppercase text-ink-500">On Draft BL</div><div className="font-mono text-xs">{npField.bl_original || "—"}</div></div>
+              <div className="sm:col-span-2"><Badge className={npField.result === "MATCH" ? "bg-match-bg text-match-fg" : "bg-mismatch-bg text-mismatch-fg"}>{npField.result === "MATCH" ? "values match" : npField.result.replace(/_/g, " ")}</Badge></div>
+            </div>
+          ) : <div className="mt-2"><Empty text="Notify Party not extracted yet (no comparison). You can still share the case internally." /></div>}
+          <p className="mt-2 text-xs text-ink-500">The extracted Notify Party is a <b>comparison value</b>, not authorisation to send. Only approved recipients can be chosen below.</p>
+        </section>
+
+        {/* Step 2 — select an authorised recipient */}
+        <section className="mt-5">
+          <StepHeading n={2} title="Select an authorised recipient" done={!!chosen} />
+          {!started && npField && npField.result !== "MATCH" && (
+            <p className="mt-2 rounded-md border border-accent-ring/60 bg-accent-bg/50 px-2.5 py-1.5 text-xs text-accent-fg">Notify Party differs between SI and BL. <b>Start Notify Party flow</b> moves the case to NOTIFY_PARTY (audited) so the follow-up is tracked; internal shares work either way.</p>
+          )}
+          <div className="mt-2 flex flex-wrap items-center gap-1 text-[11px]">
+            {(["all", "internal", "external"] as const).map((f) => (
+              <button key={f} type="button" onClick={() => setFilter(f)} className={`rounded-full border px-2.5 py-1 font-semibold capitalize transition ${filter === f ? "border-accent bg-accent-bg text-accent-fg" : "border-ink-200 bg-white text-ink-600 hover:border-accent"}`}>{f}</button>
+            ))}
+            <span className="ml-auto text-ink-500">{recips.filter((r) => r.allowed).length} of {recips.length} permitted for your role</span>
+          </div>
+          <div className="mt-2 max-h-56 space-y-1 overflow-auto scrollbar-thin">
+            {visible.map((r) => (
+              <label key={r.id} className={`flex items-center gap-2 rounded-md border px-2 py-1.5 text-xs ${pick === r.id ? "border-accent bg-accent-bg/40" : "border-ink-100"} ${!r.allowed ? "opacity-50" : "cursor-pointer"}`}>
+                <input type="radio" name="recip" disabled={!r.allowed} checked={pick === r.id} onChange={() => { setPick(r.id); setPreview(null); }} />
+                <span className="flex-1 truncate">{r.label}</span>
+                <Badge className={r.external ? "bg-accent-soft text-accent-fg" : "bg-ink-100 text-ink-700"}>{r.external ? "External" : "Internal"}</Badge>
+                <span className="text-[10px] text-ink-500">{r.roles.join("/")}</span>
+                {!r.allowed && <span className="text-[10px] text-mismatch">not permitted</span>}
+              </label>
+            ))}
+            {!visible.length && <Empty text="No recipients in this group." />}
+          </div>
+          <div className="mt-3 grid gap-2">
+            <div className="text-[11px] uppercase text-ink-500">Fields to disclose (default: mismatches only)</div>
+            <div className="flex flex-wrap gap-2 text-xs">
+              {(c.comparison?.fields || []).map((f) => (
+                <label key={f.field} className="flex items-center gap-1"><input type="checkbox" checked={fields.includes(f.field)} onChange={(e) => { setFields(e.target.checked ? [...fields, f.field] : fields.filter((x) => x !== f.field)); setPreview(null); }} />{f.label}{f.result === "MISMATCH" && <span className="text-mismatch">●</span>}</label>
+              ))}
+            </div>
+            <textarea value={message} onChange={(e) => { setMessage(e.target.value); setPreview(null); }} placeholder="Optional message to the recipient" className="rounded-md border border-ink-200 p-2 text-sm" rows={2} />
+            <div className="flex items-center gap-2 text-xs"><span className="text-ink-500">Due date</span><input type="date" value={due} onChange={(e) => { setDue(e.target.value); setPreview(null); }} className="rounded-md border border-ink-200 px-2 py-1" /></div>
+          </div>
+        </section>
+
+        {/* Step 3 + 4 — preview exactly what leaves, then confirm */}
+        <section className="mt-5">
+          <StepHeading n={3} title="Preview exactly what will be shared" done={!!preview} />
+          <div className="mt-2 flex flex-wrap gap-2">
+            <Button kind={preview ? "default" : "primary"} disabled={!chosen || busy} onClick={doPreview}>{preview ? "Refresh preview" : "Preview"}</Button>
+            {chosen && !chosen.external && !preview && <Button disabled={busy} onClick={doSend}>Share internally without preview</Button>}
+          </div>
+          {preview ? (
+            <div className="mt-3 space-y-2">
+              <div className="flex items-center gap-2 text-xs"><Badge className={preview.share.is_external ? "bg-accent-soft text-accent-fg" : "bg-ink-100 text-ink-700"}>{preview.share.is_external ? "External" : "Internal"}</Badge><span className="text-ink-500">to {preview.share.recipient_label}</span></div>
+              <pre className="whitespace-pre-wrap rounded-md bg-ink-50 p-3 font-mono text-[11px] text-ink-900">{preview.preview}</pre>
+              <StepHeading n={4} title={preview.requires_confirmation ? "Confirm and send to the external party" : "Send / share"} done={false} />
+              {preview.requires_confirmation ? (
+                <div className="rounded-md border border-review bg-review-bg p-3 text-xs text-review-fg">
+                  <b>Human confirmation required for external sending.</b> Only the fields listed above are disclosed. The original email body is not included.
+                  <div className="mt-2"><Button kind="success" disabled={busy} onClick={doSend}>Confirm & send to external party</Button></div>
+                </div>
+              ) : <Button kind="primary" disabled={busy} onClick={doSend}>Send / share</Button>}
+            </div>
+          ) : <p className="mt-2 text-xs text-ink-500">{chosen ? "Preview shows the exact fields and message the recipient will receive." : "Select a recipient first."}</p>}
+        </section>
+      </Card>
+
       <div className="space-y-4">
         <Card title="Assign owner">
           <div className="flex gap-2">
@@ -58,60 +147,7 @@ export function CollaborationPanel({ c, onChange, say }: { c: CaseView; onChange
           <div className="mt-2 text-xs text-ink-500">Currently: {users.find((u) => u.id === c.assigned_user_id)?.display_name || "unassigned"}{c.assigned_team_id ? ` · team ${c.assigned_team_id}` : ""}</div>
         </Card>
 
-        <Card title="Notify Party" right={<Button kind="primary" disabled={busy} onClick={beginNotify}>Start Notify Party flow</Button>}>
-          {npField ? (
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <div className="rounded-md bg-ink-50 p-2"><div className="text-[11px] uppercase text-ink-500">Notify Party on SI</div><div className="font-mono text-xs">{npField.si_original || "—"}</div></div>
-              <div className="rounded-md bg-ink-50 p-2"><div className="text-[11px] uppercase text-ink-500">Notify Party on Draft BL</div><div className="font-mono text-xs">{npField.bl_original || "—"}</div></div>
-              <div className="col-span-2"><Badge className={npField.result === "MATCH" ? "bg-match-bg text-match-fg" : "bg-mismatch-bg text-mismatch-fg"}>{npField.result === "MATCH" ? "values match" : npField.result.replace(/_/g, " ")}</Badge></div>
-            </div>
-          ) : <Empty text="Notify Party not extracted yet (no comparison)." />}
-          <p className="mt-3 text-xs text-ink-500">The extracted Notify Party is a <b>comparison value</b>, not authorisation to send. Choose an approved recipient below, preview exactly what will be shared, then confirm.</p>
-        </Card>
-
-        <Card title="Select recipient">
-          <div className="max-h-64 space-y-1 overflow-auto scrollbar-thin">
-            {recips.map((r) => (
-              <label key={r.id} className={`flex items-center gap-2 rounded-md border px-2 py-1.5 text-xs ${pick === r.id ? "border-accent bg-accent-bg/40" : "border-ink-100"} ${!r.allowed ? "opacity-50" : ""}`}>
-                <input type="radio" name="recip" disabled={!r.allowed} checked={pick === r.id} onChange={() => setPick(r.id)} />
-                <span className="flex-1 truncate">{r.label}</span>
-                <Badge className={r.external ? "bg-accent-soft text-accent-fg" : "bg-ink-100 text-ink-700"}>{r.external ? "External" : "Internal"}</Badge>
-                <span className="text-[10px] text-ink-500">{r.roles.join("/")}</span>
-                {!r.allowed && <span className="text-[10px] text-mismatch">not permitted</span>}
-              </label>
-            ))}
-          </div>
-          <div className="mt-3 grid gap-2">
-            <div className="text-[11px] uppercase text-ink-500">Fields to include (default: mismatches only)</div>
-            <div className="flex flex-wrap gap-2 text-xs">
-              {(c.comparison?.fields || []).map((f) => (
-                <label key={f.field} className="flex items-center gap-1"><input type="checkbox" checked={fields.includes(f.field)} onChange={(e) => setFields(e.target.checked ? [...fields, f.field] : fields.filter((x) => x !== f.field))} />{f.label}{f.result === "MISMATCH" && <span className="text-mismatch">●</span>}</label>
-              ))}
-            </div>
-            <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Optional message to the recipient" className="rounded-md border border-ink-200 p-2 text-sm" rows={2} />
-            <div className="flex items-center gap-2 text-xs"><span className="text-ink-500">Due date</span><input type="date" value={due} onChange={(e) => setDue(e.target.value)} className="rounded-md border border-ink-200 px-2 py-1" /></div>
-            <div className="flex gap-2"><Button disabled={!chosen || busy} onClick={doPreview}>Preview</Button>{chosen && !chosen.external && <Button kind="primary" disabled={busy} onClick={doSend}>Share internally</Button>}</div>
-          </div>
-        </Card>
-      </div>
-
-      <div className="space-y-4">
-        <Card title="Preview — exactly what will be shared">
-          {preview ? (
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-xs"><Badge className={preview.share.is_external ? "bg-accent-soft text-accent-fg" : "bg-ink-100 text-ink-700"}>{preview.share.is_external ? "External" : "Internal"}</Badge><span className="text-ink-500">to {preview.share.recipient_label}</span></div>
-              <pre className="whitespace-pre-wrap rounded-md bg-ink-50 p-3 font-mono text-[11px] text-ink-900">{preview.preview}</pre>
-              {preview.requires_confirmation ? (
-                <div className="rounded-md border border-review bg-review-bg p-3 text-xs text-review-fg">
-                  <b>Human confirmation required for external sending.</b> Only the fields listed above are disclosed. The original email body is not included.
-                  <div className="mt-2"><Button kind="success" disabled={busy} onClick={doSend}>Confirm & send to external party</Button></div>
-                </div>
-              ) : <Button kind="primary" disabled={busy} onClick={doSend}>Send / share</Button>}
-            </div>
-          ) : <Empty text="Select a recipient and click Preview." />}
-        </Card>
-
-        <Card title="Shares & notifications">
+        <Card title="Shares & notifications" right={<span className="text-[11px] text-ink-500">audit → status</span>}>
           {shares.length ? (
             <table className="w-full text-xs">
               <thead className="text-[11px] uppercase text-ink-500"><tr><th className="py-1 text-left">Recipient</th><th className="text-left">Type</th><th className="text-left">Status</th><th className="text-left">Sent</th><th className="text-left">Viewed / Ack</th><th /></tr></thead>
@@ -127,6 +163,29 @@ export function CollaborationPanel({ c, onChange, say }: { c: CaseView; onChange
           ) : <Empty text="Nothing shared yet." />}
         </Card>
       </div>
+    </div>
+  );
+}
+
+function Stepper({ step }: { step: number }) {
+  return (
+    <ol className="flex flex-wrap items-center gap-1 text-[11px]" aria-label="Notify Party progress">
+      {STEPS.map((label, i) => (
+        <li key={label} className="flex items-center gap-1">
+          <span className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${i < step ? "bg-match text-white" : i === step ? "bg-accent text-white" : "bg-ink-100 text-ink-500"}`}>{i < step ? "✓" : i + 1}</span>
+          <span className={i === step ? "font-semibold text-ink-900" : "text-ink-500"}>{label}</span>
+          {i < STEPS.length - 1 && <span className="mx-1 h-px w-4 bg-ink-200" aria-hidden />}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function StepHeading({ n, title, done }: { n: number; title: string; done: boolean }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${done ? "bg-match text-white" : "bg-accent-bg text-accent-fg"}`}>{done ? "✓" : n}</span>
+      <h4 className="text-sm font-semibold text-ink-800">{title}</h4>
     </div>
   );
 }

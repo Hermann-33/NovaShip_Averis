@@ -2,35 +2,53 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { api, currentUserId, setCurrentUserId } from "@/lib/api";
+import { AUTH_PATHS, api, getSession, logout, redirectToLogin } from "@/lib/api";
+import { ROLE_LABELS } from "@/components/auth";
 
-type Me = { id: string; display_name: string; roles: string[]; permissions: string[] };
+type Me = { id: string; email: string; display_name: string; roles: string[]; permissions: string[] };
 
-const NAV = [
+// `perm` hides the entry for roles the API would reject anyway (Audit: Supervisor/Admin/Auditor; Policies: Ops/Supervisor/Admin).
+const NAV: { href: string; label: string; icon: string; perm?: string }[] = [
   { href: "/", label: "Inbox", icon: "inbox" },
   { href: "/verification", label: "Seven fields", icon: "check" },
   { href: "/security", label: "Security", icon: "shield" },
   { href: "/agent", label: "AI agent", icon: "spark" },
-  { href: "/audit", label: "Audit", icon: "audit" },
-  { href: "/policies", label: "Policies", icon: "policy" },
+  { href: "/audit", label: "Audit", icon: "audit", perm: "view_audit" },
+  { href: "/policies", label: "Policies", icon: "policy", perm: "view_policy" },
   { href: "/welcome", label: "Guide", icon: "guide" },
 ];
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
+  const isAuthPage = AUTH_PATHS.some((p) => path.startsWith(p));
   const [me, setMe] = useState<Me | null>(null);
-  const [users, setUsers] = useState<{ id: string; display_name: string; roles: string[] }[]>([]);
   const [health, setHealth] = useState<any>(null);
-  const [uid, setUid] = useState("u_sup_1");
   const [open, setOpen] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
 
-  useEffect(() => { setUid(currentUserId()); }, []);
   useEffect(() => {
-    api<Me>("/me").then(setMe).catch(() => setMe(null));
-    api("/users").then((d) => setUsers(d.users)).catch(() => {});
+    if (isAuthPage) return;
+    const s = getSession();
+    if (!s) { redirectToLogin(); return; }
+    setSigningOut(false);   // Shell lives in the root layout, so state survives login -> logout -> login
+    setMe(s.user);          // instant paint from the stored session, then confirm with the API
+    setReady(true);
+    api<Me>("/me").then(setMe).catch(() => {});
     api("/health").then(setHealth).catch(() => setHealth(null));
-  }, [uid]);
+  }, [isAuthPage]);
 
+  const signOut = async () => {
+    if (signingOut) return;
+    setSigningOut(true);
+    await logout();                      // revokes server-side + clears localStorage (never throws)
+    window.location.assign("/login");    // full reload: no stale Shell/page state survives the sign-out
+  };
+
+  if (isAuthPage) return <>{children}</>;
+  if (!ready) return <div className="dashboard-surface flex min-h-screen items-center justify-center text-sm text-ink-500">Checking your session…</div>;
+
+  const nav = NAV.filter((n) => !n.perm || !me || me.permissions.includes(n.perm));
   const active = (href: string) => (href === "/" ? path === "/" || path.startsWith("/cases") : path.startsWith(href));
   return (
     <div className="dashboard-surface flex min-h-screen flex-col">
@@ -41,7 +59,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             <img src="/novaship-logo-clean.png" alt="NovaShip" className="h-auto w-[122px] lg:w-[132px]" />
           </Link>
           <nav className="hidden items-center gap-0.5 text-sm lg:flex lg:w-full lg:flex-col" aria-label="Primary">
-            {NAV.map((n, i) => (
+            {nav.map((n) => (
               <div key={n.href} className="w-full">
                 <Link href={n.href} aria-current={active(n.href) ? "page" : undefined} className={`dashboard-number flex items-center gap-3 whitespace-nowrap rounded-xl px-3 py-2.5 text-[15px] font-semibold transition duration-200 hover:translate-x-1 ${active(n.href) ? "bg-accent-bg text-accent-fg ring-1 ring-accent-ring/50" : "text-ink-700 hover:bg-[#fff0e5] hover:text-accent-fg"}`}><NavIcon name={n.icon} />{n.label}</Link>
               </div>
@@ -52,17 +70,20 @@ export function Shell({ children }: { children: React.ReactNode }) {
             <span className={`hidden items-center gap-1.5 whitespace-nowrap xl:flex ${health ? "text-match" : "text-mismatch"}`} title={health ? `repository: ${health.backend}` : "backend unreachable"}>
               <span className={`h-2 w-2 rounded-full ${health ? "bg-match" : "bg-mismatch"}`} aria-hidden />{health ? `API online, ${health.cases} cases` : "API offline"}
             </span>
-            <label className="flex min-w-0 items-center gap-2 text-ink-500 lg:flex-col lg:items-stretch lg:gap-1.5">
-              <span className="hidden font-semibold text-ink-700 sm:inline lg:block">Acting as</span>
-              <select aria-label="Acting as user" value={uid} onChange={(e) => { setCurrentUserId(e.target.value); setUid(e.target.value); window.location.reload(); }} className="max-w-[220px] rounded-md border border-ink-200 bg-white px-2 py-1 text-ink-900 lg:w-full lg:max-w-full">
-                {(users.length ? users : [{ id: uid, display_name: uid, roles: [] }]).map((u) => <option key={u.id} value={u.id}>{u.display_name} ({u.roles.join("/")})</option>)}
-              </select>
-            </label>
+            <div className="flex min-w-0 items-center gap-2.5 lg:w-full">
+              <span className="dashboard-number flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-white shadow-glow" aria-hidden>{initials(me?.display_name)}</span>
+              <div className="hidden min-w-0 flex-1 sm:block">
+                <div className="truncate text-[13px] font-semibold text-ink-900" title={me?.email}>{me?.display_name || "…"}</div>
+                <div className="truncate text-[11px] text-ink-500" title={me?.email}>{(me?.roles || []).map((r) => ROLE_LABELS[r] || r).join(" · ") || "—"}</div>
+              </div>
+              <SignOutButton onClick={signOut} busy={signingOut} className="inline-flex lg:hidden" />
+            </div>
+            <SignOutButton onClick={signOut} busy={signingOut} className="hidden w-full lg:inline-flex" />
           </div>
         </div>
         {open && (
           <nav id="mobile-nav" className="border-t border-ink-200 bg-white px-4 py-2 lg:hidden" aria-label="Primary mobile">
-            {NAV.map((n) => <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className={`block rounded-md px-2 py-2 text-sm ${active(n.href) ? "bg-accent-bg text-accent-fg" : "text-ink-700"}`}>{n.label}</Link>)}
+            {nav.map((n) => <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className={`block rounded-md px-2 py-2 text-sm ${active(n.href) ? "bg-accent-bg text-accent-fg" : "text-ink-700"}`}>{n.label}</Link>)}
           </nav>
         )}
       </header>
@@ -70,6 +91,20 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <footer className="border-t border-ink-200/80 bg-white/60 px-4 py-3 text-center text-[11px] text-ink-500 lg:ml-64 lg:w-[calc(100%-16rem)]">SI is the source of truth. Seven fields compared deterministically. AI proposes, humans approve. Every action audited.</footer>
     </div>
   );
+}
+
+function SignOutButton({ onClick, busy, className = "" }: { onClick: () => void; busy: boolean; className?: string }) {
+  return (
+    <button type="button" onClick={onClick} disabled={busy} aria-busy={busy} className={`items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-ink-200 bg-white px-3 py-1.5 text-[11px] font-semibold text-ink-700 transition hover:border-accent hover:text-accent-fg disabled:cursor-wait disabled:opacity-60 ${className}`}>
+      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M10 17l5-5-5-5M15 12H3M13 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6" /></svg>
+      {busy ? "Signing out…" : "Sign out"}
+    </button>
+  );
+}
+
+function initials(name?: string | null) {
+  const parts = (name || "").trim().split(/\s+/).filter(Boolean);
+  return parts.length ? (parts[0][0] + (parts[parts.length - 1][0] || "")).toUpperCase() : "?";
 }
 
 function NavIcon({ name }: { name: string }) {

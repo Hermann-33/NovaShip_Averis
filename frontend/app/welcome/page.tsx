@@ -17,10 +17,10 @@ const STEPS = [
 ];
 
 const ROLES = [
-  ["Operations staff", "Najiha, Deswita, Willy, Mitchelle", "view, compare, edit drafts, share internally, assign"],
-  ["Supervisor", "Hari, Teo Ei Leen", "everything above plus approve external sends and notify external parties"],
-  ["Admin", "Syed Faraz Ali", "everything plus edit policy and rebuild the knowledge index"],
-  ["Auditor", "Ooi Sok Yong", "read-only, including the global audit log"],
+  ["Operations staff", "Najiha (hanna_azhari@aprilasia.com), Deswita, Willy, Mitchelle", "view, compare, edit drafts, share internally, assign"],
+  ["Supervisor", "Hari (hari_mardianto@aprilasia.com), Teo Ei Leen", "everything above plus approve external sends and notify external parties"],
+  ["Admin", "Syed Faraz Ali (faraz_ali@aprilasia.com)", "everything plus edit policy and rebuild the knowledge index"],
+  ["Auditor", "Ooi Sok Yong (sokyong_ooi@aprilasia.com)", "read-only, including the global audit log"],
 ];
 
 export default function WelcomePage() {
@@ -74,7 +74,7 @@ export default function WelcomePage() {
 
       <section>
         <h2 className="text-2xl font-bold text-accent">Who can do what</h2>
-        <p className="mt-1 max-w-[65ch] text-sm text-ink-600">Switch the acting user in the header to try each role. Permissions are enforced by the API, not just hidden in the UI.</p>
+        <p className="mt-1 max-w-[65ch] text-sm text-ink-600">Sign out (button under your name) and sign in as another demo account to try each role — every demo account uses the password <span className="font-mono">novaship123</span>. Permissions are enforced by the API, not just hidden in the UI.</p>
         <div className="mt-4 overflow-x-auto rounded-2xl border border-orange-100 bg-white shadow-sm">
           <table className="w-full min-w-[640px] text-sm">
             <thead className="bg-ink-50 text-left text-xs uppercase tracking-wide text-ink-500"><tr><th className="px-4 py-2">Role</th><th className="px-4 py-2">Demo users</th><th className="px-4 py-2">Can</th></tr></thead>
