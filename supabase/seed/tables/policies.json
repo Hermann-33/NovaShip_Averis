@@ -1,0 +1,8 @@
+[
+ {
+  "id": "policy_active",
+  "tenant_id": "tenant_april",
+  "name": "default",
+  "active_version": "v1"
+ }
+]

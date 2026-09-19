@@ -1,0 +1,81 @@
+[
+ {
+  "id": "share_c97b6f9662ed",
+  "case_id": "case_email_004",
+  "shared_by": "u_sup_1",
+  "recipient_type": "NOTIFY_PARTY_CONTACT",
+  "recipient_user_id": null,
+  "recipient_party_id": "p_vital",
+  "recipient_label": "VITAL SOLUTIONS PTE. LTD. - Documentation <docs@vitalsolutions.sg>",
+  "is_external": true,
+  "message": "Case case_email_004 - REQUEST BL DRAFT _ PO 26067_ COATED IVORY BOARD__138MT\n\nThe customer requested Draft BL verification against the Shipping Instruction. 5 of seven required fields match. 2 fields differ: Consignee: SI = EAST BRIGHT FZ-LLC | BL = UAB NOVAKOPA; Notify Party: SI = EAST BRIGHT FZ-LLC | BL = UAB NOVAKOPA. A correction-request draft is ready for review.\n\nFields requiring attention:\n  - Consignee: SI = EAST BRIGHT FZ-LLC | Draft BL = UAB NOVAKOPA (MISMATCH)\n  - Notify Party: SI = EAST BRIGHT FZ-LLC | Draft BL = UAB NOVAKOPA (MISMATCH)\n\nRequired action: Review the mismatch evidence, then approve the correction-request draft to the carrier/forwarder.\nDue: 2026-01-20\n\n(External share - only the fields above are disclosed; the original email body is not included.)",
+  "payload_preview": {
+   "case_id": "case_email_004",
+   "subject": "REQUEST BL DRAFT _ PO 26067_ COATED IVORY BOARD__138MT",
+   "summary": "The customer requested Draft BL verification against the Shipping Instruction. 5 of seven required fields match. 2 fields differ: Consignee: SI = EAST BRIGHT FZ-LLC | BL = UAB NOVAKOPA; Notify Party: SI = EAST BRIGHT FZ-LLC | BL = UAB NOVAKOPA. A correction-request draft is ready for review.",
+   "fields": [
+    {
+     "field": "consignee",
+     "label": "Consignee",
+     "result": "MISMATCH",
+     "si": "EAST BRIGHT FZ-LLC",
+     "bl": "UAB NOVAKOPA"
+    },
+    {
+     "field": "notify_party",
+     "label": "Notify Party",
+     "result": "MISMATCH",
+     "si": "EAST BRIGHT FZ-LLC",
+     "bl": "UAB NOVAKOPA"
+    }
+   ],
+   "required_action": "Review the mismatch evidence, then approve the correction-request draft to the carrier/forwarder.",
+   "due_date": "2026-01-20",
+   "recipient": "VITAL SOLUTIONS PTE. LTD. - Documentation <docs@vitalsolutions.sg>",
+   "external": true
+  },
+  "due_date": "2026-01-20",
+  "sent_at": "2026-09-19T03:06:02.601848",
+  "viewed_at": null,
+  "acknowledged_at": null,
+  "response": null,
+  "status": "SENT",
+  "tenant_id": "tenant_april"
+ },
+ {
+  "id": "share_33064036c39f",
+  "case_id": "case_email_013",
+  "shared_by": "u_ops_1",
+  "recipient_type": "INTERNAL_USER",
+  "recipient_user_id": "u_sup_2",
+  "recipient_party_id": null,
+  "recipient_label": "Teo Ei Leen <eileen_teo@aprilasia.com>",
+  "is_external": false,
+  "message": "Please double-check the consignee.\n\nCase case_email_013 - AFEMY - MOMBASA_KENYA - CMA(SIJ4216073) - 5RFR-36541 - 5250074586 - ROXCEL TRADING GMBH - OA_CFR\n\nThe customer requested Draft BL verification against the Shipping Instruction. 6 of seven required fields match. 1 field differs: Port of Discharge: SI = MOMBASA, KENYA (KEMBA) | BL = TUTICORIN, INDIA (KEMBA). A correction-request draft is ready for review.\n\nFields requiring attention:\n  - Port of Discharge: SI = MOMBASA, KENYA (KEMBA) | Draft BL = TUTICORIN, INDIA (KEMBA) (MISMATCH)\n\nRequired action: Review the mismatch evidence, then approve the correction-request draft to the carrier/forwarder.",
+  "payload_preview": {
+   "case_id": "case_email_013",
+   "subject": "AFEMY - MOMBASA_KENYA - CMA(SIJ4216073) - 5RFR-36541 - 5250074586 - ROXCEL TRADING GMBH - OA_CFR",
+   "summary": "The customer requested Draft BL verification against the Shipping Instruction. 6 of seven required fields match. 1 field differs: Port of Discharge: SI = MOMBASA, KENYA (KEMBA) | BL = TUTICORIN, INDIA (KEMBA). A correction-request draft is ready for review.",
+   "fields": [
+    {
+     "field": "port_of_discharge",
+     "label": "Port of Discharge",
+     "result": "MISMATCH",
+     "si": "MOMBASA, KENYA (KEMBA)",
+     "bl": "TUTICORIN, INDIA (KEMBA)"
+    }
+   ],
+   "required_action": "Review the mismatch evidence, then approve the correction-request draft to the carrier/forwarder.",
+   "due_date": null,
+   "recipient": "Teo Ei Leen <eileen_teo@aprilasia.com>",
+   "external": false
+  },
+  "due_date": null,
+  "sent_at": "2026-09-19T03:06:02.602851",
+  "viewed_at": null,
+  "acknowledged_at": null,
+  "response": null,
+  "status": "SENT",
+  "tenant_id": "tenant_april"
+ }
+]

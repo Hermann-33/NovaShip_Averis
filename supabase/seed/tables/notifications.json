@@ -1,0 +1,26 @@
+[
+ {
+  "id": "ntf_share_c97b6f9662ed",
+  "tenant_id": "tenant_april",
+  "case_id": "case_email_004",
+  "channel": "email",
+  "recipient": "VITAL SOLUTIONS PTE. LTD. - Documentation <docs@vitalsolutions.sg>",
+  "subject": "Case update case_email_004",
+  "body": "Case case_email_004 - REQUEST BL DRAFT _ PO 26067_ COATED IVORY BOARD__138MT\n\nThe customer requested Draft BL verification against the Shipping Instruction. 5 of seven required fields match. 2 fields differ: Consignee: SI = EAST BRIGHT FZ-LLC | BL = UAB NOVAKOPA; Notify Party: SI = EAST BRIGHT FZ-LLC | BL = UAB NOVAKOPA. A correction-request draft is ready for review.\n\nFields requiring attention:\n  - Consignee: SI = EAST BRIGHT FZ-LLC | Draft BL = UAB NOVAKOPA (MISMATCH)\n  - Notify Party: SI = EAST BRIGHT FZ-LLC | Draft BL = UAB NOVAKOPA (MISMATCH)\n\nRequired action: Review the mismatch evidence, then approve the correction-request draft to the carrier/forwarder.\nDue: 2026-01-20\n\n(External share - only the fields above are disclosed; the original email body is not included.)",
+  "status": "SENT",
+  "sent_at": "2026-09-19 03:06:02.601848",
+  "created_at": "2026-09-19 03:06:02.601848"
+ },
+ {
+  "id": "ntf_share_33064036c39f",
+  "tenant_id": "tenant_april",
+  "case_id": "case_email_013",
+  "channel": "in_app",
+  "recipient": "Teo Ei Leen <eileen_teo@aprilasia.com>",
+  "subject": "Case update case_email_013",
+  "body": "Please double-check the consignee.\n\nCase case_email_013 - AFEMY - MOMBASA_KENYA - CMA(SIJ4216073) - 5RFR-36541 - 5250074586 - ROXCEL TRADING GMBH - OA_CFR\n\nThe customer requested Draft BL verification against the Shipping Instruction. 6 of seven required fields match. 1 field differs: Port of Discharge: SI = MOMBASA, KENYA (KEMBA) | BL = TUTICORIN, INDIA (KEMBA). A correction-request draft is ready for review.\n\nFields requiring attention:\n  - Port of Discharge: SI = MOMBASA, KENYA (KEMBA) | Draft BL = TUTICORIN, INDIA (KEMBA) (MISMATCH)\n\nRequired action: Review the mismatch evidence, then approve the correction-request draft to the carrier/forwarder.",
+  "status": "SENT",
+  "sent_at": "2026-09-19 03:06:02.602851",
+  "created_at": "2026-09-19 03:06:02.602851"
+ }
+]

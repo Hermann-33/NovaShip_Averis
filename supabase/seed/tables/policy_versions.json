@@ -1,0 +1,88 @@
+[
+ {
+  "id": "pol_default",
+  "tenant_id": "tenant_april",
+  "policy_id": "policy_active",
+  "version": "v1",
+  "name": "default",
+  "values": {
+   "verification": {
+    "source_of_truth": "SI",
+    "required_fields": [
+     "shipper",
+     "consignee",
+     "notify_party",
+     "port_of_loading",
+     "port_of_discharge",
+     "container_count",
+     "gross_weight_kg"
+    ],
+    "weight_unit": "kg",
+    "field_confidence_threshold": 0.85,
+    "legal_name_normalization": "casefold_whitespace_only",
+    "port_alias_policy": "strip_unlocode_only"
+   },
+   "human_review": {
+    "confidence_below": 0.85,
+    "missing_required_field": true,
+    "external_recipient_requires_approval": true,
+    "suspicious_sender_to_security_review": true
+   },
+   "communication": {
+    "auto_send_external": false,
+    "external_drafts_require_confirmation": true,
+    "internal_share_roles": [
+     "OPERATIONS_STAFF",
+     "SUPERVISOR",
+     "ADMIN"
+    ],
+    "external_notify_roles": [
+     "SUPERVISOR",
+     "ADMIN"
+    ]
+   },
+   "security": {
+    "blocked_attachment_types": [
+     ".exe",
+     ".bat",
+     ".cmd",
+     ".js",
+     ".vbs",
+     ".scr",
+     ".msi",
+     ".ps1",
+     ".jar"
+    ],
+    "suspicious_domain_words": [
+     "prize",
+     "claim",
+     "verify",
+     "parcel",
+     "crypto",
+     "invest"
+    ],
+    "max_attachments": 10,
+    "duplicate_window_hours": 72,
+    "trusted_domains": [
+     "aprilasia.com",
+     "april.com.my"
+    ],
+    "partner_domains": [
+     "fujitogrp.com",
+     "safqa.co.ke",
+     "psabdp.com",
+     "roxcel.at",
+     "ifpla.com",
+     "algurg.ae",
+     "vitalsolutions.sg"
+    ]
+   },
+   "intent": {
+    "intent_llm_threshold": 0.75
+   }
+  },
+  "updated_by": "system",
+  "change_note": "Initial policy",
+  "created_at": "2026-09-19 03:05:57.783887"
+ }
+]

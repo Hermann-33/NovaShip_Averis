@@ -1,0 +1,47 @@
+# NovaShip Averis — full stack
+#   docker compose up --build
+#   API  -> http://localhost:8000  (Swagger: /docs)
+#   UI   -> http://localhost:3000
+# Default = offline demo (in-memory repo seeded from the SDOC bundle, rule-based AI).
+# Set REPO_BACKEND=supabase + SUPABASE_* and/or LLM_PROVIDER + API key in .env to go live.
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file: [.env]
+    environment:
+      REPO_BACKEND: ${REPO_BACKEND:-memory}
+      LLM_PROVIDER: ${LLM_PROVIDER:-none}
+      AUTH_MODE: ${AUTH_MODE:-demo}
+      EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-local}
+      VECTOR_STORE: ${VECTOR_STORE:-local}
+      LANGGRAPH_CHECKPOINT: ${LANGGRAPH_CHECKPOINT:-memory}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
+    ports: ["8000:8000"]
+    volumes:
+      - ./sdoc-hackathon-bundle:/data/bundle:ro
+      - ./supabase/seed/snapshot.json:/data/seed/snapshot.json:ro
+      - ./backend/data:/app/data          # RAG knowledge folder + local index (writable)
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-http://localhost:8000}
+    environment:
+      NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-http://localhost:8000}
+    ports: ["3000:3000"]
+    depends_on: [api]
+    restart: unless-stopped
+
+  # Optional: the organisers' inbox/scoring server (needs sdoc-hackathon-docker/ present)
+  sdoc-inbox:
+    profiles: ["scoring"]
+    build: ./sdoc-hackathon-docker/server
+    ports: ["8080:8000"]
+    volumes:
+      - ./sdoc-hackathon-docker/data_v2:/data:ro
+      - ./sdoc-hackathon-docker/data_v2/ground_truth.json:/secrets/ground_truth.json:ro
+    environment: { DATA_DIR: /data, GROUND_TRUTH: /secrets/ground_truth.json }

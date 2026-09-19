@@ -1,0 +1,38 @@
+[
+ {
+  "user_id": "u_ops_1",
+  "role_id": "OPERATIONS_STAFF"
+ },
+ {
+  "user_id": "u_ops_2",
+  "role_id": "OPERATIONS_STAFF"
+ },
+ {
+  "user_id": "u_ops_3",
+  "role_id": "OPERATIONS_STAFF"
+ },
+ {
+  "user_id": "u_ops_4",
+  "role_id": "OPERATIONS_STAFF"
+ },
+ {
+  "user_id": "u_sup_1",
+  "role_id": "SUPERVISOR"
+ },
+ {
+  "user_id": "u_sup_2",
+  "role_id": "SUPERVISOR"
+ },
+ {
+  "user_id": "u_admin_1",
+  "role_id": "ADMIN"
+ },
+ {
+  "user_id": "u_admin_1",
+  "role_id": "SUPERVISOR"
+ },
+ {
+  "user_id": "u_audit_1",
+  "role_id": "AUDITOR"
+ }
+]

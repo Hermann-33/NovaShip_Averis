@@ -1,0 +1,6242 @@
+[
+ {
+  "id": "run:b85146deb7e026f4db18dbaebd48177fb8602f6d029b28ed3762ca24546aaf04",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_001",
+   "status": "COMPLETED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 13,
+  "created_at": "2026-01-05 08:00:00"
+ },
+ {
+  "id": "run:b3d289ef660aa4085dc555f00ad9bdeaec4bf524bedeed47fb409ac76c354f8d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_002",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-05 08:17:00"
+ },
+ {
+  "id": "run:879c43cf3a6665de9636fd91b99e1a4f34530f0a406e344354c08d9cf0cf6267",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_003",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 08:34:00"
+ },
+ {
+  "id": "run:2408bc2ab26d87f60ebe1b801a39ae2dc2db422e1689f5a52d4a7b900931b6c1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_004",
+   "status": "AWAITING_RESPONSE"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-05 08:51:00"
+ },
+ {
+  "id": "run:0327115a1328d2b1e6ebc1d5ef4eaf02effa1e4493af55dded1ecf11715189f4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_005",
+   "status": "COMPLETED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-05 09:08:00"
+ },
+ {
+  "id": "run:aee71c2e1132679b8fa93fbae0823ab09dee04b5ee80c01f9f928c8337228326",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_006",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 09:25:00"
+ },
+ {
+  "id": "run:e7ef0ec213a81826dff4773a54106cd3f3415ee59018c3301b99457b60e06b58",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_007",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 09:42:00"
+ },
+ {
+  "id": "run:fb509271a0ebc96487d30da91f8baceb87d1a5b48e04f3ecf13f7904ee8c7eda",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_008",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 09:59:00"
+ },
+ {
+  "id": "run:0d8505dcfa0cadfa2c1356f137840d34c64561e7c197c80fc2e43b61b6d407df",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_009",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-05 10:16:00"
+ },
+ {
+  "id": "run:f31be0337595107545932e073835d498371579b8d313b294c4a8fc8d1cd34902",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_010",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 10:33:00"
+ },
+ {
+  "id": "run:5cd97f57cba8a21af76671a3f5630d463c9ac27ebe3b2314840536b3678501ab",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_011",
+   "status": "COMPLETED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 10:50:00"
+ },
+ {
+  "id": "run:6e4e5aa26089485b45c758f59231fc3698ad0c011380a9799efd065d0772cad2",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_012",
+   "status": "COMPLETED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 11:07:00"
+ },
+ {
+  "id": "run:83bb42e25c412d16dc6fde5d3f163dc8550de99b6b3811edafc4e8f28bc697d9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_013",
+   "status": "ASSIGNED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 6,
+  "created_at": "2026-01-05 11:24:00"
+ },
+ {
+  "id": "run:57197e8c07e1716908e81e99dc6ca276b09a9af4322ed9716df6eae97a9382b4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_014",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 11:41:00"
+ },
+ {
+  "id": "run:2627e57a8e63f55c47d84f6960984e814bf978b8053c8f8dded450ce9cf52eff",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_015",
+   "status": "COMPLETED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-05 11:58:00"
+ },
+ {
+  "id": "run:a6243ca14c62807a2b9756ad62555e47433e73b89775fe708fe1a2f8e5338897",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_016",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-05 12:15:00"
+ },
+ {
+  "id": "run:6a84c5a0205f533fd7d1f3c3d82267a6d7d2b831a00441466495dd58ed52ca49",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_017",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-05 12:32:00"
+ },
+ {
+  "id": "run:e72a252155a2e9e907e24b2d087b3d95a53d2006cdc7810935338e3ef7df6eb8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_018",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-05 12:49:00"
+ },
+ {
+  "id": "run:331f9f6f29dffe9d38426410226143c03f722ddc47d004445a0c262c40be6c6a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_019",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 13:06:00"
+ },
+ {
+  "id": "run:c16888537d5d468675514c3ab5b4032ab8f8a71d8e27fe660e78031dc88aad3c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_020",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 13:23:00"
+ },
+ {
+  "id": "run:407ee2d6d58d9f95cf5e30ff15d2736b45624b661b2aec71a5dca5c45ff7d44a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_021",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 13:40:00"
+ },
+ {
+  "id": "run:c24f6a01bed634ffc12a098b767205b6ba6d21535dc6677b9a592946178a62fa",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_022",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 13:57:00"
+ },
+ {
+  "id": "run:f95d5d12fdf60fa95dbc2ca866a7434969f3d416cc61ac83cb3a17bc2f89388f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_023",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 14:14:00"
+ },
+ {
+  "id": "run:c303cdc257b45e8dc2ef8fa8b2ec2867265f6f9a0b4e97b0a24c6234795944b1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_024",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-05 14:31:00"
+ },
+ {
+  "id": "run:e8972ee118bbed86b5d1f084df242a84235520226a06e1a9a81b3fe167d04691",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_025",
+   "status": "AWAITING_RESPONSE"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-05 14:48:00"
+ },
+ {
+  "id": "run:ea2f62dc8c08321cfe4c208ae85d152af4039d2b2be24b911bf783726f663fce",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_026",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-05 15:05:00"
+ },
+ {
+  "id": "run:1307fc10a2323ea3f598b800ce2568cb8f7c32d0363c308031686f5aef715af1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_027",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 15:22:00"
+ },
+ {
+  "id": "run:2e444049c4558a32015e35e9240587363d522a047e590f691e2a58bac650476a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_028",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 15:39:00"
+ },
+ {
+  "id": "run:3b2d88e17df7d1a26a7fedb7a7fbb60d46dc6d168d25c0867f8b0ed57eb0fe80",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_029",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 15:56:00"
+ },
+ {
+  "id": "run:6f57c951f1bd2e7c28e7c18d72bd97151428b56e3b537c81ec1deeb164fcf04e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_030",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 16:13:00"
+ },
+ {
+  "id": "run:f6fae7e962ccc7de3bf84b8b75b7438e4cf0f4674473884978f5851d8a5a7fc0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_031",
+   "status": "ASSIGNED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-05 16:30:00"
+ },
+ {
+  "id": "run:6322d2722157380810e2f2160e28b511f1473432c752b4d8f1de115524afb7e8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_032",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 6,
+  "created_at": "2026-01-05 16:47:00"
+ },
+ {
+  "id": "run:1c67f2d0fc9f49fd9c384d4add9229c20f82009be01dac16e7334c3c0f68852f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_033",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 17:04:00"
+ },
+ {
+  "id": "run:913bfa27aeafb2db42cb56e2b609c8280a266e6c51e51ac31316b2c62019e1cc",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_034",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-05 17:21:00"
+ },
+ {
+  "id": "run:ca0f10c79ba0b750c16bcdd85ded9620060a01163ae1048fa118d3f35dcf98c6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_035",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 17:38:00"
+ },
+ {
+  "id": "run:b9a401aa58932ed38c0de046d60d65b659bea9c6ef9f96c36bff227906c3a916",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_036",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 17:55:00"
+ },
+ {
+  "id": "run:fce3d90dcc244898d12530e3746ffb4fffe13bc5066943d9318b73b6c09ecdd2",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_037",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 18:12:00"
+ },
+ {
+  "id": "run:4cdf8b6588c9a2942689e4c734dad5047dd82dfa83f3075cea466e44d8f8f67b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_038",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-05 18:29:00"
+ },
+ {
+  "id": "run:a6048690d4801b36a058cf57efa5efbc26175d8ab4d68e253a065aade0e55976",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_039",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 18:46:00"
+ },
+ {
+  "id": "run:6eade57e0d8c9c30fa381da32f3cb71d475b4be3e7ccb2588fa1e8d4e9fa0349",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_040",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-05 19:03:00"
+ },
+ {
+  "id": "run:2db904246e010d6a407229467685d7e6bb81cc8b9158dadd916cdc5398756d42",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_041",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-05 19:20:00"
+ },
+ {
+  "id": "run:d452d5bf347ded8d7ef7e1019a721c3f505c2685680d0c1f828be7379105c073",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_042",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 19:37:00"
+ },
+ {
+  "id": "run:e7ba91436f8696ba53d1e1061fd191e5bf099b1e5a428738c900de2ae62a5790",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_043",
+   "status": "ASSIGNED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-05 19:54:00"
+ },
+ {
+  "id": "run:17891c5d97da4946c878ad049885e30ba8e7451d4ab8166c0f06233dad5aad19",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_044",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 20:11:00"
+ },
+ {
+  "id": "run:b74ad7456e06d12587318a901d08f32e64a46d63d2ab9092bafca0e42108dc8d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_045",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 20:28:00"
+ },
+ {
+  "id": "run:7fee0f924ae9fa90fdad9a9b25239932a831c390a86f28f14066dc0890b33cc7",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_046",
+   "status": "ASSIGNED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-05 20:45:00"
+ },
+ {
+  "id": "run:bf8d8806342188cbd7920eb4d5dcad40bc1ecdf67ca5eb7c51edbef8bb0404bf",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_047",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-05 21:02:00"
+ },
+ {
+  "id": "run:76587264c381ed18685944b6981b3ce1a000552ca5a67ebc60c3bc849d8e7229",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_048",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 21:19:00"
+ },
+ {
+  "id": "run:ce300110248f9dbdca6fc0dad5e900577eda2fdac5868a2ebfc81640c06fc647",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_049",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 21:36:00"
+ },
+ {
+  "id": "run:7af4206b0d00b819e284a418f8929ea74fb4c6d54552b5282393c85b733d6167",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_050",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 21:53:00"
+ },
+ {
+  "id": "run:1e4049c93dec2a8262a84b83e9b07b73a4aebcca0d0ba4da58a468da1c996585",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_051",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-05 22:10:00"
+ },
+ {
+  "id": "run:df46724dbb081699c10e4a4d0fec4253f0da0a3a0173e9e8b7a405361a3dd878",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_052",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-05 22:27:00"
+ },
+ {
+  "id": "run:ac489e4235353f051dce3a4615096e068b688384455170940e691370728c5ce1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_053",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-05 22:44:00"
+ },
+ {
+  "id": "run:cd295e69e9b53cb39bd3689439abdde29c901eb55071b675b061840f564de5d5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_054",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 23:01:00"
+ },
+ {
+  "id": "run:c9a184cb6ef6782207948b0ef8b161dda5953be103f91fde33b962b6b46fa9da",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_055",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 8,
+  "created_at": "2026-01-05 23:18:00"
+ },
+ {
+  "id": "run:8225f5a808c7f2f83e9363f48468b02794a268f67bacac3bad338ea922bb2c5c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_056",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 23:35:00"
+ },
+ {
+  "id": "run:e4ddf7f567973fcb6d34ea7afbc095b9b643762990918943a0b42f65acec9b4e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_057",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-05 23:52:00"
+ },
+ {
+  "id": "run:65225c998221d83facbf3f4d38b43e2f42a9dce94d9daf67e0919d5b5ef7617d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_058",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-06 00:09:00"
+ },
+ {
+  "id": "run:2f673300fd1b7d087c83971bdb9a4c5fadd7839bb4fa4825449389e144731a48",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_059",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 00:26:00"
+ },
+ {
+  "id": "run:15fdf7196a63fcac3edbb3c1d50bd8c19383c27472422ab1aea614fd1b741240",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_060",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-06 00:43:00"
+ },
+ {
+  "id": "run:e5572ef696b7e0349dca5d7b4e0449529a434c79df1507989abd2cb1c855cb55",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_061",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 01:00:00"
+ },
+ {
+  "id": "run:5ad9cc1bbd22548c676a9b0164330cc170a87e6cfba29dff19c781439384737a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_062",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-06 01:17:00"
+ },
+ {
+  "id": "run:ada5fdd13c3c58ded383a9d87f1bd38cf8059b4dbc7c8ea82e975817feb6b0b3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_063",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 01:34:00"
+ },
+ {
+  "id": "run:f1828dcdbb11fbbf51cb14a0622db5ec8e5d7e8a6b1e77d8ee6d981400f83818",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_064",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 01:51:00"
+ },
+ {
+  "id": "run:a0aa689669a2ce908c618b9e5bed22e5adbee66858e6ef70329502827c3de255",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_065",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 02:08:00"
+ },
+ {
+  "id": "run:474e5765251b246561c6eb3d93e5ca5802e03df8eeeb6edfb4faa5d0b2cb0fdc",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_066",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 02:25:00"
+ },
+ {
+  "id": "run:a90b417926bc85bda91efa664dd4534c0cf12ca88fd3cf0ef4e1be635fd97e12",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_067",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 02:42:00"
+ },
+ {
+  "id": "run:e7984d1be4ccddf6e26e663b285887f3994cad85674611ed06c7a13d3df0f537",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_068",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-06 02:59:00"
+ },
+ {
+  "id": "run:331ee92891098371209fb8c44d12e526cd6261c45ed6b5727f21594d3f7b8665",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_069",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 03:16:00"
+ },
+ {
+  "id": "run:a1d6df9fd236733ae716f6f6b629936573981cb68de2101c0e9e6cd1796979d9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_070",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 03:33:00"
+ },
+ {
+  "id": "run:690a42fb67fa4938d820f1b932b7950c0a664e6395291e05f2dcd8cf11e2e350",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_071",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-06 03:50:00"
+ },
+ {
+  "id": "run:a0c159eeb8ecbef32b00a9fae695ce535714e151edf48d3774e4d5057f92e815",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_072",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 04:07:00"
+ },
+ {
+  "id": "run:d62a76ad26bfd559af87c04f154a6c62c40a59936e3387468ac82757cf0b69b5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_073",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 04:24:00"
+ },
+ {
+  "id": "run:ded92e9ddff8effa159eb0ec53bdf950a3315d808efc834d419aba6e33384162",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_074",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 04:41:00"
+ },
+ {
+  "id": "run:dd479e5c41e3ba28d6b44465f7e66b5ac67c5d0395e18606f7434b3c271d2057",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_075",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 04:58:00"
+ },
+ {
+  "id": "run:18937ecf699ef38b6ef6c7c9cc4c9ae0c3f967146ce3cb070cc214b4ef47a363",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_076",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 05:15:00"
+ },
+ {
+  "id": "run:531e1c918d3e87c490eee79ed3e83328f34700ebc719cc74c6209a5da5071fa3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_077",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 05:32:00"
+ },
+ {
+  "id": "run:5dfcb1c634add9f9190ac1a6289c041d6facb1a99caeb968c8dfcbc06589c6ef",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_078",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-06 05:49:00"
+ },
+ {
+  "id": "run:bb7794b325e683f69c83b07fae2c3f453d8f10b35781cc21bca013dd18e2c343",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_079",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 06:06:00"
+ },
+ {
+  "id": "run:7eab03bb404630b985406723141418c3ccb6e6dae76da0da82f2f221c1a36c95",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_080",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 06:23:00"
+ },
+ {
+  "id": "run:24d983b94ae04b1fab62baef17f16279c944b81172833f150063f6d5ee1a7daf",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_081",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 06:40:00"
+ },
+ {
+  "id": "run:d646338fb3ac01a31efb80ae6acecce0222104fb3c83eb37e920d5dec62a258d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_082",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-06 06:57:00"
+ },
+ {
+  "id": "run:a5e10d313ed8679eeb4b97b377d80c1086b05b9abe85d5eb2a859a969053d6a8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_083",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 07:14:00"
+ },
+ {
+  "id": "run:7c77b69d5162865b1470870559c5a67a90eb469f4128fcdf58f3c7fc1ef15264",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_084",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 07:31:00"
+ },
+ {
+  "id": "run:2ca2b60b1468ad4e2248bacb845dc19d2bb7e9015a226ce7179bd0b147101e81",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_085",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 07:48:00"
+ },
+ {
+  "id": "run:3bcc39cdfd780cc699bdf53df6459006b6202588813504fced774893767e35d3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_086",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 08:05:00"
+ },
+ {
+  "id": "run:4bbb1f47f95690f69301fd8b3d3519cf20617bb88d986f24fcefad8039b2e09e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_087",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 08:22:00"
+ },
+ {
+  "id": "run:6801ceaa2ac14ee7f8dd199c56fc5d3d2c25c6c1f4f19a6dfe9702d2acd0567c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_088",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 08:39:00"
+ },
+ {
+  "id": "run:b8aeada3e2e8fe288635609f7def683f661af352a3a208f5700adbef3a43a0c3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_089",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 08:56:00"
+ },
+ {
+  "id": "run:472685942dd33d649e0f3e9b8242a34215c720c6a6dfcc4b101388787a5b0a2d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_090",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 09:13:00"
+ },
+ {
+  "id": "run:8e84a1dde4c36a4e08c8860f70958a2fb8cc64b6368df6df061ae6306d40bad0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_091",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 09:30:00"
+ },
+ {
+  "id": "run:8633ce28220bcf23c6130f72f2add9d9ddccfe99565cd764e3d69a60a14f40f6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_092",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 09:47:00"
+ },
+ {
+  "id": "run:395b92e24fa496035c6d3b219ef3525ebdc3135ff1b34c470ddc862bbae976a1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_093",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 10:04:00"
+ },
+ {
+  "id": "run:5d24eaccfe41fd15bd1d2236f153a75e76b3d47a91470b081cea7413be117872",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_094",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 10:21:00"
+ },
+ {
+  "id": "run:75a00897c607af3fa88520eb279c2efbc3499a98eba7a52fd66b033fc8383e58",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_095",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-06 10:38:00"
+ },
+ {
+  "id": "run:48fe43fc2e6f1c24c74fa307711160b2df513235d4cc542643ab296b11ca2692",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_096",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 10:55:00"
+ },
+ {
+  "id": "run:fbd566339be97dcf574139914322d50363bef3a2279e13a4506c6a07883ca3e0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_097",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 11:12:00"
+ },
+ {
+  "id": "run:ceff25494d1d4addb23b691c712f6d37312374586e17c452cfa44160a8a16b97",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_098",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 11:29:00"
+ },
+ {
+  "id": "run:b665de0ca2e33eee32ed23c2f3987ea47aa53e363696c0e584f4a0a32db9738c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_099",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 6,
+  "created_at": "2026-01-06 11:46:00"
+ },
+ {
+  "id": "run:b2782c27d221ad2dcc93a862c97061b26dec34b634117108688e460b22a9e380",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_100",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 12:03:00"
+ },
+ {
+  "id": "run:dd0c8f226815e0b20044b03ec13904b4114b94d61447ec0216612bcff97c764f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_101",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 12:20:00"
+ },
+ {
+  "id": "run:b2843c70c9a0b4649058290741c9b3df5c54964599f02db79402582b9bf1cd69",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_102",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 12:37:00"
+ },
+ {
+  "id": "run:b0ded69847bc709406513ac77a8467a6021f0c2426ec2a277a44ab10498a1aa0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_103",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 12:54:00"
+ },
+ {
+  "id": "run:4920b7d69fb56031bf0da3cabd8e542a7f9f8c3a042947189b9e8ecf3d2580b3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_104",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 13:11:00"
+ },
+ {
+  "id": "run:18242b1c709009f8c8d6f446154a366b8e24dc5b55a63559d16013ade3844aa8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_105",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 13:28:00"
+ },
+ {
+  "id": "run:ad60ea30dfc929ece462ddd04308bdeceb7256a424262ccbe37ddc265573ad7e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_106",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 13:45:00"
+ },
+ {
+  "id": "run:e64c795dd4621664ea69306558a49142c217b49eec05a3f7128b4cf0fe53a8ac",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_107",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 7,
+  "created_at": "2026-01-06 14:02:00"
+ },
+ {
+  "id": "run:07cb3a956b56b16092bd4e9aa309acd705ec2051cf00379a461e66a0d472ce09",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_108",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 14:19:00"
+ },
+ {
+  "id": "run:e188db07aef17892a8ced8d7e0788ae22ffb424e4fa916285d8b66773295585d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_109",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 14:36:00"
+ },
+ {
+  "id": "run:e862563ccdc9ed311310caa73bc6976f672371a4adcb957257b94b775fa4c768",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_110",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 14:53:00"
+ },
+ {
+  "id": "run:a0bc5e04ff162db3648f3df7c7e5860bd591ae3583dca4de209f0aaacf1ebffe",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_111",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 15:10:00"
+ },
+ {
+  "id": "run:7d0247003720bec62c7e93be465fe015623f299c457b10b1e32f31edb72b277d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_112",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 15:27:00"
+ },
+ {
+  "id": "run:ff512413fb11e5023a455df22fe5735ef29ee6e3f8102e1980c6cf9aafc540c9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_113",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-06 15:44:00"
+ },
+ {
+  "id": "run:62de45a8c088f97051417d15744fc3bc61e03fb7097a1004dd61601be05df4bc",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_114",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 16:01:00"
+ },
+ {
+  "id": "run:e646b9282685e0975484d776ff2ce25f64e21384f8822d9f409f4468019756a3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_115",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 16:18:00"
+ },
+ {
+  "id": "run:833bb204c76b9ac31974fa924aa24f716661e73f18652aabede5fe28095a1088",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_116",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 16:35:00"
+ },
+ {
+  "id": "run:9978d8db5817f5f082906547e84e52fab9501fe886ba59006cbf42cf3df8b23b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_117",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-06 16:52:00"
+ },
+ {
+  "id": "run:a36423976beea4fb27207d6e89b05fa6040255540d510bc71b1ff8d883ad3c2e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_118",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 17:09:00"
+ },
+ {
+  "id": "run:f34c96f8aa4ebc0aa313efc3c4f23a16f56bb9444067a1095b9218cd660a049e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_119",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 17:26:00"
+ },
+ {
+  "id": "run:1686be06d8f5fe04e73132999aa0730013e54a3c830bda69c31673ba5b5e6d88",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_120",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 17:43:00"
+ },
+ {
+  "id": "run:e272741cb23cf3be3ed9c6e198e45887d1d5681f448527f3d3378fe95c6fa7d3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_121",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-06 18:00:00"
+ },
+ {
+  "id": "run:b73780077627a1c37ef5c4b8f55b3894fb246c9c7f34a525d4b9e99122bb0b25",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_122",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 18:17:00"
+ },
+ {
+  "id": "run:7a4bed238573aecdacc94b292c6f25f5ead10c3b8e6c9098c6de3e7836e66215",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_123",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-06 18:34:00"
+ },
+ {
+  "id": "run:eb0c0f530a2f39fa5fd97308c61025ee067597c4d61fae174582a4ab55ace4e9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_124",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 18:51:00"
+ },
+ {
+  "id": "run:8e9fb8063519a3d67e3d3e0011e940577c70f6cb6c0aa090456bfc229ca95cbe",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_125",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 19:08:00"
+ },
+ {
+  "id": "run:0e95af63fd52bac0d05c04cb6bb1d45e3ecdf397d3ea79333ff8db478538aacd",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_126",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 19:25:00"
+ },
+ {
+  "id": "run:ec1c166f27ba00fd5ee07e3a2886a3b9f214a9973a2c8db32d413ff7ec508503",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_127",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 19:42:00"
+ },
+ {
+  "id": "run:b2a82a7990da1205167b78a848319e369a6556768643a0e62f42b8038fddaef2",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_128",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-06 19:59:00"
+ },
+ {
+  "id": "run:ebcac14e53d90a4f074db8ca332dc250a2173a2e2194e82197c167fd8f20d164",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_129",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 20:16:00"
+ },
+ {
+  "id": "run:ee8c8baa0b65a2d3ec7cd44c6325315d7b17bb1bc42bae2db340218eb6f88c08",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_130",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 20:33:00"
+ },
+ {
+  "id": "run:7260a7287ecfccfac590a02ec017695b2663d7b84f0ba68c038cda19c1db5fa9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_131",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 20:50:00"
+ },
+ {
+  "id": "run:53007e871322242b1501c6d869f61b20d821c2981024a2b782080378d3528724",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_132",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-06 21:07:00"
+ },
+ {
+  "id": "run:5e496cbc85cdd149b3bb81c6f7e79f30717d953366032160f798789bc59d8e68",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_133",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-06 21:24:00"
+ },
+ {
+  "id": "run:06cff4f7ff1fc4f0448146623f789e0b80738167871f62bb327f25ea3d9c2ae5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_134",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-06 21:41:00"
+ },
+ {
+  "id": "run:be00f58ae197af17d561ce4e8d7b4ab63d301494e0b6cf7cf4bd7d8b5cddbe7b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_135",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 21:58:00"
+ },
+ {
+  "id": "run:de98f1b887251dd1194a723771c0db980e004f49490b5a7ef0bb046acb6b26f7",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_136",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-06 22:15:00"
+ },
+ {
+  "id": "run:a609b2b52f536f90d11f35aaeca5b8b7c46b46a29139eaf7afa5f1c66801a912",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_137",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 22:32:00"
+ },
+ {
+  "id": "run:a9af22783c6f65d2ac1d6975579ae22d726ce616f9e54c19c7e09e38ce16caae",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_138",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-06 22:49:00"
+ },
+ {
+  "id": "run:8990cc171e09dbe959e803222ce7d30aa02dcb3bf74c1928ac49505198a4b54a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_139",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 23:06:00"
+ },
+ {
+  "id": "run:24ffcbd1f47b9aa58dff858d2cb8bb4c85777fbfaf5237a45b6189d0a2dae9da",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_140",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-06 23:23:00"
+ },
+ {
+  "id": "run:01a92e850237a826bb42dbf8338f6c74e5e037f9cfed2754c32a679f5489c855",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_141",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-06 23:40:00"
+ },
+ {
+  "id": "run:44e598e59bb39bdd39fd7d6475bc1211b29bb2c9f6d44987ad71639471be82d5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_142",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-06 23:57:00"
+ },
+ {
+  "id": "run:602dfc771c548c4c878afa8ca4e4dbc00e148246932fee5d40017b1f16d707c4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_143",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-07 00:14:00"
+ },
+ {
+  "id": "run:7575e84ae17f1887d9387b50d9dba4e6874d1b1cceeeba679390562acea1fdaa",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_144",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-07 00:31:00"
+ },
+ {
+  "id": "run:e6b0f1aae4d67d044df04228724f22c55b766600d88a7330c351e523fab2f85a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_145",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-07 00:48:00"
+ },
+ {
+  "id": "run:8543987bdd203a21107fcc3d018947af6e1c23d32c02bfe7567864021f5fcbd6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_146",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-07 01:05:00"
+ },
+ {
+  "id": "run:af6d9a9256d3ce2a02261243356aac307faf0f410c2aaa34e31e164766f6c666",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_147",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 01:22:00"
+ },
+ {
+  "id": "run:2911665ee115472e1d5841ff628e68f1c5d70c2f0253cd25afd7330a8791fb7c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_148",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 01:39:00"
+ },
+ {
+  "id": "run:ebda4b16d48e925dd7761c40abc33bc4c7b40dff485b096b695aa17d60f006fe",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_149",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 01:56:00"
+ },
+ {
+  "id": "run:1ee2dacecbb6396531165f9b1322c34398707cc1d22af0240362157063920a67",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_150",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 02:13:00"
+ },
+ {
+  "id": "run:26473a9c46a9c31d7c655aec4f0e99c2196d34fe21a15ed707919800c57f7f10",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_151",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 02:30:00"
+ },
+ {
+  "id": "run:97c841572aab5814ef2cda89a6dcfad850ad8c8e2c49532bc7bfffe8df5450f9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_152",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 02:47:00"
+ },
+ {
+  "id": "run:62f777abcc43b9c62bb5f21c19756cbe3ec98063b125baadbb712a4ec6584122",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_153",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 03:04:00"
+ },
+ {
+  "id": "run:71e5485453fae325f5d47d80a9531227d97cf0b28e45029755aa313e0f1561e3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_154",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 03:21:00"
+ },
+ {
+  "id": "run:84c6e88590a8c67c1221a023837237b48de65c1982f1faacabae2ef77caec5c4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_155",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 03:38:00"
+ },
+ {
+  "id": "run:f4f4e958e70df39bb03e3bdd04091a2bb18544035dc584c75a4d30f79cc6b1d3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_156",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 03:55:00"
+ },
+ {
+  "id": "run:c831ebc5afca836837255077b8733d4cc34a03278a6be94333dd53319c31b19b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_157",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 04:12:00"
+ },
+ {
+  "id": "run:fc3c31e90a3b42bcc11c62f42d40d08645ac3021ebca742a6aad2df8240a30c4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_158",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 04:29:00"
+ },
+ {
+  "id": "run:6e198f34d72e2374110bcb61899cfae58d892dbe0ab17b81000b9f89e5ee5a5c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_159",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 04:46:00"
+ },
+ {
+  "id": "run:43265e188c03012d128d0a2e49a8fe70efe02f1e0f1bd890fe2e3d13aee27111",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_160",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-07 05:03:00"
+ },
+ {
+  "id": "run:7578e5feb270df87cc874f2b9272b17288c31f7b4bdda05bd78b556683332ade",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_161",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 05:20:00"
+ },
+ {
+  "id": "run:f5f9ba8132764699496e5b35dc1a842790d042fe033f6a248a5a013b905860ef",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_162",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 05:37:00"
+ },
+ {
+  "id": "run:2da85bb35f2be92a2a6ef8e062e80e90b71496e5ee67eedd122350feda0facf0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_163",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 05:54:00"
+ },
+ {
+  "id": "run:f2784bcf1b9cc8b6eaa258d6fbb9616d583062169fc0687439cca2dd45bbd0ac",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_164",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 06:11:00"
+ },
+ {
+  "id": "run:8dc9a632b7207ed73e3f14e3fd9a510aa62ab88db5d564fed5ac6c7363dc3072",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_165",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 06:28:00"
+ },
+ {
+  "id": "run:168cd48f2efff9582a4e066beee657de6c0a06f9489a6e6e5d31832df92cb112",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_166",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 06:45:00"
+ },
+ {
+  "id": "run:83e7af04bec40ef45e48e57d181ece6bc78890f1621f62786e827cfad0320ab6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_167",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-07 07:02:00"
+ },
+ {
+  "id": "run:a633cdbbd21ed8b462b8b4b8dfc40e0f5a399e523b293661dc5a8a428f4d380a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_168",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 07:19:00"
+ },
+ {
+  "id": "run:49a3418b122abfa9fc6d6441c87f2bf26a507587ab85559216aaed96170b3293",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_169",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 07:36:00"
+ },
+ {
+  "id": "run:f23e53656a9d6f4236e009dd97f5d0f9b797b03d41b1a19661a1f4ff29dc81f8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_170",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 07:53:00"
+ },
+ {
+  "id": "run:2897e13c7662489d2a9aafd65ab4d1b282a6f4b14c06fa23bd12d1d7e6736896",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_171",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-07 08:10:00"
+ },
+ {
+  "id": "run:00961f07053c811e3032c936c988a28a631067ad297cea3421b6cea3b81259b8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_172",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 08:27:00"
+ },
+ {
+  "id": "run:7075b29530d508f7d8512ac96f89efbc131c797798fd7912a6507b0b377f4026",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_173",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 08:44:00"
+ },
+ {
+  "id": "run:35506de2296a8b8d2b9e7804aece08512cbe359698d630826f9a013cd9857ac2",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_174",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-07 09:01:00"
+ },
+ {
+  "id": "run:c9ab90c312b85862a237d11511148f3f058ab039e8b3d683a1cfb3ce45ff6296",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_175",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-07 09:18:00"
+ },
+ {
+  "id": "run:ada1d79dbdff8d5959d9240ffae2dc485e9ca0285ed492896b9761ed92921840",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_176",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 09:35:00"
+ },
+ {
+  "id": "run:778ffa1b2a73537d95bfc867c5618b26e2ba6b80cb27386ec3c3581d68d6a8cf",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_177",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 09:52:00"
+ },
+ {
+  "id": "run:a0458feecc8d71620c33c3898a39fca69f50123fee86a014601bf73ce2bf3b3c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_178",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-07 10:09:00"
+ },
+ {
+  "id": "run:7dbd93b0897500a1c31b41db9ca7fd6cc881557b8b20546325aab31b0402f72a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_179",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 10:26:00"
+ },
+ {
+  "id": "run:f7c073309d6bb43282c7f852d11e47657dce9d90e137262bbed9afba89a7165d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_180",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 10:43:00"
+ },
+ {
+  "id": "run:60cb11530744fc0546eb66628a4049be09c4733ad5782794f1c9f9b247795a38",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_181",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 11:00:00"
+ },
+ {
+  "id": "run:130f7e832c083b6b63df2890043b2d3042b2ea975fd6df7eb7e79c046b1913ac",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_182",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-07 11:17:00"
+ },
+ {
+  "id": "run:2d08967d7cacdd49d05152c9537fd39648bfd32c42766a2bb1e25bc3e0a39bc1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_183",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 11:34:00"
+ },
+ {
+  "id": "run:9d34d6871c9623d60106293f5b81abf0ac536ca2acb326dbd5ded1a4ed04c38b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_184",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 11:51:00"
+ },
+ {
+  "id": "run:a251c64055aa12468421cf3508169b21680bede4ab9828f8f85dac27d8479596",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_185",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 12:08:00"
+ },
+ {
+  "id": "run:2b4743453bba150e3c9f10c537edb13040f26d88f1e97f9e3af1edff9bb91994",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_186",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 12:25:00"
+ },
+ {
+  "id": "run:3cbb4a34ed930c83aab61f3ccf5d99ede2d4b1864a784af96a8c116496015738",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_187",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 12:42:00"
+ },
+ {
+  "id": "run:a6c7ee8a82a6bd818ca964327aae035ba81caf4556236193e9b2b414d6308dd6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_188",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 12:59:00"
+ },
+ {
+  "id": "run:8c601ee1e7c4ab7d393a37c42c9991f24c1044bd53cf84cfce7b6111e93f3dd4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_189",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 13:16:00"
+ },
+ {
+  "id": "run:8230b650644936e0cf458f573f7224c4b8d87e22a5506569a1b86b2ced259840",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_190",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 13:33:00"
+ },
+ {
+  "id": "run:e1b19d1cb4386e6c6111694287ed02846fa42a03a26e1ecec96f82245e89deb1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_191",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 13:50:00"
+ },
+ {
+  "id": "run:9582ed2b93a2335abdda0d5f21e38a16b6d40a09059caf473963ee5d10603bb1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_192",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 14:07:00"
+ },
+ {
+  "id": "run:129c48628928444290d115147a43a98458319ed6ed65c10db40de1dd3934e0ca",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_193",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 14:24:00"
+ },
+ {
+  "id": "run:a5050684a514eaa4e2084ce72836a0c76042658a98f496139978f3a2842f76a6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_194",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 14:41:00"
+ },
+ {
+  "id": "run:44f5f56c34617be35399abf359420f945f706f126504e3b9f16aa5ca75186a67",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_195",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 14:58:00"
+ },
+ {
+  "id": "run:06b3be5b7d92e14926209daf97656a325c08d5b04e01e6b93a5d7dcc67d324bb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_196",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 15:15:00"
+ },
+ {
+  "id": "run:d1589d6cbb14573c84c1256849bbadebca75d2d4c5219ad97226b4090fc0a255",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_197",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-07 15:32:00"
+ },
+ {
+  "id": "run:38571414e4f40616464e3a5629c76dec16de507a519dd2f64dcaa5fc00146a1d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_198",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 6,
+  "created_at": "2026-01-07 15:49:00"
+ },
+ {
+  "id": "run:36d3499e335a001b1ce3129bf0e8a618523e467763ccef4f2e33a30b8e8ca571",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_199",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 16:06:00"
+ },
+ {
+  "id": "run:5ac9e2ac3916d7426df9152aa34f39d2e50b3474e05c73c61d5b268defdf74f9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_200",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 16:23:00"
+ },
+ {
+  "id": "run:e66cfef7cccf6ff2ab81adab32fef7d8e5535ab4215034de48e41146b8d6e282",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_201",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 16:40:00"
+ },
+ {
+  "id": "run:0f2d6e706cffa351b836ab6e889592d777e0268a0f7d5782392ddd2fa06d9263",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_202",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 16:57:00"
+ },
+ {
+  "id": "run:5e11ff95a4b37a440141c4379c3be8e1a005f55cf7790ff707fc07b8aa5a9c75",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_203",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 17:14:00"
+ },
+ {
+  "id": "run:77115fe4627e77e862f94bf3e509f90cc252e12b0004d466067f5e171d01f883",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_204",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 17:31:00"
+ },
+ {
+  "id": "run:ab41cbd30576b455a2167653aaacdebf1b44c12e59a9976bb052b3236ee497ec",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_205",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 17:48:00"
+ },
+ {
+  "id": "run:a3805b817b32983a542bc6c90ea6d126ea374ba8d509b8e02503695119665c64",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_206",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 18:05:00"
+ },
+ {
+  "id": "run:245b01a1e19b667206b040a864fbfaeef449f8d3b8b871f577ad9cbc09a2c12b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_207",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 18:22:00"
+ },
+ {
+  "id": "run:98aa7d2344ea4386e4a73f325d75b65e1326276b896d69c2dbed74025a8356ee",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_208",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-07 18:39:00"
+ },
+ {
+  "id": "run:d767d40822b9ea3534275b644f2d2f287c1d97147afea51af390824662e1ae00",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_209",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 18:56:00"
+ },
+ {
+  "id": "run:7efc1d717f1027842ea00b8862a01cf863f3b5abfd90d5a2bf98b9e70b23ba61",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_210",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 19:13:00"
+ },
+ {
+  "id": "run:2f2c76b1c5a0b3b01aa7699c5fb5d8f22800dc797738152553de5df8c565ab88",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_211",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 19:30:00"
+ },
+ {
+  "id": "run:07644fd507f06cb920b00c9d7545a887044a948b0f0290744420d278140b4256",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_212",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 19:47:00"
+ },
+ {
+  "id": "run:17a3851ce30e400cd3c3f1301ff4d75aad477c3e8b9fa153ed27a1a96c9d5bf8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_213",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 20:04:00"
+ },
+ {
+  "id": "run:61d7172da91b2fb4c749342c7ea85d1c065ff4ceddebc2a30c59efe943589439",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_214",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 20:21:00"
+ },
+ {
+  "id": "run:4eb430cf30bd50c362ae01be2f8123ee2cb88b5b04b56b95ac6de24b1586c343",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_215",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 20:38:00"
+ },
+ {
+  "id": "run:25250bfcb159aceda312964a9176eec3678bc2bf302481223b80216f64b574d0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_216",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 20:55:00"
+ },
+ {
+  "id": "run:1b7a88b987f983136185ecb6654b87dd278cb96a81a56513a5c639286fb569e0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_217",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 21:12:00"
+ },
+ {
+  "id": "run:5fca18faa05658afd142300cc77113b58a8864b883fe81accf868b488f6120dd",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_218",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 21:29:00"
+ },
+ {
+  "id": "run:221a9225bf0aa70f02c367dc7be1deee2c51aac080566efc599009fe7b45f39a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_219",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 21:46:00"
+ },
+ {
+  "id": "run:6fa9659c92ad89e3cabf129202f2306b7a13c7c1f280487dcba152b617ff5d9b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_220",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-07 22:03:00"
+ },
+ {
+  "id": "run:aeb0d8463682802efc88ca993d5eb448c9093000f0e931d11f6894a93d251b14",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_221",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 22:20:00"
+ },
+ {
+  "id": "run:3fbbe969d6c00eb5e5391ef2af79d5e75116b3e082db6bdbecbf409403eca82f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_222",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 22:37:00"
+ },
+ {
+  "id": "run:12c0135a4435addfc6dcb53b5143b9b5b2b4f03ff16f9921a85a29c29ba08eef",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_223",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 22:54:00"
+ },
+ {
+  "id": "run:6d76c0b959fb89f4af221e6d9f0234c0d99c1896c669b1cdcf618fca7602525e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_224",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-07 23:11:00"
+ },
+ {
+  "id": "run:54614e92147526378d8264b96248650d057c4e0ad2bcff8c97125057bc30f779",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_225",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-07 23:28:00"
+ },
+ {
+  "id": "run:bced0af15e5a2bc19389f20a407bc056216bc3e82aa1f94c74c3c055b6a6967b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_226",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-07 23:45:00"
+ },
+ {
+  "id": "run:9336f09c362e231e338c965abbb365ed2f6ac38042a6694a2e9a017c5add9ac6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_227",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-08 00:02:00"
+ },
+ {
+  "id": "run:de974988d06fed281c04a217bb357baf0337d599a9dc6e2447c3e7da72682787",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_228",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 00:19:00"
+ },
+ {
+  "id": "run:bf44f225ccc48cb52c9013dfb0db0ce14e4f8b68134f039fff8cc6442ed29661",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_229",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 00:36:00"
+ },
+ {
+  "id": "run:b1f1356e3646e8946695bb5b3307629e802c5cc127e75ced3b49fc749d3b29f8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_230",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 00:53:00"
+ },
+ {
+  "id": "run:781efad623c8acada1f7527bd21e5450d496634296db10dca2f6d1667f2fa427",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_231",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 01:10:00"
+ },
+ {
+  "id": "run:390eb560c1f064067b1d9e858fb0036c126308f8854963205279787381f8262b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_232",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 01:27:00"
+ },
+ {
+  "id": "run:12b285033bba0c6c258c8069990b13e691bf5b6b959aa8677eaa04497fe1a0ae",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_233",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 01:44:00"
+ },
+ {
+  "id": "run:3b7d8f7a9876ea219bb20b3978794345cdb521261fda469540472203a5522cdf",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_234",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 02:01:00"
+ },
+ {
+  "id": "run:a91b0a7383fdedb80b11ee518a74de7e5e46890ab61790f2b48eeac50dda3f37",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_235",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-08 02:18:00"
+ },
+ {
+  "id": "run:3558e6a40500cad63876630271009fdaf4781a272894b2a6ff1b823d3e40acd5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_236",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 02:35:00"
+ },
+ {
+  "id": "run:e8a47bc6a2caefecd7f7d1e14f51e2f0947354e9822d63cc72b49098b93e3210",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_237",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 02:52:00"
+ },
+ {
+  "id": "run:13325fa42661e1ff4018d62eed576bb7eaa3d8d084f95f1d39d7ad0a7f361735",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_238",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 03:09:00"
+ },
+ {
+  "id": "run:4c4a423bbf3bc32e659426de60f9f5c33d5ad0a1fb0896cb20a71da473b16bfe",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_239",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-08 03:26:00"
+ },
+ {
+  "id": "run:53698a7241347aefc0889d49cd2c5dc9ba08d7c77521f6ece1a642cdbabca07d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_240",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 03:43:00"
+ },
+ {
+  "id": "run:5dc638793e2924c6ed4346992d6d98a131e245758f3ac8e2b09abc2a3e6391bc",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_241",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 04:00:00"
+ },
+ {
+  "id": "run:f587a5bf744f6e6aa784773b1e4cb67ddc6e2634430959caba2bd4b3e16f4afe",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_242",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 04:17:00"
+ },
+ {
+  "id": "run:1e0220791c59d9251c3ba6a49050a2d2926b9ac73cbac5d26e494e2f882fde46",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_243",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-08 04:34:00"
+ },
+ {
+  "id": "run:10a8bfa139846a2fa144ce368350b74d8c95236da7fa8e3e485deef1b810af03",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_244",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 04:51:00"
+ },
+ {
+  "id": "run:d0398ab60123ba13b98b4224a732447b2e4efaf53a13aa41fc1219235dccbdc3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_245",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 05:08:00"
+ },
+ {
+  "id": "run:b2aae8422706fd1de618ed038145ffe0878f39bc56335cd6fb0255d4c19becf0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_246",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 05:25:00"
+ },
+ {
+  "id": "run:fe114d012b7a560038037b1a4e6980dd22c9f24a31a17f4b8f5a0ab3172760e5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_247",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 05:42:00"
+ },
+ {
+  "id": "run:3e7c8ab58c676e0e2c88a89e524bc5a231a613b2dfdee1e679d3a95ae66b3a0e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_248",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 05:59:00"
+ },
+ {
+  "id": "run:b87a4ff619e5d0fc90b559c666361ecc6cca65d74a1a81917a1cfee829c8aab5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_249",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-08 06:16:00"
+ },
+ {
+  "id": "run:a70622eef2b9a9c4f44564aeb83b6fdf67f063ec06f95b39621011475733eced",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_250",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 06:33:00"
+ },
+ {
+  "id": "run:c828a2bbdc4793c93cafa61fe311ff7cef7ac30f9ede477051987c089aada235",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_251",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 06:50:00"
+ },
+ {
+  "id": "run:162d0368231c1b2b6e17b30f24c40570a47872f9faabf98bcbfbd83cd697928b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_252",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 07:07:00"
+ },
+ {
+  "id": "run:3325f217ddd63613cfae5c8df5286cf11ee0367121fbe6933e9314eabc378935",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_253",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 07:24:00"
+ },
+ {
+  "id": "run:30b8da3fa7acbfb9e8ed804e15b3f4e047bf8da90296338857283d4da9dfe938",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_254",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 07:41:00"
+ },
+ {
+  "id": "run:e8aaafe24d2e76d8e728b1ea7360f89da754d5baf07b21ecafdfdf7ef4ab52af",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_255",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 07:58:00"
+ },
+ {
+  "id": "run:1b125fa46a2719efe1d2cbb5bac62fe53dc94a37ec33353f280c64b9b32e4aa9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_256",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-08 08:15:00"
+ },
+ {
+  "id": "run:30699d0ebd425020238aa33d5d1eb3ae78c7e18a0031533ac89f84bbcd557cd3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_257",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-08 08:32:00"
+ },
+ {
+  "id": "run:c76c79503d58cebfc4b4b094c57e2af4602c8fee905c4ffa175c515027133913",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_258",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 08:49:00"
+ },
+ {
+  "id": "run:6a3c3b6233671db8beffc0cff8d185d3afb885dad7a3b66177f6b57037dcf196",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_259",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 09:06:00"
+ },
+ {
+  "id": "run:1ced06921cb3217bbde8d47b849fc9c76b577c7020e8e3fde8e0754e019abfb5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_260",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 09:23:00"
+ },
+ {
+  "id": "run:444d2fb23fd5e31f262d6d803a3f2c46ac66e0b3b3524f846dae8b87961b17a2",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_261",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 09:40:00"
+ },
+ {
+  "id": "run:c0a3ad9f33a5dea959a4a34d46c1bb47ee671ddd20ab4ba5dac80db75aacf1a5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_262",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 09:57:00"
+ },
+ {
+  "id": "run:41433ea278f677f077ddc98c5fcd9d8e6407031e70ac650ca76abfecedbb199b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_263",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 10:14:00"
+ },
+ {
+  "id": "run:be7d342a77d12bfbd8c61ba03cb6d2abd9e4fac3572d18fa001136ee227c3576",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_264",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 10:31:00"
+ },
+ {
+  "id": "run:c0d7f7e6c71be47a6ce70420ff573621f3d34588ba03a4f2c49147e7f6a51b51",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_265",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 10:48:00"
+ },
+ {
+  "id": "run:23851b87d9b45bd4168ab965fcdeced144f49db40ea8cf1967919f51c821daf8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_266",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 11:05:00"
+ },
+ {
+  "id": "run:6b1847a3233b6a13ad767dcab5110726c2d557135eb857158288ecd21ea0b374",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_267",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 11:22:00"
+ },
+ {
+  "id": "run:b6a4e4456523e64f05bd6036c937b33409e17e090596a6190182a0eee07d327a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_268",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 11:39:00"
+ },
+ {
+  "id": "run:89498d23cfed3c48a930a2ee55aea2c68dd47836baec0bcd7a21642195253c3c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_269",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 11:56:00"
+ },
+ {
+  "id": "run:5122b5e0dc303cb077cebc8cfd42d7cab3b0e836d2f334becf43a8d388ad2a94",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_270",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 6,
+  "created_at": "2026-01-08 12:13:00"
+ },
+ {
+  "id": "run:07f2361c072b125429ba4a685fe422f65172249939365e82f0768d69e1f998ba",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_271",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 12:30:00"
+ },
+ {
+  "id": "run:5e65412f4feafd0f38df7d12eea04ec9f68ab422028deeb50ef1ba6a8585d7a7",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_272",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 12:47:00"
+ },
+ {
+  "id": "run:e394c4ffcded815220cb75027141bbfd833e0ff85d84a7969a381e41b39c55f9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_273",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-08 13:04:00"
+ },
+ {
+  "id": "run:d67a0cc263c5661cd3a8b84bf8c1cf5eb5921e0e26908394fddbb6506586bf48",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_274",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 13:21:00"
+ },
+ {
+  "id": "run:896a4a2bc092ad0c5c1cf30684ae78f68cdf6c98be8a62c04b9653176ef923c6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_275",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-08 13:38:00"
+ },
+ {
+  "id": "run:d372602cae3b65daa5fe9e6f031c0caede0e148cf867dbc17225be3897c96552",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_276",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 13:55:00"
+ },
+ {
+  "id": "run:fb5f4fd664a061698e522be1b0e8c7322c85e53b9e74e62686f1cca8cc0cd5d4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_277",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 14:12:00"
+ },
+ {
+  "id": "run:5e69507cdf0426ebfaef0e82d071387a6a9b69e780628a564c8446c70a5a467e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_278",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 14:29:00"
+ },
+ {
+  "id": "run:e5f3743cfe0cd263bbb6c5b284c10b7326b154d3c9310026539fed01a31f62f0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_279",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 14:46:00"
+ },
+ {
+  "id": "run:0f96c1feec14b5186cbaf808739de24e1250435b06d21d1ff0a439dd90c31a1d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_280",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 15:03:00"
+ },
+ {
+  "id": "run:068fddb6b4c26fa9fa41569ce8eb3a0d7ce365326edd40d594c38816dfb68b53",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_281",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 15:20:00"
+ },
+ {
+  "id": "run:e15ab250208a574ad4cdba05d11ef1972b79c250fd43eaf9a449dcb6a4f05779",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_282",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 15:37:00"
+ },
+ {
+  "id": "run:a994f15c9d2691ecd610ccc5cae508b25a6cd5409b7c4a23ca526e13c7dc0c0e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_283",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 15:54:00"
+ },
+ {
+  "id": "run:629088c6ba0b7f05672fa6f791de213493d28fd1a27eb0a70c2e954fc52dfadb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_284",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 16:11:00"
+ },
+ {
+  "id": "run:fab90042d5d9b4a25596578984bbb71c46f63c134ad1d984102df657f52c7750",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_285",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-08 16:28:00"
+ },
+ {
+  "id": "run:fe03be857c2ea0c58fe6075f562ccf7d817bd72cce37228f57114376ca809ced",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_286",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 16:45:00"
+ },
+ {
+  "id": "run:71808b465f49a4cf0390a4aee4cddaa031f98f1cd81891c8e14f5efd44228544",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_287",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 17:02:00"
+ },
+ {
+  "id": "run:64f18fd330c095bb9a480b9ee0d8f974d9d6b7e693c75c3bf3ad975378b96088",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_288",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 17:19:00"
+ },
+ {
+  "id": "run:dba95f190472348831d85fe02ae5b23cd27f47140d65b95bc53fe165bf9c9703",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_289",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 17:36:00"
+ },
+ {
+  "id": "run:3d4be691077cc25b260203d915aa678d41e91e6eec416891df78052b2847fbee",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_290",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 17:53:00"
+ },
+ {
+  "id": "run:45b8aabe894c600ea94160d8d1a11ac92be423f2f6f5986f9c28281e0b1bc461",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_291",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 6,
+  "created_at": "2026-01-08 18:10:00"
+ },
+ {
+  "id": "run:819012f15663fdb91a5ae1417d138bf16e2411e181e5b734e22875268f086d0d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_292",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 18:27:00"
+ },
+ {
+  "id": "run:691b48b7a60bcdbe410aaa1e5f1768d465025ad6ba15d774e472a4e18889824f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_293",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 18:44:00"
+ },
+ {
+  "id": "run:a109684bce124ee542b032bf0eba1ee4ff0fedd55f9c6b241685e54a246c30da",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_294",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 19:01:00"
+ },
+ {
+  "id": "run:f712163c854e8af5e8e6403050a85143fb04412bd82e0537b918132344da47e3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_295",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-08 19:18:00"
+ },
+ {
+  "id": "run:ebe15df455b6e26db974687261a501ce194496ba0325325b18c6af829e58520f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_296",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-08 19:35:00"
+ },
+ {
+  "id": "run:4e633c550392ba903c506a65ecdcf32f3aeb8fbb1f8fc2e9febc9fc3eeec679d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_297",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 19:52:00"
+ },
+ {
+  "id": "run:9efc949cca4848f70bb29801597818d74228ade238fd50f16545282759212d84",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_298",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 20:09:00"
+ },
+ {
+  "id": "run:ac5593acb3d316fe75f04c8276c9e83cd3071ec77d8c4467be8c0d1b41281833",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_299",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 20:26:00"
+ },
+ {
+  "id": "run:e513d47437f1c5e1005c13aa81cfc439cb4587cf1a17d5bb7d7c9a510432be4b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_300",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-08 20:43:00"
+ },
+ {
+  "id": "run:53e6ac5b83303917289a3070e3f97318dba0dedaf7af5ae8142c7ad542ad7143",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_301",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 21:00:00"
+ },
+ {
+  "id": "run:03f8dbd05972afe60db4c8838e8a582cfa7cf2c040160fc7cc5c6052019d6a75",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_302",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-08 21:17:00"
+ },
+ {
+  "id": "run:18382b2127e169851dad356a33d9e9df5d300f70c8a68f029533a3e00cb487e2",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_303",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 21:34:00"
+ },
+ {
+  "id": "run:3425ba3bb1d9956789ec4e23cfed8d0530bc3530c25a7ceb919f6ffd04fe3e68",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_304",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-08 21:51:00"
+ },
+ {
+  "id": "run:db712550171aff2b05f1d42abdf4473886fadb52ef0e408bb77d4403e9139672",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_305",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 22:08:00"
+ },
+ {
+  "id": "run:9db44460c9255e7f18ae47160131a32dbd1708c7b0d6a0695d4bf48a206628bc",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_306",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 22:25:00"
+ },
+ {
+  "id": "run:055b2f10fadd79b1329ec67aa07ae1eac54cee22aba139675d964f85e6753d9a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_307",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-08 22:42:00"
+ },
+ {
+  "id": "run:4d34d6e1c2771bd070ff0ce4212bd30368ae28526407a369da58875dba2cb972",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_308",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 22:59:00"
+ },
+ {
+  "id": "run:0350ad5004da80690a1e2c1ba3f55922783bc3e17ddc201703d9173829361434",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_309",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-08 23:16:00"
+ },
+ {
+  "id": "run:e6cc1e1fb5d63f0adedcd24586df2f2eccf3202749c1ab6075348eaec6e23173",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_310",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 23:33:00"
+ },
+ {
+  "id": "run:0b5a1bc2a588d32bcfc68676de2171fcc12931e3785a731586bfb7d024c218b1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_311",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-08 23:50:00"
+ },
+ {
+  "id": "run:3bb3b62c8908b80989c1cc95bd37f6be803be91e993f1c18f7602600369bcda6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_312",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 00:07:00"
+ },
+ {
+  "id": "run:43b7ab29c8fc5ee8421636a8e9e6390245cee4703780cbc5c511dbe8c4571470",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_313",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-09 00:24:00"
+ },
+ {
+  "id": "run:71ecb6bb5be4d7029204cfce1dc5310d5a2c971efe53ad5f0a3851fc183296cd",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_314",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 00:41:00"
+ },
+ {
+  "id": "run:db38b556f78a90e7a2304f34fd201785758d27f096caefa939ea86484ea0f941",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_315",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 00:58:00"
+ },
+ {
+  "id": "run:a42ffdbae2eb5bf418d4584d20fd4d0d5a4d05eb693444454954cae6976f8eaf",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_316",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 01:15:00"
+ },
+ {
+  "id": "run:487021c08a24534dd97513dbbf284a592fbc24f7276c0e1109efb4003dc58c8f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_317",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 01:32:00"
+ },
+ {
+  "id": "run:84cf0d797204d158c13a73226cd2e453ce5485a0dabf170d89ccf28b9a151c98",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_318",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 01:49:00"
+ },
+ {
+  "id": "run:f624e909ac0e3d032fa49cfcd4b51628191e093cd2eb7d82aab1cd8fbf79f699",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_319",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 02:06:00"
+ },
+ {
+  "id": "run:2b0a46d6157f220ae019e2504c20d10c9e76207e2728ba29ab10823929a8396b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_320",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 02:23:00"
+ },
+ {
+  "id": "run:3ea39dd1d15bdef5feab92bb063f04f123f953f389fac00264d665234c338a3f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_321",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 02:40:00"
+ },
+ {
+  "id": "run:71c8216e1f580af4b4d1602a4c620fe4f0332b6498795a28028d67192a143e90",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_322",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 02:57:00"
+ },
+ {
+  "id": "run:a47944f891e969d6ed7061599f328e781a6a22e211e635487b17aeb6d92e5f65",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_323",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 03:14:00"
+ },
+ {
+  "id": "run:d0b9c381903a324284c970e18884e5aab01ab2a98c6b64b6f4159280ccfd9acd",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_324",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-09 03:31:00"
+ },
+ {
+  "id": "run:db653fd3bfcc0062b63620168f1222c4aed1839e890863743fdbfcd78815ab40",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_325",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 03:48:00"
+ },
+ {
+  "id": "run:a9986bab8d9fa669336e1d56f9d811f08cabcde86e006b7d249012874a1b07ca",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_326",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 04:05:00"
+ },
+ {
+  "id": "run:ccd76a7f306c9545cc25d2fabb030d97364180775a7114e19c4458ae955c3098",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_327",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 04:22:00"
+ },
+ {
+  "id": "run:b0bc5683702167ea3819259e4abf0c84428c378b59477c48bfa86577d5f08b12",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_328",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 04:39:00"
+ },
+ {
+  "id": "run:b72a8a673eb5b52e25efb535913de910c2c36e10ae90c6ed1572428698e9381b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_329",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 04:56:00"
+ },
+ {
+  "id": "run:6135f1b4fbad6ec316ab0121d2aa9911822fbca8aead5b1c214b087350094448",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_330",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 05:13:00"
+ },
+ {
+  "id": "run:f5b6e668b227472d0b5898cc7326b0893d91501d0b7ddde332768139adac5eed",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_331",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 05:30:00"
+ },
+ {
+  "id": "run:11d12fdab16d488c531f953743772b21e9c98d20c832ec4aef0bdace7e70472d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_332",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 05:47:00"
+ },
+ {
+  "id": "run:ce746e552666336ee7a09eb09f223b644460e8d709ea1739e1448bb0524c061f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_333",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 06:04:00"
+ },
+ {
+  "id": "run:4254c76d1769755866804f865130f5282d1dd7cc0a09b8eab3bb7d525fa77a98",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_334",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 06:21:00"
+ },
+ {
+  "id": "run:b231348006bc5cefecd5aa7b0ae0c65e849fa9094406b43105f142f6dd5a3435",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_335",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 06:38:00"
+ },
+ {
+  "id": "run:a5ee960d2e25ffe2b6c1f8f8e1e88b7bd82db01259f63df953b5930cd04ccdc2",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_336",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 06:55:00"
+ },
+ {
+  "id": "run:b725fc7442946a3a76886bb19f764146350f4d0d5d5556212e3ad3bfcbf0356a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_337",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 07:12:00"
+ },
+ {
+  "id": "run:13722f195c42eb0325dd3252f8f1591921ed201768eebaa2c1f0a9b908ae97c4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_338",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 07:29:00"
+ },
+ {
+  "id": "run:9a1c31f4fc0220b914c5aa49bcf68614dbd152646edb115632b81ea07f6330be",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_339",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 07:46:00"
+ },
+ {
+  "id": "run:e99a12469b3e512804771de10342c4a3ba36016793bfbe18d86c54f2f1c382ef",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_340",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 08:03:00"
+ },
+ {
+  "id": "run:4f2f3bbf241d8d7844c5a428794f6b1a956520f12af06fab92d4ac2799ede729",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_341",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 08:20:00"
+ },
+ {
+  "id": "run:32a96358c7e4c1151da31bba87bc699fb9a43ff109a1d85654fbf01f7b1c38be",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_342",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-09 08:37:00"
+ },
+ {
+  "id": "run:cb7c40397e5a6f10e6cc83d1f35b7d827b7d00d1d708e2475b677456d7022538",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_343",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 08:54:00"
+ },
+ {
+  "id": "run:cd7658fb0e2ffa5cfba873432b92ab805c16754c50446cb6883a9cfbf1899a78",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_344",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 09:11:00"
+ },
+ {
+  "id": "run:1afaf515a42509a3d87e32e1e850332ebb0230fa068a436a97ef9c782f6de9dd",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_345",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 09:28:00"
+ },
+ {
+  "id": "run:8d3eeaa1de4e058589e4ca090a0f6b8defdc8b19a9348f9b063be5457890d20c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_346",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 09:45:00"
+ },
+ {
+  "id": "run:1e1c43caea5bba499f5335eb894c978a97b6d45a7b11e9f802d20802f4ca38fc",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_347",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 10:02:00"
+ },
+ {
+  "id": "run:02d7f459c36d34927a6a2b7c0ec3642c8073daa26a77df2278a3dca1d9af317d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_348",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-09 10:19:00"
+ },
+ {
+  "id": "run:88d2ace958eda91017369b39342560d75bb3ed5701cee4b3a85b86b3038c87ae",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_349",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 10:36:00"
+ },
+ {
+  "id": "run:04a5136f2113527eb9a4786b11033c42f11c76992df1ab701754f0375a6a3a70",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_350",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 10:53:00"
+ },
+ {
+  "id": "run:77fe5a7ddb7174f573724efb6896892a9c2f00e27a0caa5c615226c448b9b43a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_351",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 11:10:00"
+ },
+ {
+  "id": "run:36fb2dc1a34102dbb33a816b6cc44358b03814683f809bae5b52efc92392d740",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_352",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 11:27:00"
+ },
+ {
+  "id": "run:bd2ac506b114561928a6331af22c00c620f018d73f686bd4ed21122b6ee407fe",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_353",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 11:44:00"
+ },
+ {
+  "id": "run:99406d490c6debe999bb809663dcf1eaaed52f515df0a9b0ffd5a15c58fb9ade",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_354",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 7,
+  "created_at": "2026-01-09 12:01:00"
+ },
+ {
+  "id": "run:fa407b010188745b02b3ea3307def8d3b13c893f568196c3e7fa8690432cef5c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_355",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 12:18:00"
+ },
+ {
+  "id": "run:57d5bbdbb027cd2fc5d8bdef9589f2e85a0b58bbaa227be357d6b3bd48998ecd",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_356",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 12:35:00"
+ },
+ {
+  "id": "run:56251406dda2832f830b7b7d4ca4bf16adb48a7d8fbfbb34318309dfd7ec1849",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_357",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 12:52:00"
+ },
+ {
+  "id": "run:12ba8951539a5db3c1eab7b54a7cc0580ce6dac9df93bfc3ead040e1abb8d849",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_358",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 13:09:00"
+ },
+ {
+  "id": "run:858504f908eaacaa72a0e73dcf8e2b8dd2e86de7ecbc5af28d088fdc328db06e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_359",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 13:26:00"
+ },
+ {
+  "id": "run:63091dd6740d0c14836169e1803e3e1dc30ec48543eba37754913161e8bb4792",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_360",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 13:43:00"
+ },
+ {
+  "id": "run:d0dd3423f5065ffc7d17a44add7d37a63e726288f1f6c22a7418f0f5fb53b02a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_361",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-09 14:00:00"
+ },
+ {
+  "id": "run:656f11a2a8cc3dcbce720a8deb042e9c50b3058f0c5a5b5b029d4ef917cede32",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_362",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 14:17:00"
+ },
+ {
+  "id": "run:734d5ff32b77eecfb6dec14e7ec270d95e4592214f923dbb101c264d76222910",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_363",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 14:34:00"
+ },
+ {
+  "id": "run:c8450ace9d80118b470211f31080858ed5c571ebc4d295c32e0f2643c9cd3ece",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_364",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 9,
+  "created_at": "2026-01-09 14:51:00"
+ },
+ {
+  "id": "run:db3bd2a1253678a3822297c01f2b2557dc4890ddf6aebe7761f7f0049a9b5784",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_365",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 15:08:00"
+ },
+ {
+  "id": "run:36523d1926f7e2e138a69b34a2dba6eb0f753346433da42a1d3b61881b096cd7",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_366",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 15:25:00"
+ },
+ {
+  "id": "run:09166b8271cf3ae05686f0bbdfe98a1bf953360dd08d64a04d0b4dcad2894376",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_367",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 15:42:00"
+ },
+ {
+  "id": "run:442d0ef3eb6f3cc0f88e8a91e5a9184ae652794caf1d9ffdd2a3d83f0faeb924",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_368",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 15:59:00"
+ },
+ {
+  "id": "run:96763d0d619a36050a8cbc9bebddf62e4c6e158429251a199cb474cbae42d1a5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_369",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 16:16:00"
+ },
+ {
+  "id": "run:e2e43079670516df1153889627d27b78be6f77a1c0a9cf95747f79349af1a374",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_370",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 16:33:00"
+ },
+ {
+  "id": "run:92aded6ad175cf73837b07f7271b3c4f1a478d6df24d4151f456ac347280fc9f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_371",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 16:50:00"
+ },
+ {
+  "id": "run:e66d2b63c0e7ed919078889de28ad83d5d468ce6a36f55e47de3996ac8d64769",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_372",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 17:07:00"
+ },
+ {
+  "id": "run:06a1b752e6061d2af46c9694ed25e2476f8b7d756596b1638924eed284010daa",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_373",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 17:24:00"
+ },
+ {
+  "id": "run:bb0f561d76fcc2d54873935b631e649c49285f77f4172995269ddf0f39384d3d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_374",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 17:41:00"
+ },
+ {
+  "id": "run:cf42087f08350204f9c97ae7383760b6d3666de7015bbdeca72b1bbba60d9317",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_375",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 17:58:00"
+ },
+ {
+  "id": "run:3dcdaa15e7197b13fe64b2d2edc7c8fc9bb39e54c639b11d5909ac409220f152",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_376",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 18:15:00"
+ },
+ {
+  "id": "run:64263dc91c5d0f2042d6499fa2cd674c63c1f602705d1fd431f09e728b7712ce",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_377",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-09 18:32:00"
+ },
+ {
+  "id": "run:face1fed6b272e4a97ed8440c3b1e54e9d861cce330293ccd64947153a729bca",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_378",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-09 18:49:00"
+ },
+ {
+  "id": "run:1c97894c18ed66f244edd5cbfb9ffa2b00bc90cb0f776c015d5e44c2dbfd5cfb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_379",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 19:06:00"
+ },
+ {
+  "id": "run:f865b7de9ea6f0c8ad087c983a4508bff8dad3ae6daecc9401a8cfbe2f8d3f66",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_380",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 19:23:00"
+ },
+ {
+  "id": "run:16b9bc5d739d96f3e419ab8d13970b496324b56ec1625195c85b8cb016606d32",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_381",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 19:40:00"
+ },
+ {
+  "id": "run:ab99f61a2b6ddaa675b57cff3cf6b2dcd43530fbbc39803936b58007702bc49a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_382",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 19:57:00"
+ },
+ {
+  "id": "run:b20302322117b0f8b6d11731e2fb7364e6a92b45286c22f91257563a3671237c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_383",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-09 20:14:00"
+ },
+ {
+  "id": "run:a4e422c8184f24cff2a4e75ff57877e8ac4b40d56dbb8d4c3ef0aa3ae3d38cb5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_384",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 20:31:00"
+ },
+ {
+  "id": "run:401b5405a895060fb9552a2a7c04e0f238a30d1441ad10b01d7c349432b1e5e8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_385",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 20:48:00"
+ },
+ {
+  "id": "run:8c1eff3652a51d0c116d3f7bf72f386689d497b31ced78569cbf50c28e70b7de",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_386",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 21:05:00"
+ },
+ {
+  "id": "run:77174c506c01ec4941ff0a4050f15427d06cfdcad19d8a4ff7342d59a2fec227",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_387",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 21:22:00"
+ },
+ {
+  "id": "run:8025102bb8e222b126e1485094c9d9d7da2895578816b17aff970462dcb9cbd5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_388",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 21:39:00"
+ },
+ {
+  "id": "run:d15d48fc518ca73bb9b9daef40475b94bbddfe9cea7ee494df9bef6d5844dcad",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_389",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 21:56:00"
+ },
+ {
+  "id": "run:fbd1026f44ae73c9f00301addf4d17d74c0372d2b9ae62d8e9468662ee0f549e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_390",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 22:13:00"
+ },
+ {
+  "id": "run:694684de7da919d1fbb306b3d899fd52c88fcbc12e59305aa7e3b2c984e0b643",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_391",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-09 22:30:00"
+ },
+ {
+  "id": "run:b1d28dde67a085ab21fbc0b4ab9532ce72b8c39b2264fb7355a6ec6fdf49d75b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_392",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 22:47:00"
+ },
+ {
+  "id": "run:545f60b16fd2266e4c59b5ade9f4c52df891de5b90864c76a066d700b20e1092",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_393",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-09 23:04:00"
+ },
+ {
+  "id": "run:3d66378bf2354ea480b4815c1d21f355e314e11f8771010dcfea4044c6fca136",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_394",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 23:21:00"
+ },
+ {
+  "id": "run:9878d852df9258738232cd8b17a29ca28c726be2777a10a18cea62a697cd9acb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_395",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-09 23:38:00"
+ },
+ {
+  "id": "run:4f89a4c1f76c9de3e3b5b0e5247b8281302480c75ce930c0575d9888ca3c9662",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_396",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-09 23:55:00"
+ },
+ {
+  "id": "run:46cab0abc5757bbcf386a5bd81ae744b953e897a9535686436b197444d007edb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_397",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 00:12:00"
+ },
+ {
+  "id": "run:ca19925df8cff3f4912898ec0691219712f5c4d598cd1995c0ae46027fc1c604",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_398",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 00:29:00"
+ },
+ {
+  "id": "run:aa31d048efea5334e6a80f926ae619b17938f74ae00956fde4bb29b8aa3bbf25",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_399",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 00:46:00"
+ },
+ {
+  "id": "run:715c1f151ee76855dce4073d8c3e6f21ce613a0125f3399b88fc2e1991cee5ac",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_400",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 01:03:00"
+ },
+ {
+  "id": "run:921a23526381c42d0ede8b8fde8df60efb8b788f4384ce2e1aa79395f8a5f534",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_401",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 01:20:00"
+ },
+ {
+  "id": "run:bfce40dede369d113f28a74c0af1dfe0f868bff05979961ea8ed63b9ed7a2105",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_402",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 01:37:00"
+ },
+ {
+  "id": "run:87941449cb3101595a3c61d382c9872f216c92686d9111e85537453d9c1c7dca",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_403",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 01:54:00"
+ },
+ {
+  "id": "run:8cbfaa744ca977cd7c05c5d26fc7bc1246b3bbb53928204916beac26d197aadb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_404",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 02:11:00"
+ },
+ {
+  "id": "run:6a7baa20ceb2bb7e94a9cfa632aebcc02d6e254c53dfd1226d09036718c2a4f7",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_405",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 02:28:00"
+ },
+ {
+  "id": "run:0e69395a99e1c5aa78181e608ded1af7a3b43cf0ce6d8714f3a5fc74ae309fd6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_406",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 02:45:00"
+ },
+ {
+  "id": "run:e8eeb25d1380acd1bf9fc89c6c72e75675d4cdaaf4da2bb3b016f3232294d5aa",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_407",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-10 03:02:00"
+ },
+ {
+  "id": "run:b50a1b8c9ea6963af137fe5860c779bbcda9d0791c4c21e9e910277cf7d1d186",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_408",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 03:19:00"
+ },
+ {
+  "id": "run:c46d2de17b61b1585e440f4f76553541a10587a4ed12da03f259e22c00e3a519",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_409",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 03:36:00"
+ },
+ {
+  "id": "run:73a9e84a82c4ad8d8a882fb7f5aa779155e84786817e9f31223b96cc70de6c7e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_410",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 03:53:00"
+ },
+ {
+  "id": "run:895c442c8064f942ab8976b45d106473dfaab789a3438ab8b333d28c72e281a1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_411",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 04:10:00"
+ },
+ {
+  "id": "run:f10a7485c16252eabe3baf7781591a517750fbf04184f1e20911f0d9b706f6fb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_412",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 04:27:00"
+ },
+ {
+  "id": "run:c267f8580c6dca6d4fac0bc4e83bb4250a42d1b6c16c37e98f70aebbd5fb14f8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_413",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 04:44:00"
+ },
+ {
+  "id": "run:05e71a4c3ba849dc2ee42fc79279d1ff27f8bba9f36f3e15b923ab3ae1a9f2e3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_414",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 05:01:00"
+ },
+ {
+  "id": "run:2aa28cb60be20090d542c906e8e413cc353fbdd14abe69c2160508279b578dc0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_415",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 05:18:00"
+ },
+ {
+  "id": "run:35910b33504aff64f9a67fd80d54ef768ac38637d28bb541fd4fed6549637d2d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_416",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 05:35:00"
+ },
+ {
+  "id": "run:53427336304bb70bec7c17156f68892223f8c23938d7554ce9e663573b52f66a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_417",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 05:52:00"
+ },
+ {
+  "id": "run:8921f515d3a36c862a69dcb59ccd3563ea860567f766042de9f1ab5f7eeee9e2",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_418",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 06:09:00"
+ },
+ {
+  "id": "run:99b3ce41aaf815c4a45b877a1c3dd3f48f4dad193606e56844e75ddd477012a3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_419",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 06:26:00"
+ },
+ {
+  "id": "run:02d38d5f72566d0289749d1225373a824f4a0590014aefe7b7bc91bec1deda87",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_420",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 06:43:00"
+ },
+ {
+  "id": "run:44fb7896e0ffcb41d77a115ecc0d9e3d2deddab94f7a319954010bfc537d9ee3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_421",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 07:00:00"
+ },
+ {
+  "id": "run:d2b5b6de3dc8f47630d25b92df20b70d91ff438c78cb1a40e3a0979018f20d5d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_422",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 07:17:00"
+ },
+ {
+  "id": "run:ffccdc15ce0b08e45b828b0cfbcb70b7fdf8d99ff2b4faffe3d24a241537510b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_423",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 07:34:00"
+ },
+ {
+  "id": "run:0eb158beff018974cd48dfc81a43791586801bfaa92a861591092991817db456",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_424",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 07:51:00"
+ },
+ {
+  "id": "run:4eca91468c022da9276a883cbcd4e9a191a24a2040cbf217fcb11224f7cdf9e5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_425",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 08:08:00"
+ },
+ {
+  "id": "run:ed74073d648dbbe651f72db57e5e09ec7c151f68992edde4b1d1da37d7bfb6dc",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_426",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 08:25:00"
+ },
+ {
+  "id": "run:4708f6d2c53353a18cf2ba52e2ac4e665f43d245db5970be756ff0cfc9c79c9a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_427",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 08:42:00"
+ },
+ {
+  "id": "run:7eb7842510e590ecaa89b611e9cd86c6a4ebae330f4e3f248fd0cc59874b5ab5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_428",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 08:59:00"
+ },
+ {
+  "id": "run:9a36af905c9ae4db7c840e9693a7372c0af409edd62174cd44575c6cda117f8e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_429",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 09:16:00"
+ },
+ {
+  "id": "run:60677f02f75c7e1953d84076ed7d1148a0831547b9ff39c24b90641dfe367208",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_430",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 09:33:00"
+ },
+ {
+  "id": "run:9184a07df0f853c2100260fa563ff089ba56aeaf3bb06803d5bdd7f784487bb0",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_431",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 09:50:00"
+ },
+ {
+  "id": "run:a0975d5a8ed3eae8baa802b66c48ac48980b577d55cb7093d17fe5ded566cce1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_432",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 10:07:00"
+ },
+ {
+  "id": "run:5bd251dc5e9715d471867ce938f4d7bbecba8b66634799f16c9a7ac3ab4c954f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_433",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 10:24:00"
+ },
+ {
+  "id": "run:a4c51f4edeba0fd1cf488d2f909447e059b0e53122105e070f279dcca8fa2cc8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_434",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 10:41:00"
+ },
+ {
+  "id": "run:1ce1271d9a81a97acf6c6afc8c290d34dadaa845ebcfdef81fe00e35c035181e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_435",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 10:58:00"
+ },
+ {
+  "id": "run:2e289167a4290177dae064dbe2a794e49f3672af7ba8fc23a987b466f5dbc4f6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_436",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 11:15:00"
+ },
+ {
+  "id": "run:bba08094e04022da0139de09d9e1225a459cfd6a1cef7dda107e9c1233669b0b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_437",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 11:32:00"
+ },
+ {
+  "id": "run:556915b2f02d299fd6ebae851070630de555c396dcdefd72cbe617bf05ba9e25",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_438",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 11:49:00"
+ },
+ {
+  "id": "run:894b36cd3b8c7d3fd24009fad3f17c2f0b0469224bb25a6219e481f5f66a26b3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_439",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 8,
+  "created_at": "2026-01-10 12:06:00"
+ },
+ {
+  "id": "run:485874ffd1080894fa1a40d41a727ada0e446cb94cff9aee580955d722daf8b4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_440",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 12:23:00"
+ },
+ {
+  "id": "run:f5f1eb99ed6751c1c2ef90a6eafbdd4f7f799ed6717db4f33073ef829f07e0bd",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_441",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 12:40:00"
+ },
+ {
+  "id": "run:5249b7db970835bc2af3023a99a424869c35ab8e3d71a86a469c3baea94efb7d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_442",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 12:57:00"
+ },
+ {
+  "id": "run:0556e22a51f41ae7546db24edbb3bffeb15827ca785ffb1f6e1e9d3aa7f5d5b7",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_443",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 13:14:00"
+ },
+ {
+  "id": "run:862426835108b80c1e724da989b92a5ded870618c7ee4ee76dc5fffb51114445",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_444",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 13:31:00"
+ },
+ {
+  "id": "run:61359ad5253be377efc0f5f5ddb85ae96ea2652965674a590f4b9aba4a84f603",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_445",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 13:48:00"
+ },
+ {
+  "id": "run:ad0bbdd30d109e5fe97e0349c3830e0cb926ab5ecd24f54f293b06e826b7a076",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_446",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 14:05:00"
+ },
+ {
+  "id": "run:fb1cfae0013bc62c29eaaf861bafb2593e3b97db921ffefce6ab33cdc3db35f2",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_447",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 14:22:00"
+ },
+ {
+  "id": "run:a16087710f2771187b5a238796e8968175c6c360cc8d30a3b425e70e86795a8a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_448",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 14:39:00"
+ },
+ {
+  "id": "run:421c194a132829ad754de52e2977f455e525aa0156f10c186679e151206a59c8",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_449",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 14:56:00"
+ },
+ {
+  "id": "run:a3805b817b32983a542bc6c90ea6d126ea374ba8d509b8e02503695119665c64",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_450",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 15:13:00"
+ },
+ {
+  "id": "run:507f7dcdbfee421030d59fceff769cf81dc30c8ef1912cdf618dcdc8c7ea49de",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_451",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 15:30:00"
+ },
+ {
+  "id": "run:d186f2d3d99c61d20f33c349a8a47d28ebab1b68c26097102744120a27095f3a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_452",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 15:47:00"
+ },
+ {
+  "id": "run:5ec7de17add675fea062ff0acd776136e740f2183c1ac1d7633d503d9e6d06d1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_453",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 16:04:00"
+ },
+ {
+  "id": "run:8c9f2215f402edab22d601a2cb3be242313dc5a8d6f19ba7b85fabf2580446e1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_454",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 16:21:00"
+ },
+ {
+  "id": "run:20c5c1242ab4302b21bdeedb35223d98c8a18eb17563f224310b760e058b2d8b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_455",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 16:38:00"
+ },
+ {
+  "id": "run:73e83c574f7dc9a026a50113a3719d58853619e9677f6140032d42242747dd88",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_456",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 16:55:00"
+ },
+ {
+  "id": "run:0ca2e349e62406ecfadead7d63c20d1046f0b6ce74add300bcb43bc4c91e0f9f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_457",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 17:12:00"
+ },
+ {
+  "id": "run:cb89149c84a479db3a508d6d724c4adc9d7efe77d2fa81cbb53b71b3941b2809",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_458",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 17:29:00"
+ },
+ {
+  "id": "run:4fbfe7c477c204d43af1a2008948bf19e728747c360a834aab385427eff910b6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_459",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 17:46:00"
+ },
+ {
+  "id": "run:7644e6823d5eb3c100ff3115bd5713cb0e942e705aba72ae4d07560a5a1fad79",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_460",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 18:03:00"
+ },
+ {
+  "id": "run:d72af09a838cea6f04e316f3dad03bddac8b412859c303071b1629aa9954e37a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_461",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 18:20:00"
+ },
+ {
+  "id": "run:8bdde435ee2dbe8220c8626d65e971ad8f43a77292de1231a501518d9fb5f7fa",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_462",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 18:37:00"
+ },
+ {
+  "id": "run:2b5768d206a8e67200d5ae5ccea73c6b2a4f959257c6e9e941893aade40b1800",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_463",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 18:54:00"
+ },
+ {
+  "id": "run:d5300c8c9cdaeb507e0cba170eadfc70628effaf022110dcf03c442230ccad78",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_464",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 19:11:00"
+ },
+ {
+  "id": "run:5198aad834ae76706d39315fae45eafd2e16a5235e3fc9058060419a01ce771e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_465",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 19:28:00"
+ },
+ {
+  "id": "run:c582aa66f80e3027f82e653c1a2e5f17513819f0bc3b0e13cf5dffba224ab0fb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_466",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-10 19:45:00"
+ },
+ {
+  "id": "run:84cf5ea45aabbde69560387307d082e536d17f41308fe70036bd53902379d73c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_467",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 20:02:00"
+ },
+ {
+  "id": "run:bdbd1c6740c086a52a353bf3f67d0f3697fa4893a45fd198c5c8b82ba4c85857",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_468",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-10 20:19:00"
+ },
+ {
+  "id": "run:9d7116519c26aca22dbfbf8f8936ad5d1819dcd8700e00004ab2fd144652c05e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_469",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 20:36:00"
+ },
+ {
+  "id": "run:cdb978f40bdf59b739db8a085d025c1e6b8c365b7e53b691049a799fca05aefb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_470",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 20:53:00"
+ },
+ {
+  "id": "run:d6b2d4553f5d718e87d86e4026700ccd2602b0fe62c430f9acf0ca403e0d739b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_471",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 21:10:00"
+ },
+ {
+  "id": "run:8f0e4defa37a3a783a39c93bf747643584731f97649a4901c41bd9e415b2f427",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_472",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 21:27:00"
+ },
+ {
+  "id": "run:6b1f09f2aca2a42b4a809d295757381a0e96966141505527995ea0b340e548dd",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_473",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-10 21:44:00"
+ },
+ {
+  "id": "run:79cf1b32d8b0992f31bdda04f4113e1dad185f5951555c2ec5f8e3b0dc97bab4",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_474",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-10 22:01:00"
+ },
+ {
+  "id": "run:d77955af993dc1d71bb0be51af2680c481b1d080bd190bdef6f77514d6a54772",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_475",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 22:18:00"
+ },
+ {
+  "id": "run:3ac1643f3c0e9ec7a95db6c6f9a315309049849939df8bce4ffee759c679f09c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_476",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-10 22:35:00"
+ },
+ {
+  "id": "run:27e852f59134b66de7d9e6915cb5def71d281165edf05653db5e63c59599eaf9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_477",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 22:52:00"
+ },
+ {
+  "id": "run:d9a74c144739101fed4d69d6eef6c31bb9e32b18b4eff4d7d17b781c53b735b9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_478",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 23:09:00"
+ },
+ {
+  "id": "run:ee7ad9dfef799592a3a65b444d31e4ab2be74b74a3d740aee0594c34eb9e62d7",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_479",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-10 23:26:00"
+ },
+ {
+  "id": "run:1f3823465132503ede71841ce50a630fa5f6785c186130013bcf3a53536d59c9",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_480",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-10 23:43:00"
+ },
+ {
+  "id": "run:0093739e2b3f8622f92ab9167486a53a02c5169ab3719ba4fa582af20b05375a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_481",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-11 00:00:00"
+ },
+ {
+  "id": "run:e8eae6223e23b514aa59ccdae86b8131151c7863b5bbf783857c70cbd5bfc4c5",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_482",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 00:17:00"
+ },
+ {
+  "id": "run:d83bbebbca96486d2c9a72eb649cbf9fc6fbb76dfe6a588e4ad0494dad4c71a3",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_483",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 6,
+  "created_at": "2026-01-11 00:34:00"
+ },
+ {
+  "id": "run:0e76c5c09566c73b67b1a90c155c620bafa24b3527a128f61ec63eaa9fbdec5b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_484",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 00:51:00"
+ },
+ {
+  "id": "run:2a96e620a9a961f227ff0505faf31a993433dfa11e59b7c1a39d177784e56406",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_485",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 01:08:00"
+ },
+ {
+  "id": "run:07f467929821f9f3ed6fdbc2d0cfd1020941ff150cee14954d1a23c6dcf6939a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_486",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-11 01:25:00"
+ },
+ {
+  "id": "run:ff21a29ea2c769cb9040355b6cdca1027f7983414b5a1f2f6c825f99fd8d82f7",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_487",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-11 01:42:00"
+ },
+ {
+  "id": "run:266c906d7edbc4c5d67fde8981467f4948619177d017df02663feb16047cfe80",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_488",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-11 01:59:00"
+ },
+ {
+  "id": "run:daddf6c424933778380910fc657812061803edc6d37589c07df0fb97f1f6f057",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_489",
+   "status": "NO_ACTION_INFO"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-11 02:16:00"
+ },
+ {
+  "id": "run:6876f92673bb843d2647dfa84d56b4970c0a217661c5cb47f310bf8237e0f6a6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_490",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-11 02:33:00"
+ },
+ {
+  "id": "run:7de8a9163e6295d4dc388317cf0ef6ab395f81055ad7f52dd715166d10d04b52",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_491",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-11 02:50:00"
+ },
+ {
+  "id": "run:3a2dc8a237f6fb18a782c48ce6d657010795d5d812b390f9cded4063529120ca",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_492",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-11 03:07:00"
+ },
+ {
+  "id": "run:ff364baa2e2b9db30bbf46f8e8661365fc4f77f0cec75156d315ee33fe58f723",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_493",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-11 03:24:00"
+ },
+ {
+  "id": "run:e5c2707e9cc2507d2f8dd6fa256ef66b561a5a93e086514042e487b077892a67",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_494",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-11 03:41:00"
+ },
+ {
+  "id": "run:8b1729879995d06af4de311a9baea9ba9a186efca39c2fd7a472225e6b40eae6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_495",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 03:58:00"
+ },
+ {
+  "id": "run:1ce143d331c7b1de707bb670314d07c614d5a162b10508c610c1a9ab2dffc383",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_496",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-11 04:15:00"
+ },
+ {
+  "id": "run:d507fef948769e5e514df3faca0f2bfafe152273669fea1ec9e4bf50f609f471",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_497",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 04:32:00"
+ },
+ {
+  "id": "run:dfec89b449a7a636d503e258688e769f467263f444ebcdb9ae53886e440d2237",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_498",
+   "status": "DRAFT_READY"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-11 04:49:00"
+ },
+ {
+  "id": "run:ead1c4f5384e4875ab187008c241ceaeee72725c1c5391651489f343c18f658f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_499",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-11 05:06:00"
+ },
+ {
+  "id": "run:957f656f12db1b1e8ed86c0e866744517eeb326a3033c3867766cd01b756e831",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_500",
+   "status": "CLASSIFIED"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 0,
+  "created_at": "2026-01-11 05:23:00"
+ },
+ {
+  "id": "run:630d4934248e70cf7cb5bf4d287ba0fdce6d9e134bc19da3fda08b7e7f730fe6",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_501",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-11 05:40:00"
+ },
+ {
+  "id": "run:aeb245cb41d85aa1e7bcd16230f1fdddf6a86623b510f98d8f0f9e003aceebea",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_502",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 05:57:00"
+ },
+ {
+  "id": "run:86044e4e837a0658bcc24ef6a1ae5981dbfed50805ba7b46c50c654083d8a75b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_503",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 06:14:00"
+ },
+ {
+  "id": "run:27689f1ae40b0c97ee2df505112df2750729ccc8846c8011c30f9b16d3e5db9a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_504",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 3,
+  "created_at": "2026-01-11 06:31:00"
+ },
+ {
+  "id": "run:3c81476a57f6f8c033edfbc836fec9f889d7b66670943b66ac28a45952d1d796",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_505",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 06:48:00"
+ },
+ {
+  "id": "run:684e6068afd81ef8b9650c898cacd316b544debc61bf65abb776dfc72ef0449d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_506",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-11 07:05:00"
+ },
+ {
+  "id": "run:30bb229606a2f91bd5e926df4d0636beb5e4c6935e3bad56b6c2fb023175215f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_507",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 07:22:00"
+ },
+ {
+  "id": "run:9309047ff07548d09839fec235e8f457210ef119c56d4e7906ae2affdd3b995d",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_508",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 07:39:00"
+ },
+ {
+  "id": "run:d676ba280ba477b67f91d00b0820c8c572929e8598b691f10bf14a0e502a4a03",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_509",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-11 07:56:00"
+ },
+ {
+  "id": "run:459f6915cb074250ce717ed389853d5241959caac7f0e899d3d9e4d4c3b89495",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_510",
+   "status": "WAITING_DOCUMENTS"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 08:13:00"
+ },
+ {
+  "id": "run:65f5070a26a8add93abc286451f71f81bccb6c14ea71300c883a58e9b8f9fabd",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_511",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 08:30:00"
+ },
+ {
+  "id": "run:feab0b1ec7baa992c19450279ee271be3d05814256052c76a97d7cc29f6cf68b",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_512",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 08:47:00"
+ },
+ {
+  "id": "run:582414a5d1b08331efb71e4baa7567950981b566e832f893126c0cc5c14e0b1f",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_513",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 09:04:00"
+ },
+ {
+  "id": "run:9fd3864969a13dbf1c65ccc14df77dac86a8dc6f6372946843e8990060fb5b9a",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_514",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 2,
+  "created_at": "2026-01-11 09:21:00"
+ },
+ {
+  "id": "run:fccd1b9158e117bcca29cda2dc642753afe6f39183361a967447fd3d0f47749e",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_515",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 1,
+  "created_at": "2026-01-11 09:38:00"
+ },
+ {
+  "id": "run:1832bfe11ce2578e789a4fb5771b39000d8b0ac437a1a2b13b0dae223167db14",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_516",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-11 09:55:00"
+ },
+ {
+  "id": "run:3e6150d1a6b5f1526af16a038a8acba988b0fe3fb3a118161caa14139255dc47",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_517",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-11 10:12:00"
+ },
+ {
+  "id": "run:5ef29219ce4c3a332957a827aff246532728e45469d03974651afbb865b8078c",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_518",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-11 10:29:00"
+ },
+ {
+  "id": "run:57d40add7b42194182bc62c614ed3f1373c5e04c086c490ffa5338e4d7385cb1",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_519",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 5,
+  "created_at": "2026-01-11 10:46:00"
+ },
+ {
+  "id": "run:940afcb7fb2ee3e8b7533f3e1caf60e369f247e504d0da14e3c32c17b2b8e9fb",
+  "tenant_id": "tenant_april",
+  "result": {
+   "case_id": "case_email_520",
+   "status": "HUMAN_REVIEW"
+  },
+  "provider": "rules",
+  "model": "deterministic-v1",
+  "latency_ms": 4,
+  "created_at": "2026-01-11 11:03:00"
+ }
+]

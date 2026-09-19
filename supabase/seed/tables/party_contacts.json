@@ -1,0 +1,66 @@
+[
+ {
+  "id": "p_algurg",
+  "tenant_id": "tenant_april",
+  "name": "Logistics Desk",
+  "email": "logistics@algurg.ae",
+  "party_name": "AL GURG STATIONERY LLC",
+  "approved": true
+ },
+ {
+  "id": "p_vital",
+  "tenant_id": "tenant_april",
+  "name": "Documentation",
+  "email": "docs@vitalsolutions.sg",
+  "party_name": "VITAL SOLUTIONS PTE. LTD.",
+  "approved": true
+ },
+ {
+  "id": "p_safqa",
+  "tenant_id": "tenant_april",
+  "name": "Aziz Tejani",
+  "email": "aziztz@safqa.co.ke",
+  "party_name": "SAFQA LIMITED",
+  "approved": true
+ },
+ {
+  "id": "p_roxcel",
+  "tenant_id": "tenant_april",
+  "name": "Sales Desk",
+  "email": "sales@roxcel.at",
+  "party_name": "ROXCEL TRADING GMBH",
+  "approved": true
+ },
+ {
+  "id": "p_ifp",
+  "tenant_id": "tenant_april",
+  "name": "Export Team",
+  "email": "exports@ifpla.com",
+  "party_name": "INTERNATIONAL FOREST PRODUCTS LLC",
+  "approved": true
+ },
+ {
+  "id": "p_fujito",
+  "tenant_id": "tenant_april",
+  "name": "Nirmala Patwa",
+  "email": "nirmala@fujitogrp.com",
+  "party_name": "FUJITO GROUP (forwarder)",
+  "approved": true
+ },
+ {
+  "id": "p_psabdp",
+  "tenant_id": "tenant_april",
+  "name": "Chella Perumal",
+  "email": "chella.perumal@psabdp.com",
+  "party_name": "PSA BDP (forwarder)",
+  "approved": true
+ },
+ {
+  "id": "p_novakopa",
+  "tenant_id": "tenant_april",
+  "name": "Import Desk",
+  "email": "import@novakopa.lt",
+  "party_name": "UAB NOVAKOPA",
+  "approved": false
+ }
+]

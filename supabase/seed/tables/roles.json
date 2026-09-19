@@ -1,0 +1,18 @@
+[
+ {
+  "id": "OPERATIONS_STAFF",
+  "description": "Handles cases, drafts, internal shares"
+ },
+ {
+  "id": "SUPERVISOR",
+  "description": "Approves external sends, notifies parties"
+ },
+ {
+  "id": "ADMIN",
+  "description": "Edits policy, manages users"
+ },
+ {
+  "id": "AUDITOR",
+  "description": "Read-only access incl. audit history"
+ }
+]

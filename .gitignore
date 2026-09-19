@@ -1,0 +1,9 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+.next/
+scratch_submission.json
+sdoc-hackathon-docker/data_v2/ground_truth.json
+backend/data/index.json

@@ -1,0 +1,22 @@
+[
+ {
+  "id": "team_docs_me",
+  "tenant_id": "tenant_april",
+  "name": "Shipping Documentation - Middle East"
+ },
+ {
+  "id": "team_docs_asia",
+  "tenant_id": "tenant_april",
+  "name": "Shipping Documentation - Asia"
+ },
+ {
+  "id": "team_audit",
+  "tenant_id": "tenant_april",
+  "name": "Internal Audit"
+ },
+ {
+  "id": "team_finance",
+  "tenant_id": "tenant_april",
+  "name": "Finance / Billing"
+ }
+]

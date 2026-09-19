@@ -1,0 +1,74 @@
+[
+ {
+  "id": "u_ops_1",
+  "tenant_id": "tenant_april",
+  "email": "hanna_azhari@aprilasia.com",
+  "display_name": "Najiha Nur Hanna",
+  "team_id": "team_docs_me",
+  "is_external": false,
+  "created_at": "2026-01-05 08:00:00"
+ },
+ {
+  "id": "u_ops_2",
+  "tenant_id": "tenant_april",
+  "email": "deswita_elvyani@aprilasia.com",
+  "display_name": "Deswita Elvyani",
+  "team_id": "team_docs_me",
+  "is_external": false,
+  "created_at": "2026-01-05 08:00:00"
+ },
+ {
+  "id": "u_ops_3",
+  "tenant_id": "tenant_april",
+  "email": "willy_ss@aprilasia.com",
+  "display_name": "Willy Situmorang",
+  "team_id": "team_docs_me",
+  "is_external": false,
+  "created_at": "2026-01-05 08:00:00"
+ },
+ {
+  "id": "u_ops_4",
+  "tenant_id": "tenant_april",
+  "email": "mitchelle_ting@aprilasia.com",
+  "display_name": "Mitchelle Ting",
+  "team_id": "team_docs_asia",
+  "is_external": false,
+  "created_at": "2026-01-05 08:00:00"
+ },
+ {
+  "id": "u_sup_1",
+  "tenant_id": "tenant_april",
+  "email": "hari_mardianto@aprilasia.com",
+  "display_name": "Hari Mardianto",
+  "team_id": "team_docs_me",
+  "is_external": false,
+  "created_at": "2026-01-05 08:00:00"
+ },
+ {
+  "id": "u_sup_2",
+  "tenant_id": "tenant_april",
+  "email": "eileen_teo@aprilasia.com",
+  "display_name": "Teo Ei Leen",
+  "team_id": "team_docs_asia",
+  "is_external": false,
+  "created_at": "2026-01-05 08:00:00"
+ },
+ {
+  "id": "u_admin_1",
+  "tenant_id": "tenant_april",
+  "email": "faraz_ali@aprilasia.com",
+  "display_name": "Syed Faraz Ali",
+  "team_id": "team_docs_me",
+  "is_external": false,
+  "created_at": "2026-01-05 08:00:00"
+ },
+ {
+  "id": "u_audit_1",
+  "tenant_id": "tenant_april",
+  "email": "sokyong_ooi@aprilasia.com",
+  "display_name": "Ooi Sok Yong",
+  "team_id": "team_audit",
+  "is_external": false,
+  "created_at": "2026-01-05 08:00:00"
+ }
+]

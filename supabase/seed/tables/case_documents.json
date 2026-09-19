@@ -1,0 +1,1472 @@
+[
+ {
+  "id": "cd_case_email_001_SI",
+  "case_id": "case_email_001",
+  "attachment_id": "att_email_001_SI_d16c8b1d",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_001_BL",
+  "case_id": "case_email_001",
+  "attachment_id": "att_email_001_BL_508d9a3d",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_004_SI",
+  "case_id": "case_email_004",
+  "attachment_id": "att_email_004_SI_9999bc21",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_004_BL",
+  "case_id": "case_email_004",
+  "attachment_id": "att_email_004_BL_083fec3a",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_005_SI",
+  "case_id": "case_email_005",
+  "attachment_id": "att_email_005_SI_5da5686a",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_005_BL",
+  "case_id": "case_email_005",
+  "attachment_id": "att_email_005_BL_3c3995e0",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_009_SI",
+  "case_id": "case_email_009",
+  "attachment_id": "att_email_009_SI_7613b147",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_009_BL",
+  "case_id": "case_email_009",
+  "attachment_id": "att_email_009_BL_dff1c1ff",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_013_SI",
+  "case_id": "case_email_013",
+  "attachment_id": "att_email_013_SI_ffc6c4d8",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_013_BL",
+  "case_id": "case_email_013",
+  "attachment_id": "att_email_013_BL_acdc9752",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_025_SI",
+  "case_id": "case_email_025",
+  "attachment_id": "att_email_025_SI_1651a3eb",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_025_BL",
+  "case_id": "case_email_025",
+  "attachment_id": "att_email_025_BL_edac3753",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_031_SI",
+  "case_id": "case_email_031",
+  "attachment_id": "att_email_031_SI_f88ac6ca",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_031_BL",
+  "case_id": "case_email_031",
+  "attachment_id": "att_email_031_BL_29709c67",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_032_SI",
+  "case_id": "case_email_032",
+  "attachment_id": "att_email_032_SI_dc8414b2",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_032_BL",
+  "case_id": "case_email_032",
+  "attachment_id": "att_email_032_BL_c9e5909d",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_034_SI",
+  "case_id": "case_email_034",
+  "attachment_id": "att_email_034_SI_64ae2819",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_034_BL",
+  "case_id": "case_email_034",
+  "attachment_id": "att_email_034_BL_9e94d960",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_040_SI",
+  "case_id": "case_email_040",
+  "attachment_id": "att_email_040_SI_32e0f21f",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_040_BL",
+  "case_id": "case_email_040",
+  "attachment_id": "att_email_040_BL_97fd70d3",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_043_SI",
+  "case_id": "case_email_043",
+  "attachment_id": "att_email_043_SI_08418c1e",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_043_BL",
+  "case_id": "case_email_043",
+  "attachment_id": "att_email_043_BL_40305ad6",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_044_SI",
+  "case_id": "case_email_044",
+  "attachment_id": "att_email_044_SI_e1c86fdc",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_044_BL",
+  "case_id": "case_email_044",
+  "attachment_id": "att_email_044_BL_b4e8a1f1",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_046_SI",
+  "case_id": "case_email_046",
+  "attachment_id": "att_email_046_SI_d1bf32f8",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_046_BL",
+  "case_id": "case_email_046",
+  "attachment_id": "att_email_046_BL_1f04a36f",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_051_SI",
+  "case_id": "case_email_051",
+  "attachment_id": "att_email_051_SI_22d5e5e6",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_051_BL",
+  "case_id": "case_email_051",
+  "attachment_id": "att_email_051_BL_31754b16",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_052_SI",
+  "case_id": "case_email_052",
+  "attachment_id": "att_email_052_SI_ffa20657",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_052_BL",
+  "case_id": "case_email_052",
+  "attachment_id": "att_email_052_BL_0566528d",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_055_SI",
+  "case_id": "case_email_055",
+  "attachment_id": "att_email_055_SI_bcd5f021",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_055_BL",
+  "case_id": "case_email_055",
+  "attachment_id": "att_email_055_BL_0278bb79",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_056_SI",
+  "case_id": "case_email_056",
+  "attachment_id": "att_email_056_SI_2b5f0c3e",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_056_BL",
+  "case_id": "case_email_056",
+  "attachment_id": "att_email_056_BL_c6dc6cb6",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_058_SI",
+  "case_id": "case_email_058",
+  "attachment_id": "att_email_058_SI_797f5df4",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_058_BL",
+  "case_id": "case_email_058",
+  "attachment_id": "att_email_058_BL_d2553e2c",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_059_SI",
+  "case_id": "case_email_059",
+  "attachment_id": "att_email_059_SI_84030431",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_059_BL",
+  "case_id": "case_email_059",
+  "attachment_id": "att_email_059_BL_45aa6c8c",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_064_SI",
+  "case_id": "case_email_064",
+  "attachment_id": "att_email_064_SI_ac5940ff",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_064_BL",
+  "case_id": "case_email_064",
+  "attachment_id": "att_email_064_BL_ce60fc4e",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_065_SI",
+  "case_id": "case_email_065",
+  "attachment_id": "att_email_065_SI_0ab137a7",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_065_BL",
+  "case_id": "case_email_065",
+  "attachment_id": "att_email_065_BL_75105843",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_068_SI",
+  "case_id": "case_email_068",
+  "attachment_id": "att_email_068_SI_004468bf",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_068_BL",
+  "case_id": "case_email_068",
+  "attachment_id": "att_email_068_BL_d334467e",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_071_SI",
+  "case_id": "case_email_071",
+  "attachment_id": "att_email_071_SI_a086c30c",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_071_BL",
+  "case_id": "case_email_071",
+  "attachment_id": "att_email_071_BL_ce6cf6a8",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_082_SI",
+  "case_id": "case_email_082",
+  "attachment_id": "att_email_082_SI_cfcb754a",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_082_BL",
+  "case_id": "case_email_082",
+  "attachment_id": "att_email_082_BL_8441b976",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_090_SI",
+  "case_id": "case_email_090",
+  "attachment_id": "att_email_090_SI_a62f2249",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_090_BL",
+  "case_id": "case_email_090",
+  "attachment_id": "att_email_090_BL_391f0528",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_091_SI",
+  "case_id": "case_email_091",
+  "attachment_id": "att_email_091_SI_e9852a03",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_091_BL",
+  "case_id": "case_email_091",
+  "attachment_id": "att_email_091_BL_0747aefd",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_096_SI",
+  "case_id": "case_email_096",
+  "attachment_id": "att_email_096_SI_023afd9b",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_096_BL",
+  "case_id": "case_email_096",
+  "attachment_id": "att_email_096_BL_e71adfa2",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_097_SI",
+  "case_id": "case_email_097",
+  "attachment_id": "att_email_097_SI_36bd12ee",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_097_BL",
+  "case_id": "case_email_097",
+  "attachment_id": "att_email_097_BL_4d30cd31",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_107_SI",
+  "case_id": "case_email_107",
+  "attachment_id": "att_email_107_SI_195b84a5",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_107_BL",
+  "case_id": "case_email_107",
+  "attachment_id": "att_email_107_BL_978c5256",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_111_SI",
+  "case_id": "case_email_111",
+  "attachment_id": "att_email_111_SI_cab08f0d",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_111_BL",
+  "case_id": "case_email_111",
+  "attachment_id": "att_email_111_BL_8d33c12b",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_113_SI",
+  "case_id": "case_email_113",
+  "attachment_id": "att_email_113_SI_8838049f",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_113_BL",
+  "case_id": "case_email_113",
+  "attachment_id": "att_email_113_BL_eef8ef06",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_118_SI",
+  "case_id": "case_email_118",
+  "attachment_id": "att_email_118_SI_16ee9fdb",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_118_BL",
+  "case_id": "case_email_118",
+  "attachment_id": "att_email_118_BL_bffa008f",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_119_SI",
+  "case_id": "case_email_119",
+  "attachment_id": "att_email_119_SI_d6028810",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_119_BL",
+  "case_id": "case_email_119",
+  "attachment_id": "att_email_119_BL_e394551d",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_121_SI",
+  "case_id": "case_email_121",
+  "attachment_id": "att_email_121_SI_067cc51f",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_121_BL",
+  "case_id": "case_email_121",
+  "attachment_id": "att_email_121_BL_8dabf8df",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_128_SI",
+  "case_id": "case_email_128",
+  "attachment_id": "att_email_128_SI_07408701",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_128_BL",
+  "case_id": "case_email_128",
+  "attachment_id": "att_email_128_BL_b5e47e01",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_129_SI",
+  "case_id": "case_email_129",
+  "attachment_id": "att_email_129_SI_7eb80af7",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_129_BL",
+  "case_id": "case_email_129",
+  "attachment_id": "att_email_129_BL_2af75b0b",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_132_SI",
+  "case_id": "case_email_132",
+  "attachment_id": "att_email_132_SI_13d4f55e",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_132_BL",
+  "case_id": "case_email_132",
+  "attachment_id": "att_email_132_BL_07092989",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_133_SI",
+  "case_id": "case_email_133",
+  "attachment_id": "att_email_133_SI_2f3738db",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_133_BL",
+  "case_id": "case_email_133",
+  "attachment_id": "att_email_133_BL_a3e4e184",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_143_SI",
+  "case_id": "case_email_143",
+  "attachment_id": "att_email_143_SI_7853451c",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_143_BL",
+  "case_id": "case_email_143",
+  "attachment_id": "att_email_143_BL_e607bbed",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_144_SI",
+  "case_id": "case_email_144",
+  "attachment_id": "att_email_144_SI_5ff2abfa",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_144_BL",
+  "case_id": "case_email_144",
+  "attachment_id": "att_email_144_BL_2e57cc03",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_145_SI",
+  "case_id": "case_email_145",
+  "attachment_id": "att_email_145_SI_e59e6906",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_145_BL",
+  "case_id": "case_email_145",
+  "attachment_id": "att_email_145_BL_180596fa",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_146_SI",
+  "case_id": "case_email_146",
+  "attachment_id": "att_email_146_SI_efa6e249",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_146_BL",
+  "case_id": "case_email_146",
+  "attachment_id": "att_email_146_BL_81ef8991",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_160_SI",
+  "case_id": "case_email_160",
+  "attachment_id": "att_email_160_SI_d8226043",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_160_BL",
+  "case_id": "case_email_160",
+  "attachment_id": "att_email_160_BL_827e4281",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_167_SI",
+  "case_id": "case_email_167",
+  "attachment_id": "att_email_167_SI_4f0fbfb8",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_167_BL",
+  "case_id": "case_email_167",
+  "attachment_id": "att_email_167_BL_24b467f5",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_171_SI",
+  "case_id": "case_email_171",
+  "attachment_id": "att_email_171_SI_44b7f8eb",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_171_BL",
+  "case_id": "case_email_171",
+  "attachment_id": "att_email_171_BL_187afd84",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_174_SI",
+  "case_id": "case_email_174",
+  "attachment_id": "att_email_174_SI_18059985",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_174_BL",
+  "case_id": "case_email_174",
+  "attachment_id": "att_email_174_BL_51a2f6ca",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_175_SI",
+  "case_id": "case_email_175",
+  "attachment_id": "att_email_175_SI_241d66c3",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_175_BL",
+  "case_id": "case_email_175",
+  "attachment_id": "att_email_175_BL_d2dfc90c",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_178_SI",
+  "case_id": "case_email_178",
+  "attachment_id": "att_email_178_SI_9ac0b9dc",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_178_BL",
+  "case_id": "case_email_178",
+  "attachment_id": "att_email_178_BL_87cd768b",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_182_SI",
+  "case_id": "case_email_182",
+  "attachment_id": "att_email_182_SI_e275ef3a",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_182_BL",
+  "case_id": "case_email_182",
+  "attachment_id": "att_email_182_BL_d1834abe",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_197_SI",
+  "case_id": "case_email_197",
+  "attachment_id": "att_email_197_SI_210006f6",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_197_BL",
+  "case_id": "case_email_197",
+  "attachment_id": "att_email_197_BL_9cd62909",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_198_SI",
+  "case_id": "case_email_198",
+  "attachment_id": "att_email_198_SI_bf9d8884",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_198_BL",
+  "case_id": "case_email_198",
+  "attachment_id": "att_email_198_BL_3e2a9de3",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_208_SI",
+  "case_id": "case_email_208",
+  "attachment_id": "att_email_208_SI_e020b738",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_208_BL",
+  "case_id": "case_email_208",
+  "attachment_id": "att_email_208_BL_0627816e",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_225_SI",
+  "case_id": "case_email_225",
+  "attachment_id": "att_email_225_SI_038d5e20",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_225_BL",
+  "case_id": "case_email_225",
+  "attachment_id": "att_email_225_BL_07572179",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_227_SI",
+  "case_id": "case_email_227",
+  "attachment_id": "att_email_227_SI_0aabd6f9",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_227_BL",
+  "case_id": "case_email_227",
+  "attachment_id": "att_email_227_BL_67c90df5",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_235_SI",
+  "case_id": "case_email_235",
+  "attachment_id": "att_email_235_SI_5aabd671",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_235_BL",
+  "case_id": "case_email_235",
+  "attachment_id": "att_email_235_BL_cbd68dad",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_239_SI",
+  "case_id": "case_email_239",
+  "attachment_id": "att_email_239_SI_6b944c64",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_239_BL",
+  "case_id": "case_email_239",
+  "attachment_id": "att_email_239_BL_8d9312db",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_243_SI",
+  "case_id": "case_email_243",
+  "attachment_id": "att_email_243_SI_c9d2b12b",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_243_BL",
+  "case_id": "case_email_243",
+  "attachment_id": "att_email_243_BL_ae839262",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_249_SI",
+  "case_id": "case_email_249",
+  "attachment_id": "att_email_249_SI_45fc6997",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_249_BL",
+  "case_id": "case_email_249",
+  "attachment_id": "att_email_249_BL_3a02ecaa",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_256_SI",
+  "case_id": "case_email_256",
+  "attachment_id": "att_email_256_SI_c1f282d8",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_256_BL",
+  "case_id": "case_email_256",
+  "attachment_id": "att_email_256_BL_c2c95215",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_270_SI",
+  "case_id": "case_email_270",
+  "attachment_id": "att_email_270_SI_45fc9218",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_270_BL",
+  "case_id": "case_email_270",
+  "attachment_id": "att_email_270_BL_437ffd8d",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_273_SI",
+  "case_id": "case_email_273",
+  "attachment_id": "att_email_273_SI_7428d59c",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_273_BL",
+  "case_id": "case_email_273",
+  "attachment_id": "att_email_273_BL_f35e5b2f",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_275_SI",
+  "case_id": "case_email_275",
+  "attachment_id": "att_email_275_SI_0ad86fb6",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_275_BL",
+  "case_id": "case_email_275",
+  "attachment_id": "att_email_275_BL_b142f4c6",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_291_SI",
+  "case_id": "case_email_291",
+  "attachment_id": "att_email_291_SI_e8190111",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_291_BL",
+  "case_id": "case_email_291",
+  "attachment_id": "att_email_291_BL_b3130208",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_296_SI",
+  "case_id": "case_email_296",
+  "attachment_id": "att_email_296_SI_b84c121d",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_296_BL",
+  "case_id": "case_email_296",
+  "attachment_id": "att_email_296_BL_d04edce9",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_300_SI",
+  "case_id": "case_email_300",
+  "attachment_id": "att_email_300_SI_6d68f604",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_300_BL",
+  "case_id": "case_email_300",
+  "attachment_id": "att_email_300_BL_7ab5c37c",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_302_SI",
+  "case_id": "case_email_302",
+  "attachment_id": "att_email_302_SI_969ff53e",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_302_BL",
+  "case_id": "case_email_302",
+  "attachment_id": "att_email_302_BL_1eaf943d",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_307_SI",
+  "case_id": "case_email_307",
+  "attachment_id": "att_email_307_SI_72b8f561",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_307_BL",
+  "case_id": "case_email_307",
+  "attachment_id": "att_email_307_BL_ba60e3f9",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_312_SI",
+  "case_id": "case_email_312",
+  "attachment_id": "att_email_312_SI_aea731c0",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_312_BL",
+  "case_id": "case_email_312",
+  "attachment_id": "att_email_312_BL_583a207a",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_313_SI",
+  "case_id": "case_email_313",
+  "attachment_id": "att_email_313_SI_eb2fa6a7",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_313_BL",
+  "case_id": "case_email_313",
+  "attachment_id": "att_email_313_BL_0c462fd8",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_324_SI",
+  "case_id": "case_email_324",
+  "attachment_id": "att_email_324_SI_f6e8c51e",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_324_BL",
+  "case_id": "case_email_324",
+  "attachment_id": "att_email_324_BL_9a2caadb",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_334_SI",
+  "case_id": "case_email_334",
+  "attachment_id": "att_email_334_SI_aa169e29",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_334_BL",
+  "case_id": "case_email_334",
+  "attachment_id": "att_email_334_BL_681c4e71",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_335_SI",
+  "case_id": "case_email_335",
+  "attachment_id": "att_email_335_SI_e5b2a8eb",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_335_BL",
+  "case_id": "case_email_335",
+  "attachment_id": "att_email_335_BL_23bff8ce",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_342_SI",
+  "case_id": "case_email_342",
+  "attachment_id": "att_email_342_SI_ec04471a",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_342_BL",
+  "case_id": "case_email_342",
+  "attachment_id": "att_email_342_BL_f4f5f017",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_348_SI",
+  "case_id": "case_email_348",
+  "attachment_id": "att_email_348_SI_b98eccdc",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_348_BL",
+  "case_id": "case_email_348",
+  "attachment_id": "att_email_348_BL_918cbe13",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_349_SI",
+  "case_id": "case_email_349",
+  "attachment_id": "att_email_349_SI_7934ed75",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_349_BL",
+  "case_id": "case_email_349",
+  "attachment_id": "att_email_349_BL_e72bc8a5",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_351_SI",
+  "case_id": "case_email_351",
+  "attachment_id": "att_email_351_SI_e5753de8",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_351_BL",
+  "case_id": "case_email_351",
+  "attachment_id": "att_email_351_BL_0c9f7eab",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_354_SI",
+  "case_id": "case_email_354",
+  "attachment_id": "att_email_354_SI_b22de0c4",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_354_BL",
+  "case_id": "case_email_354",
+  "attachment_id": "att_email_354_BL_f1adab7a",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_361_SI",
+  "case_id": "case_email_361",
+  "attachment_id": "att_email_361_SI_cc35b9df",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_361_BL",
+  "case_id": "case_email_361",
+  "attachment_id": "att_email_361_BL_1fdcbbc2",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_364_SI",
+  "case_id": "case_email_364",
+  "attachment_id": "att_email_364_SI_93329727",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_364_BL",
+  "case_id": "case_email_364",
+  "attachment_id": "att_email_364_BL_c6d7f41a",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_367_SI",
+  "case_id": "case_email_367",
+  "attachment_id": "att_email_367_SI_3d2a9099",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_367_BL",
+  "case_id": "case_email_367",
+  "attachment_id": "att_email_367_BL_08cf6d30",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_377_SI",
+  "case_id": "case_email_377",
+  "attachment_id": "att_email_377_SI_32e746f4",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_377_BL",
+  "case_id": "case_email_377",
+  "attachment_id": "att_email_377_BL_f222d2f0",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_378_SI",
+  "case_id": "case_email_378",
+  "attachment_id": "att_email_378_SI_f7ed343d",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_378_BL",
+  "case_id": "case_email_378",
+  "attachment_id": "att_email_378_BL_7d1f45f5",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_379_SI",
+  "case_id": "case_email_379",
+  "attachment_id": "att_email_379_SI_6134a9fd",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_379_BL",
+  "case_id": "case_email_379",
+  "attachment_id": "att_email_379_BL_06c5df2e",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_383_SI",
+  "case_id": "case_email_383",
+  "attachment_id": "att_email_383_SI_5446b81b",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_383_BL",
+  "case_id": "case_email_383",
+  "attachment_id": "att_email_383_BL_94fdf90b",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_391_SI",
+  "case_id": "case_email_391",
+  "attachment_id": "att_email_391_SI_0434f665",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_391_BL",
+  "case_id": "case_email_391",
+  "attachment_id": "att_email_391_BL_b7f2b75f",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_398_SI",
+  "case_id": "case_email_398",
+  "attachment_id": "att_email_398_SI_af49efff",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_398_BL",
+  "case_id": "case_email_398",
+  "attachment_id": "att_email_398_BL_47750f84",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_405_SI",
+  "case_id": "case_email_405",
+  "attachment_id": "att_email_405_SI_d4f33911",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_405_BL",
+  "case_id": "case_email_405",
+  "attachment_id": "att_email_405_BL_7fa5adc3",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_407_SI",
+  "case_id": "case_email_407",
+  "attachment_id": "att_email_407_SI_9396fab7",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_407_BL",
+  "case_id": "case_email_407",
+  "attachment_id": "att_email_407_BL_881dba68",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_408_SI",
+  "case_id": "case_email_408",
+  "attachment_id": "att_email_408_SI_8100697a",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_408_BL",
+  "case_id": "case_email_408",
+  "attachment_id": "att_email_408_BL_b987c507",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_409_SI",
+  "case_id": "case_email_409",
+  "attachment_id": "att_email_409_SI_e503362c",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_409_BL",
+  "case_id": "case_email_409",
+  "attachment_id": "att_email_409_BL_036a7edf",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_410_SI",
+  "case_id": "case_email_410",
+  "attachment_id": "att_email_410_SI_512a70a1",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_410_BL",
+  "case_id": "case_email_410",
+  "attachment_id": "att_email_410_BL_402b1274",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_411_SI",
+  "case_id": "case_email_411",
+  "attachment_id": "att_email_411_SI_ec2c0b3d",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_411_BL",
+  "case_id": "case_email_411",
+  "attachment_id": "att_email_411_BL_e66fa5f6",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_416_SI",
+  "case_id": "case_email_416",
+  "attachment_id": "att_email_416_SI_a0135875",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_416_BL",
+  "case_id": "case_email_416",
+  "attachment_id": "att_email_416_BL_416a6c75",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_426_SI",
+  "case_id": "case_email_426",
+  "attachment_id": "att_email_426_SI_1b552156",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_426_BL",
+  "case_id": "case_email_426",
+  "attachment_id": "att_email_426_BL_d4736b78",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_428_SI",
+  "case_id": "case_email_428",
+  "attachment_id": "att_email_428_SI_1c28320a",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_428_BL",
+  "case_id": "case_email_428",
+  "attachment_id": "att_email_428_BL_ddb0da3d",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_434_SI",
+  "case_id": "case_email_434",
+  "attachment_id": "att_email_434_SI_5a0cee4e",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_434_BL",
+  "case_id": "case_email_434",
+  "attachment_id": "att_email_434_BL_5f454f2e",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_435_SI",
+  "case_id": "case_email_435",
+  "attachment_id": "att_email_435_SI_26987da8",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_435_BL",
+  "case_id": "case_email_435",
+  "attachment_id": "att_email_435_BL_7d8d4d85",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_453_SI",
+  "case_id": "case_email_453",
+  "attachment_id": "att_email_453_SI_ee4bbb35",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_453_BL",
+  "case_id": "case_email_453",
+  "attachment_id": "att_email_453_BL_6ab541a1",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_462_SI",
+  "case_id": "case_email_462",
+  "attachment_id": "att_email_462_SI_fb32f680",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_462_BL",
+  "case_id": "case_email_462",
+  "attachment_id": "att_email_462_BL_42719b21",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_468_SI",
+  "case_id": "case_email_468",
+  "attachment_id": "att_email_468_SI_ba71f469",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_468_BL",
+  "case_id": "case_email_468",
+  "attachment_id": "att_email_468_BL_3c43e2d8",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_474_SI",
+  "case_id": "case_email_474",
+  "attachment_id": "att_email_474_SI_6107022d",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_474_BL",
+  "case_id": "case_email_474",
+  "attachment_id": "att_email_474_BL_6aeb97b3",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_479_SI",
+  "case_id": "case_email_479",
+  "attachment_id": "att_email_479_SI_3a84d2a3",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_479_BL",
+  "case_id": "case_email_479",
+  "attachment_id": "att_email_479_BL_0068430c",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_481_SI",
+  "case_id": "case_email_481",
+  "attachment_id": "att_email_481_SI_20913982",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_481_BL",
+  "case_id": "case_email_481",
+  "attachment_id": "att_email_481_BL_a884814b",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_483_SI",
+  "case_id": "case_email_483",
+  "attachment_id": "att_email_483_SI_b4d992a2",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_483_BL",
+  "case_id": "case_email_483",
+  "attachment_id": "att_email_483_BL_44feb5b8",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_491_SI",
+  "case_id": "case_email_491",
+  "attachment_id": "att_email_491_SI_abef59ba",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_491_BL",
+  "case_id": "case_email_491",
+  "attachment_id": "att_email_491_BL_763e96c1",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_494_SI",
+  "case_id": "case_email_494",
+  "attachment_id": "att_email_494_SI_a5334263",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_494_BL",
+  "case_id": "case_email_494",
+  "attachment_id": "att_email_494_BL_fd6638b5",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_496_SI",
+  "case_id": "case_email_496",
+  "attachment_id": "att_email_496_SI_525d33c2",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_496_BL",
+  "case_id": "case_email_496",
+  "attachment_id": "att_email_496_BL_6e6ee20e",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_498_SI",
+  "case_id": "case_email_498",
+  "attachment_id": "att_email_498_SI_832e6336",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_498_BL",
+  "case_id": "case_email_498",
+  "attachment_id": "att_email_498_BL_d759d90d",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_499_SI",
+  "case_id": "case_email_499",
+  "attachment_id": "att_email_499_SI_5175f2fc",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_499_BL",
+  "case_id": "case_email_499",
+  "attachment_id": "att_email_499_BL_a92327d8",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_501_SI",
+  "case_id": "case_email_501",
+  "attachment_id": "att_email_501_SI_6e5cfdaa",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_502_SI",
+  "case_id": "case_email_502",
+  "attachment_id": "att_email_502_SI_0ac01967",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_503_SI",
+  "case_id": "case_email_503",
+  "attachment_id": "att_email_503_SI_576c0ddc",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_504_SI",
+  "case_id": "case_email_504",
+  "attachment_id": "att_email_504_SI_1f81e452",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_505_SI",
+  "case_id": "case_email_505",
+  "attachment_id": "att_email_505_SI_9450827a",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_507_SI",
+  "case_id": "case_email_507",
+  "attachment_id": "att_email_507_SI_12927916",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_509_SI",
+  "case_id": "case_email_509",
+  "attachment_id": "att_email_509_SI_14281e7f",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_511_SI",
+  "case_id": "case_email_511",
+  "attachment_id": "att_email_511_SI_19f5e1a4",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_511_BL",
+  "case_id": "case_email_511",
+  "attachment_id": "att_email_511_BL_3fbaeb73",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_512_SI",
+  "case_id": "case_email_512",
+  "attachment_id": "att_email_512_SI_17490c98",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_512_BL",
+  "case_id": "case_email_512",
+  "attachment_id": "att_email_512_BL_5ecd746a",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_513_SI",
+  "case_id": "case_email_513",
+  "attachment_id": "att_email_513_SI_02e88d5e",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_513_BL",
+  "case_id": "case_email_513",
+  "attachment_id": "att_email_513_BL_7c22b3bf",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_514_SI",
+  "case_id": "case_email_514",
+  "attachment_id": "att_email_514_SI_2012d6a2",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_514_BL",
+  "case_id": "case_email_514",
+  "attachment_id": "att_email_514_BL_924711b5",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_515_SI",
+  "case_id": "case_email_515",
+  "attachment_id": "att_email_515_SI_8101beb8",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_515_BL",
+  "case_id": "case_email_515",
+  "attachment_id": "att_email_515_BL_57988629",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_516_SI",
+  "case_id": "case_email_516",
+  "attachment_id": "att_email_516_SI_4e8ea40c",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_516_BL",
+  "case_id": "case_email_516",
+  "attachment_id": "att_email_516_BL_2956a09f",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_517_SI",
+  "case_id": "case_email_517",
+  "attachment_id": "att_email_517_SI_fccbc127",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_517_BL",
+  "case_id": "case_email_517",
+  "attachment_id": "att_email_517_BL_1dbbb937",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_518_SI",
+  "case_id": "case_email_518",
+  "attachment_id": "att_email_518_SI_bfcc296b",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_518_BL",
+  "case_id": "case_email_518",
+  "attachment_id": "att_email_518_BL_f6caf27f",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_519_SI",
+  "case_id": "case_email_519",
+  "attachment_id": "att_email_519_SI_b86a6a1c",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_519_BL",
+  "case_id": "case_email_519",
+  "attachment_id": "att_email_519_BL_320fdcc4",
+  "role": "BL"
+ },
+ {
+  "id": "cd_case_email_520_SI",
+  "case_id": "case_email_520",
+  "attachment_id": "att_email_520_SI_0ac63958",
+  "role": "SI"
+ },
+ {
+  "id": "cd_case_email_520_BL",
+  "case_id": "case_email_520",
+  "attachment_id": "att_email_520_BL_ebfbb966",
+  "role": "BL"
+ }
+]

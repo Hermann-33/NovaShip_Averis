@@ -1,0 +1,318 @@
+"""
+Case actions: assign / share / notify-party / approve / reject / retry /
+complete / batch / policy. Every mutation writes an audit event.
+Human-in-the-loop: AI proposes -> human approves/edits/rejects -> action executes.
+"""
+from __future__ import annotations
+
+import csv
+import io
+import json
+import uuid
+from datetime import datetime
+from typing import Any, Optional
+
+from fastapi import HTTPException
+
+from app.ai.assistant import build_share_message
+from app.ai.summary_draft import build_draft, polish_with_llm
+from app.auth.rbac import has_permission
+from app.contracts.schemas import (
+    EXTERNAL_RECIPIENT_TYPES,
+    ActorType,
+    AssignRequest,
+    BatchRequest,
+    CaseRecord,
+    CaseStatus,
+    DraftDecision,
+    DraftStatus,
+    ErrorCategory,
+    PolicyRecord,
+    RecipientType,
+    ShareRecord,
+    ShareRequest,
+    UserRecord,
+)
+from app.core.policy import merged_policy
+from app.pipeline.orchestrator import Pipeline
+from app.repositories.base import BaseRepository
+
+
+def _id(prefix: str) -> str:
+    return f"{prefix}_{uuid.uuid4().hex[:12]}"
+
+
+class CaseService:
+    def __init__(self, repo: BaseRepository) -> None:
+        self.repo = repo
+        self.pipe = Pipeline(repo)
+
+    # ------------------------------------------------------------ helpers
+    def get(self, case_id: str) -> CaseRecord:
+        case = self.repo.get_case(case_id)
+        if not case:
+            raise HTTPException(404, detail={"error": f"case {case_id} not found", "category": "DATABASE_ERROR"})
+        return case
+
+    def _status(self, case: CaseRecord, status: CaseStatus, user: UserRecord) -> None:
+        before = case.status
+        if before != status:
+            case.status = status
+            self.pipe.audit(case.id, ActorType.USER, user.id, "STATUS_CHANGED", {"status": before.value}, {"status": status.value})
+
+    def policy(self) -> dict[str, Any]:
+        return merged_policy(self.repo.get_active_policy().values)
+
+    # ------------------------------------------------------------ actions
+    def reprocess(self, case_id: str, user: UserRecord, step: str = "all") -> CaseRecord:
+        case = self.get(case_id)
+        email = self.repo.get_email(case.source_email_id)
+        self.pipe.audit(case.id, ActorType.USER, user.id, "RETRY_REQUESTED", after={"step": step})
+        return self.pipe.run(email, actor_id=user.id, force=True)
+
+    def assign(self, case_id: str, req: AssignRequest, user: UserRecord) -> CaseRecord:
+        case = self.get(case_id)
+        if req.user_id and not self.repo.get_user(req.user_id):
+            raise HTTPException(400, detail={"error": f"unknown user {req.user_id}", "category": "AUTH_ERROR"})
+        before = {"assigned_user_id": case.assigned_user_id, "assigned_team_id": case.assigned_team_id}
+        case.assigned_user_id, case.assigned_team_id = req.user_id or case.assigned_user_id, req.team_id or case.assigned_team_id
+        self.pipe.audit(case.id, ActorType.USER, user.id, "ASSIGNED", before, {"assigned_user_id": case.assigned_user_id, "assigned_team_id": case.assigned_team_id, "note": req.note})
+        if case.status in (CaseStatus.CLASSIFIED, CaseStatus.HUMAN_REVIEW, CaseStatus.DRAFT_READY, CaseStatus.MISMATCH_DETECTED, CaseStatus.NO_MISMATCH_DETECTED):
+            self._status(case, CaseStatus.ASSIGNED, user)
+        self.repo.save_case(case)
+        return case
+
+    def generate_draft(self, case_id: str, user: UserRecord, draft_type: Optional[str] = None, use_llm: bool = True) -> CaseRecord:
+        case = self.get(case_id)
+        email = self.repo.get_email(case.source_email_id)
+        draft = build_draft(email, case.classification, case.comparison, case.review_reason, case.si_available, case.bl_available, draft_type=draft_type)
+        if not draft:
+            raise HTTPException(400, detail={"error": "No draft is applicable (informational / spam case). Mark as No Reply Needed.", "category": "LOW_CONFIDENCE"})
+        if use_llm:
+            draft = polish_with_llm(draft, case.comparison)
+        draft.id = _id("draft")
+        draft.version = len(case.drafts) + 1
+        case.drafts.append(draft)
+        self.pipe.audit(case.id, ActorType.AI, "draft_generator", "DRAFT_GENERATED", after={"draft_id": draft.id, "type": draft.draft_type, "to": draft.to, "requested_by": user.id})
+        if case.status in (CaseStatus.MISMATCH_DETECTED, CaseStatus.NO_MISMATCH_DETECTED, CaseStatus.CLASSIFIED):
+            self._status(case, CaseStatus.DRAFT_READY, user)
+        self.repo.save_case(case)
+        return case
+
+    def _draft(self, case: CaseRecord, draft_id: str):
+        d = next((d for d in case.drafts if d.id == draft_id), None)
+        if not d:
+            raise HTTPException(404, detail={"error": f"draft {draft_id} not found", "category": "DATABASE_ERROR"})
+        return d
+
+    def edit_draft(self, case_id: str, dec: DraftDecision, user: UserRecord) -> CaseRecord:
+        case = self.get(case_id)
+        d = self._draft(case, dec.draft_id)
+        before = {"subject": d.subject, "body": d.body}
+        if dec.edited_subject is not None:
+            d.subject = dec.edited_subject
+        if dec.edited_body is not None:
+            d.body = dec.edited_body
+        d.status, d.version = DraftStatus.EDITED, d.version + 1
+        self.pipe.audit(case.id, ActorType.USER, user.id, "DRAFT_EDITED", before, {"subject": d.subject, "body": d.body, "version": d.version, "note": dec.note})
+        self.repo.save_case(case)
+        return case
+
+    def approve_draft(self, case_id: str, dec: DraftDecision, user: UserRecord) -> CaseRecord:
+        """Human approval gate. Approving an EXTERNAL draft requires approve_send; marks SENT via the notifier stub."""
+        case = self.get(case_id)
+        d = self._draft(case, dec.draft_id)
+        if d.requires_external_approval and not has_permission(user, "approve_send"):
+            raise HTTPException(403, detail={"error": "approve_send permission required for external email", "category": "AUTH_ERROR"})
+        if dec.edited_body is not None or dec.edited_subject is not None:
+            self.edit_draft(case_id, dec, user)
+        before = {"status": d.status.value}
+        d.status = DraftStatus.APPROVED
+        self.pipe.audit(case.id, ActorType.USER, user.id, "DRAFT_APPROVED", before, {"status": d.status.value, "to": d.to, "subject": d.subject, "note": dec.note})
+        # notifier: outbound email connector (stub records intent; real send wired via EMAIL_SEND_MODE)
+        d.status = DraftStatus.SENT
+        self.pipe.audit(case.id, ActorType.SYSTEM, "notifier", "NOTIFICATION_SENT", after={"channel": "email", "to": d.to, "subject": d.subject, "draft_id": d.id, "mode": "simulated"})
+        self._status(case, CaseStatus.AWAITING_RESPONSE, user)
+        self.repo.save_case(case)
+        return case
+
+    def reject_draft(self, case_id: str, dec: DraftDecision, user: UserRecord) -> CaseRecord:
+        case = self.get(case_id)
+        d = self._draft(case, dec.draft_id)
+        before = {"status": d.status.value}
+        d.status = DraftStatus.REJECTED
+        self.pipe.audit(case.id, ActorType.USER, user.id, "DRAFT_REJECTED", before, {"status": d.status.value, "note": dec.note})
+        self._status(case, CaseStatus.HUMAN_REVIEW, user)
+        self.repo.save_case(case)
+        return case
+
+    def mark_no_action(self, case_id: str, user: UserRecord) -> CaseRecord:
+        case = self.get(case_id)
+        case.action_required = False
+        self.pipe.audit(case.id, ActorType.USER, user.id, "MARKED_NO_ACTION", after={"action_required": False})
+        self._status(case, CaseStatus.NO_ACTION_INFO, user)
+        self.repo.save_case(case)
+        return case
+
+    def complete(self, case_id: str, user: UserRecord, note: Optional[str] = None) -> CaseRecord:
+        case = self.get(case_id)
+        self.pipe.audit(case.id, ActorType.USER, user.id, "COMPLETED", after={"note": note})
+        self._status(case, CaseStatus.COMPLETED, user)
+        self.repo.save_case(case)
+        return case
+
+    def request_review(self, case_id: str, user: UserRecord, note: Optional[str] = None) -> CaseRecord:
+        case = self.get(case_id)
+        self.pipe.audit(case.id, ActorType.USER, user.id, "REVIEW_REQUESTED", after={"note": note})
+        self._status(case, CaseStatus.HUMAN_REVIEW, user)
+        self.repo.save_case(case)
+        return case
+
+    def begin_notify_party(self, case_id: str, user: UserRecord) -> dict[str, Any]:
+        """Step 1-3 of the Notify Party flow: show SI/BL values + authorised recipient choices."""
+        case = self.get(case_id)
+        cmp = case.comparison
+        np_field = next((f for f in cmp.fields if f.field == "notify_party"), None) if cmp else None
+        self._status(case, CaseStatus.NOTIFY_PARTY, user)
+        self.pipe.audit(case.id, ActorType.USER, user.id, "NOTIFY_PARTY_STARTED")
+        self.repo.save_case(case)
+        return {
+            "case_id": case.id,
+            "notify_party": None if not np_field else {"si": np_field.si_original, "bl": np_field.bl_original, "result": np_field.result.value, "match": np_field.result.value == "MATCH"},
+            "recipients": self.recipient_options(user),
+            "mismatch_fields": cmp.mismatch_fields if cmp else [],
+            "note": "The extracted Notify Party is a comparison value. Sending requires selecting an authorised recipient and human confirmation.",
+        }
+
+    def recipient_options(self, user: UserRecord) -> list[dict[str, Any]]:
+        out = []
+        for u in self.repo.list_users():
+            rtype = RecipientType.SUPERVISOR if "SUPERVISOR" in [r.value for r in u.roles] else RecipientType.OPERATIONS_STAFF
+            out.append({"id": u.id, "label": f"{u.display_name} <{u.email}>", "recipient_type": rtype.value, "external": False, "roles": [r.value for r in u.roles], "allowed": has_permission(user, "share_internal")})
+        for t in getattr(self.repo, "teams", []):
+            out.append({"id": t["id"], "label": t["name"], "recipient_type": RecipientType.TEAM.value, "external": False, "roles": ["TEAM"], "allowed": has_permission(user, "share_internal")})
+        for p in self.repo.list_parties():
+            out.append({"id": p.id, "label": f"{p.party_name} - {p.name} <{p.email}>", "recipient_type": RecipientType.NOTIFY_PARTY_CONTACT.value, "external": True,
+                        "roles": ["APPROVED_PARTY" if p.approved else "UNAPPROVED_PARTY"], "allowed": has_permission(user, "notify_external") and p.approved})
+        return out
+
+    def share(self, case_id: str, req: ShareRequest, user: UserRecord) -> dict[str, Any]:
+        """Steps 4-9: build preview -> (confirm) -> send/share -> audit -> status."""
+        case = self.get(case_id)
+        email = self.repo.get_email(case.source_email_id)
+        is_external = req.recipient_type in EXTERNAL_RECIPIENT_TYPES
+        perm = "notify_external" if is_external else "share_internal"
+        if not has_permission(user, perm):
+            self.pipe.audit(case.id, ActorType.USER, user.id, "SHARE_DENIED", after={"reason": f"missing permission {perm}", "recipient_type": req.recipient_type.value})
+            raise HTTPException(403, detail={"error": f"permission '{perm}' required to share with {req.recipient_type.value}", "category": "AUTH_ERROR"})
+        if is_external:
+            party = self.repo.get_party(req.recipient_party_id or "")
+            if not party:
+                raise HTTPException(400, detail={"error": "recipient_party_id required for external recipients", "category": "NOTIFICATION_ERROR"})
+            if not party.approved:
+                raise HTTPException(403, detail={"error": f"party {party.party_name} is not an approved Notify Party contact", "category": "AUTH_ERROR"})
+            label = f"{party.party_name} - {party.name} <{party.email}>"
+        elif req.recipient_type == RecipientType.TEAM:
+            team = next((t for t in getattr(self.repo, "teams", []) if t["id"] == req.recipient_user_id), None)
+            label = team["name"] if team else (req.recipient_user_id or "team")
+        else:
+            u = self.repo.get_user(req.recipient_user_id or "")
+            if not u:
+                raise HTTPException(400, detail={"error": "recipient_user_id required for internal recipients", "category": "NOTIFICATION_ERROR"})
+            label = f"{u.display_name} <{u.email}>"
+
+        message, payload = build_share_message(case, email, label, is_external, req.include_fields, req.due_date)
+        if req.message:
+            message = req.message.strip() + "\n\n" + message
+        share = ShareRecord(id=_id("share"), case_id=case.id, shared_by=user.id, recipient_type=req.recipient_type, recipient_user_id=req.recipient_user_id,
+                            recipient_party_id=req.recipient_party_id, recipient_label=label, is_external=is_external, message=message, payload_preview=payload, due_date=req.due_date)
+        policy = self.policy()
+        needs_confirm = is_external and policy["communication"]["external_drafts_require_confirmation"]
+        if req.preview_only or (needs_confirm and not req.confirm_external):
+            share.status = "PENDING_CONFIRMATION"
+            self.repo.save_share(share)
+            self.pipe.audit(case.id, ActorType.USER, user.id, "SHARE_CREATED", after={"share_id": share.id, "recipient_label": label, "external": is_external, "status": share.status})
+            return {"share": share.model_dump(mode="json"), "requires_confirmation": True, "preview": message, "payload": payload}
+        share.status, share.sent_at = "SENT", datetime.utcnow()
+        self.repo.save_share(share)
+        if req.recipient_user_id and req.recipient_user_id not in case.shared_with:
+            case.shared_with.append(req.recipient_user_id)
+        if req.recipient_party_id and req.recipient_party_id not in case.shared_with:
+            case.shared_with.append(req.recipient_party_id)
+        self.pipe.audit(case.id, ActorType.USER, user.id, "NOTIFY_PARTY_SENT" if is_external else "SHARE_SENT",
+                        after={"share_id": share.id, "recipient_label": label, "external": is_external, "fields": [f["field"] for f in payload["fields"]], "due_date": req.due_date})
+        self._status(case, CaseStatus.AWAITING_RESPONSE if is_external else CaseStatus.ASSIGNED, user)
+        self.repo.save_case(case)
+        return {"share": share.model_dump(mode="json"), "requires_confirmation": False, "preview": message, "payload": payload}
+
+    def confirm_share(self, case_id: str, share_id: str, user: UserRecord) -> dict[str, Any]:
+        share = self.repo.get_share(share_id)
+        if not share or share.case_id != case_id:
+            raise HTTPException(404, detail={"error": "share not found", "category": "DATABASE_ERROR"})
+        req = ShareRequest(recipient_type=share.recipient_type, recipient_user_id=share.recipient_user_id, recipient_party_id=share.recipient_party_id,
+                           due_date=share.due_date, include_fields=[f["field"] for f in share.payload_preview.get("fields", [])], confirm_external=True)
+        return self.share(case_id, req, user)
+
+    def acknowledge_share(self, share_id: str, user: UserRecord, response: Optional[str]) -> ShareRecord:
+        share = self.repo.get_share(share_id)
+        if not share:
+            raise HTTPException(404, detail={"error": "share not found", "category": "DATABASE_ERROR"})
+        share.viewed_at = share.viewed_at or datetime.utcnow()
+        share.acknowledged_at, share.response, share.status = datetime.utcnow(), response, "ACKNOWLEDGED"
+        self.repo.save_share(share)
+        self.pipe.audit(share.case_id, ActorType.USER, user.id, "SHARE_ACKNOWLEDGED", after={"share_id": share.id, "response": response})
+        return share
+
+    # ------------------------------------------------------------ batch
+    def batch(self, req: BatchRequest, user: UserRecord) -> dict[str, Any]:
+        results: dict[str, Any] = {}
+        if req.action in ("draft", "request_review") and not req.confirm:
+            return {"requires_confirmation": True, "action": req.action, "count": len(req.case_ids), "note": "Batch drafts are generated but never sent; confirm to proceed."}
+        for cid in req.case_ids:
+            try:
+                if req.action == "classify" or req.action == "compare":
+                    c = self.reprocess(cid, user)
+                elif req.action == "mark_no_action":
+                    c = self.mark_no_action(cid, user)
+                elif req.action == "assign":
+                    c = self.assign(cid, AssignRequest(**req.params), user)
+                elif req.action == "draft":
+                    c = self.generate_draft(cid, user, use_llm=False)
+                elif req.action == "archive":
+                    c = self.complete(cid, user, note="batch archive")
+                elif req.action == "request_review":
+                    c = self.request_review(cid, user, note=req.params.get("note"))
+                elif req.action == "export":
+                    c = self.get(cid)
+                else:
+                    raise HTTPException(400, detail={"error": f"unknown batch action {req.action}"})
+                results[cid] = {"ok": True, "status": c.status.value}
+            except HTTPException as exc:
+                results[cid] = {"ok": False, "error": exc.detail}
+        self.pipe.audit(None, ActorType.USER, user.id, "BATCH_ACTION", after={"action": req.action, "count": len(req.case_ids), "ok": sum(1 for r in results.values() if r["ok"])})
+        out: dict[str, Any] = {"requires_confirmation": False, "results": results}
+        if req.action == "export":
+            out["csv"] = self.export_csv(req.case_ids)
+        return out
+
+    def export_csv(self, case_ids: Optional[list[str]] = None) -> str:
+        buf = io.StringIO()
+        w = csv.writer(buf)
+        w.writerow(["case_id", "email_id", "sender", "subject", "intent", "category", "security", "priority", "status", "comparison_status", "mismatch_count", "mismatch_fields", "review_reason", "confidence", "assigned_user_id", "updated_at"])
+        for c in self.repo.list_cases():
+            if case_ids and c.id not in case_ids:
+                continue
+            e = self.repo.get_email(c.source_email_id)
+            w.writerow([c.id, c.source_email_id, e.sender if e else "", e.subject if e else "", c.intent.value, c.hackathon_category.value, c.security.outcome.value, c.priority.value,
+                        c.status.value, c.comparison_status.value if c.comparison_status else "", c.mismatch_count, "|".join(c.comparison.mismatch_fields) if c.comparison else "",
+                        c.review_reason.value if c.review_reason else "", c.confidence, c.assigned_user_id or "", c.updated_at.isoformat()])
+        return buf.getvalue()
+
+    # ------------------------------------------------------------ policy
+    def update_policy(self, values: dict[str, Any], user: UserRecord, note: str) -> PolicyRecord:
+        current = self.repo.get_active_policy()
+        n = len(self.repo.list_policy_versions()) + 1
+        new = PolicyRecord(id=f"pol_v{n}", version=f"v{n}", name=current.name, values=merged_policy({**current.values, **values}), updated_by=user.id, updated_at=datetime.utcnow(), change_note=note)
+        self.repo.save_policy_version(new)
+        self.pipe.audit(None, ActorType.USER, user.id, "POLICY_UPDATED", {"version": current.version}, {"version": new.version, "note": note, "changed_sections": list(values.keys())}, policy_version=new.version)
+        return new
