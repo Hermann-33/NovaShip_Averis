@@ -25,17 +25,18 @@ const ROLES = [
 
 export default function WelcomePage() {
   return (
-    <div className="space-y-12 pb-8">
+    <div className="space-y-10 pb-8">
       <section className="grid items-center gap-8 pt-6 md:grid-cols-[1.1fr_1fr]">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight text-ink-900 md:text-4xl">Every email becomes a case. Every verdict shows its evidence.</h1>
-          <p className="mt-3 max-w-[60ch] text-base leading-relaxed text-ink-600">NovaShip Averis reads the shared shipping inbox, checks each Draft Bill of Lading against its Shipping Instruction on seven fields, and asks a person before anything leaves the mailbox.</p>
+          <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-accent-fg transition hover:-translate-x-1 hover:text-accent">← <span>Back to inbox</span></Link>
+          <h1 className="dashboard-number mt-6 text-5xl font-bold tracking-[-.04em] text-[#583521] md:text-6xl">Every email becomes a case. Every verdict shows its evidence.</h1>
+          <p className="mt-4 max-w-3xl text-lg font-semibold leading-relaxed text-[#7d6251]">NovaShip Averis reads the shared shipping inbox, checks each Draft Bill of Lading against its Shipping Instruction on seven fields, and asks a person before anything leaves the mailbox.</p>
           <div className="mt-5 flex flex-wrap gap-2">
             <Link href="/" className="rounded-xl bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-accent-hover active:scale-[0.98]">Open the inbox</Link>
             <Link href="/agent" className="rounded-xl border border-ink-200 bg-white px-4 py-2 text-sm font-medium text-ink-800 transition hover:bg-ink-50 active:scale-[0.98]">See how the agent works</Link>
           </div>
         </div>
-        <div className="rounded-xl border border-ink-200 bg-white p-5 shadow-sm">
+        <div className="rounded-2xl border border-orange-100 bg-[#fffdf9] p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md">
           <div className="text-sm font-semibold text-ink-800">What a finished check looks like</div>
           <div className="mt-3 space-y-2 text-sm">
             {[["Shipper", "match"], ["Consignee", "match"], ["Notify Party", "match"], ["Port of Loading", "match"], ["Port of Discharge", "match"], ["Container Count", "mismatch"], ["Gross Weight (kg)", "match"]].map(([f, r]) => (
@@ -52,7 +53,7 @@ export default function WelcomePage() {
         <h2 className="text-xl font-semibold text-ink-900">Six steps for an operator</h2>
         <ol className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {STEPS.map((s, i) => (
-            <li key={s.title} className="flex flex-col rounded-xl border border-ink-200 bg-white p-4">
+            <li key={s.title} className={`flex min-h-[190px] flex-col rounded-2xl border border-orange-100 p-4 shadow-card transition duration-200 hover:-translate-y-1 hover:scale-[1.015] hover:border-orange-200 hover:shadow-glow ${i % 3 === 0 ? "bg-[radial-gradient(circle_at_85%_85%,rgba(230,104,19,.28),transparent_46%),linear-gradient(135deg,#fffdfb_15%,#f9eee6)]" : i % 3 === 1 ? "bg-[radial-gradient(circle_at_82%_16%,rgba(247,139,54,.25),transparent_47%),linear-gradient(135deg,#fffdfb_15%,#fff2e5)]" : "bg-[radial-gradient(circle_at_80%_85%,rgba(255,154,58,.34),transparent_47%),linear-gradient(135deg,#fffdfb_15%,#fff4e7)]"}`}>
               <div className="text-xs text-ink-500">Step {i + 1}</div>
               <div className="mt-1 font-semibold text-ink-900">{s.title}</div>
               <p className="mt-1 flex-1 text-sm leading-relaxed text-ink-600">{s.body}</p>
@@ -62,19 +63,19 @@ export default function WelcomePage() {
         </ol>
       </section>
 
-      <section className="rounded-xl bg-gradient-to-br from-accent to-[#f97316] p-6 text-white shadow-glow">
-        <h2 className="text-xl font-semibold">How the AI is kept honest</h2>
-        <div className="mt-4 grid gap-6 md:grid-cols-3">
-          <div><div className="font-semibold">AI reads and drafts</div><p className="mt-1 text-sm text-orange-50">Security agent, intent, document type, field extraction, summary, reply draft, translation and the case assistant.</p></div>
-          <div><div className="font-semibold">Code decides</div><p className="mt-1 text-sm text-orange-50">The seven-field comparison is a deterministic function with unit tests. A model can call it as a tool but can never overrule it.</p></div>
-          <div><div className="font-semibold">People approve</div><p className="mt-1 text-sm text-orange-50">The LangGraph pauses at human review. External email and Notify Party messages need a Supervisor. Everything is written to an append-only audit log.</p></div>
+      <section className="rounded-2xl border border-orange-200 bg-orange-50 p-6 shadow-sm">
+        <h2 className="text-xl font-semibold text-[#6c432c]">How the AI is kept honest</h2>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="rounded-xl border border-orange-200 bg-white/80 p-4 text-[#573929] transition duration-200 hover:-translate-y-1 hover:border-orange-300 hover:bg-white hover:shadow-md"><div className="font-semibold">AI reads and drafts</div><p className="mt-1 text-sm leading-relaxed text-[#765b4a]">Security agent, intent, document type, field extraction, summary, reply draft, translation and the case assistant.</p></div>
+          <div className="rounded-xl border border-orange-200 bg-white/80 p-4 text-[#573929] transition duration-200 hover:-translate-y-1 hover:border-orange-300 hover:bg-white hover:shadow-md"><div className="font-semibold">Code decides</div><p className="mt-1 text-sm leading-relaxed text-[#765b4a]">The seven-field comparison is a deterministic function with unit tests. A model can call it as a tool but can never overrule it.</p></div>
+          <div className="rounded-xl border border-orange-200 bg-white/80 p-4 text-[#573929] transition duration-200 hover:-translate-y-1 hover:border-orange-300 hover:bg-white hover:shadow-md"><div className="font-semibold">People approve</div><p className="mt-1 text-sm leading-relaxed text-[#765b4a]">The LangGraph pauses at human review. External email and Notify Party messages need a Supervisor. Everything is written to an append-only audit log.</p></div>
         </div>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold text-ink-900">Who can do what</h2>
+        <h2 className="text-2xl font-bold text-accent">Who can do what</h2>
         <p className="mt-1 max-w-[65ch] text-sm text-ink-600">Switch the acting user in the header to try each role. Permissions are enforced by the API, not just hidden in the UI.</p>
-        <div className="mt-4 overflow-x-auto rounded-xl border border-ink-200 bg-white">
+        <div className="mt-4 overflow-x-auto rounded-2xl border border-orange-100 bg-white shadow-sm">
           <table className="w-full min-w-[640px] text-sm">
             <thead className="bg-ink-50 text-left text-xs uppercase tracking-wide text-ink-500"><tr><th className="px-4 py-2">Role</th><th className="px-4 py-2">Demo users</th><th className="px-4 py-2">Can</th></tr></thead>
             <tbody>{ROLES.map(([r, u, c]) => <tr key={r} className="border-t border-ink-100"><td className="px-4 py-2 font-medium text-ink-900">{r}</td><td className="px-4 py-2 text-ink-600">{u}</td><td className="px-4 py-2 text-ink-600">{c}</td></tr>)}</tbody>
@@ -83,7 +84,7 @@ export default function WelcomePage() {
       </section>
 
       <section className="grid gap-4 md:grid-cols-2">
-        <div className="rounded-xl border border-ink-200 bg-white p-5">
+        <div className="rounded-2xl border border-orange-100 bg-[#fffdf9] p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md">
           <h2 className="text-lg font-semibold text-ink-900">Pages</h2>
           <ul className="mt-2 space-y-1.5 text-sm text-ink-700">
             <li><Link className="text-accent hover:underline" href="/">Inbox</Link>: metrics, case table, filters, batch actions.</li>
@@ -94,7 +95,7 @@ export default function WelcomePage() {
             <li><Link className="text-accent hover:underline" href="/policies">Policies</Link>: versioned thresholds and rules (Admin edits).</li>
           </ul>
         </div>
-        <div className="rounded-xl border border-ink-200 bg-white p-5">
+        <div className="rounded-2xl border border-orange-100 bg-[#fffdf9] p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md">
           <h2 className="text-lg font-semibold text-ink-900">Try these cases</h2>
           <ul className="mt-2 space-y-1.5 text-sm text-ink-700">
             <li><Link className="font-mono text-accent hover:underline" href="/cases/case_email_004">case_email_004</Link>: Consignee and Notify Party differ.</li>

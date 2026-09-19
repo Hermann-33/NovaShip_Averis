@@ -18,13 +18,14 @@ export default function AuditPage() {
   }, [action, actor, limit]);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-5">
       <header>
-        <h1 className="text-xl font-semibold text-ink-900">Audit history</h1>
-        <p className="max-w-[70ch] text-sm text-ink-600">Every classification, field result, draft, approval, share and error across all cases. Append-only: the database trigger rejects updates and deletes.</p>
+        <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-accent-fg transition hover:-translate-x-1 hover:text-accent">← <span>Back to inbox</span></Link>
+        <h1 className="dashboard-number mt-6 text-5xl font-bold tracking-[-.04em] text-[#583521] sm:text-6xl">Audit history</h1>
+        <p className="mt-3 max-w-3xl text-lg font-semibold leading-relaxed text-[#7d6251]">Every classification, field result, draft, approval, share and error across all cases. Append-only: the database trigger rejects updates and deletes.</p>
       </header>
-      <div className="flex flex-wrap items-center gap-2 text-xs">
-        <input placeholder="Filter by action, e.g. MISMATCH, SHARE, POLICY" value={action} onChange={(e) => setAction(e.target.value.toUpperCase())} className="w-72 rounded-md border border-ink-200 px-2 py-1.5" />
+      <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-orange-100 bg-[#fffaf5] p-3 text-xs shadow-sm">
+        <input placeholder="Filter by action, e.g. MISMATCH, SHARE, POLICY" value={action} onChange={(e) => setAction(e.target.value.toUpperCase())} className="w-72 rounded-md border border-orange-200 bg-white px-2 py-1.5" />
         {["", "USER", "AI", "SYSTEM"].map((a) => <Button key={a || "all"} kind={actor === a ? "primary" : "ghost"} onClick={() => setActor(a)}>{a || "All actors"}</Button>)}
         <select value={limit} onChange={(e) => setLimit(Number(e.target.value))} className="rounded-md border border-ink-200 px-2 py-1.5">{[100, 200, 500, 1000].map((n) => <option key={n} value={n}>last {n}</option>)}</select>
       </div>
@@ -32,11 +33,11 @@ export default function AuditPage() {
         : events === null ? <div className="space-y-2" aria-busy>{[0, 1, 2, 3, 4, 5].map((i) => <div key={i} className="h-8 animate-pulse rounded bg-ink-100" />)}</div>
         : events.length === 0 ? <Empty text="No events match." />
         : (
-          <div className="overflow-auto rounded-xl border border-ink-200 bg-white">
+          <div className="overflow-auto rounded-2xl border border-orange-100 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-orange-300 hover:shadow-md">
             <table className="w-full min-w-[1000px] text-xs">
               <thead className="bg-ink-50 text-[11px] uppercase text-ink-500"><tr><th className="px-2 py-1.5 text-left">Time</th><th className="px-2 text-left">Case</th><th className="px-2 text-left">Actor</th><th className="px-2 text-left">Action</th><th className="px-2 text-left">After</th><th className="px-2 text-left">Policy</th></tr></thead>
               <tbody>{events.map((e) => (
-                <tr key={e.event_id} className="border-t border-ink-100 align-top">
+                <tr key={e.event_id} className="border-t border-ink-100 align-top transition hover:bg-[#fffaf5]">
                   <td className="whitespace-nowrap px-2 py-1.5 font-mono text-[10px] text-ink-500">{fmtDate(e.timestamp)}</td>
                   <td className="px-2 py-1.5 font-mono text-[10px]">{e.case_id ? <Link href={`/cases/${e.case_id}?tab=audit`} className="text-accent hover:underline">{e.case_id.replace("case_", "")}</Link> : "-"}</td>
                   <td className="px-2 py-1.5"><Badge className={{ USER: "bg-accent-bg text-accent-fg", AI: "bg-accent-soft text-accent-fg", SYSTEM: "bg-ink-100 text-ink-700" }[e.actor_type as string]}>{e.actor_type}</Badge> <span className="text-[10px] text-ink-500">{e.actor_id}</span></td>
