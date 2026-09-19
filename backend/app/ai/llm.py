@@ -1,8 +1,8 @@
 """
 LLM provider abstraction.
 
-    LLM_PROVIDER = anthropic | openai | none      (default: none)
-    ANTHROPIC_API_KEY / OPENAI_API_KEY
+    LLM_PROVIDER = openai | none      (default: none)
+    OPENAI_API_KEY
     LLM_MODEL (optional override)
 
 With `none` every AI node falls back to deterministic rules so the whole
@@ -36,15 +36,7 @@ class LLMClient:
         self.provider = os.environ.get("LLM_PROVIDER", "none").lower().strip()
         self.model = os.environ.get("LLM_MODEL", "")
         self._client = None
-        if self.provider == "anthropic" and os.environ.get("ANTHROPIC_API_KEY"):
-            try:
-                import anthropic
-
-                self._client = anthropic.Anthropic()
-                self.model = self.model or "claude-sonnet-5"
-            except Exception:
-                self.provider = "none"
-        elif self.provider == "openai" and os.environ.get("OPENAI_API_KEY"):
+        if self.provider == "openai" and os.environ.get("OPENAI_API_KEY"):
             try:
                 from openai import OpenAI
 
@@ -64,25 +56,14 @@ class LLMClient:
             return None
         t0 = time.time()
         try:
-            if self.provider == "anthropic":
-                resp = self._client.messages.create(
-                    model=self.model,
-                    max_tokens=max_tokens,
-                    temperature=temperature,
-                    system=system,
-                    messages=[{"role": "user", "content": user}],
-                )
-                text = "".join(getattr(b, "text", "") for b in resp.content)
-                usage = {"input_tokens": resp.usage.input_tokens, "output_tokens": resp.usage.output_tokens}
-            else:
-                resp = self._client.chat.completions.create(
-                    model=self.model,
-                    temperature=temperature,
-                    max_tokens=max_tokens,
-                    messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
-                )
-                text = resp.choices[0].message.content or ""
-                usage = {"input_tokens": resp.usage.prompt_tokens, "output_tokens": resp.usage.completion_tokens}
+            resp = self._client.chat.completions.create(
+                model=self.model,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+            )
+            text = resp.choices[0].message.content or ""
+            usage = {"input_tokens": resp.usage.prompt_tokens, "output_tokens": resp.usage.completion_tokens}
         except Exception as exc:  # network / auth failure -> graceful fallback
             return LLMResult(text=f"__LLM_ERROR__ {type(exc).__name__}", provider=self.provider, model=self.model,
                              latency_ms=int((time.time() - t0) * 1000), usage={})

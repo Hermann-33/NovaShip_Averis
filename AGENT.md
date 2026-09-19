@@ -31,7 +31,7 @@ Both call the same deterministic functions. The LangGraph version is the "automa
 | `backend/app/ai/summary_draft.py` | nodes 8, 9 | case summary + reply draft from the verified result. | optional polish, guarded (any dropped SI/BL value rejects the polish) |
 | `backend/app/ai/assistant.py` | Ask AI | grounded Q&A, translation, share message, guardrails. | free-form questions; post-checked |
 | `backend/app/ai/anomaly.py` | signals | unusual-behaviour signals with evidence. | no |
-| `backend/app/ai/llm.py` | provider | `LLM_PROVIDER=anthropic / openai / none`. Falls back to `none` silently when a key is missing. | |
+| `backend/app/ai/llm.py` | provider | `LLM_PROVIDER=openai / none`. Falls back to `none` silently when a key is missing. | |
 
 ### LangGraph layer (`backend/app/agents/`)
 | File | Reference equivalent | What it does |
@@ -75,7 +75,7 @@ START -> security_precheck -> security_agent
 * Checkpointer: `MemorySaver` by default (state lives while the API process runs). For production set `LANGGRAPH_CHECKPOINT=postgres` and `LANGGRAPH_PG_URL=postgresql://...` (Supabase connection string) and install `pip install langgraph-checkpoint-postgres "psycopg[binary]"`; paused graphs then survive restarts.
 * Mermaid of the compiled graph: `GET /agent/graph` or the AI agent page.
 
-**LangChain** is used for (1) the `@tool` wrappers in `tools.py`, (2) the embedding classes in `rag.py` (`langchain_google_genai.GoogleGenerativeAIEmbeddings`, `langchain_openai.OpenAIEmbeddings`). The chat calls themselves go through `app/ai/llm.py` (Anthropic / OpenAI SDKs) so the same code works with or without LangChain.
+**LangChain** is used for (1) the `@tool` wrappers in `tools.py`, (2) the embedding classes in `rag.py` (`langchain_google_genai.GoogleGenerativeAIEmbeddings`, `langchain_openai.OpenAIEmbeddings`). The chat calls themselves go through `app/ai/llm.py` (OpenAI SDK) so the same code works with or without LangChain.
 
 ### The security agent
 `nodes.security_agent` reads the deterministic signals plus the email excerpt and asks the LLM (prompt `SECURITY_AGENT_PROMPT`) for `outcome, confidence, reasoning, recommended_action`. Guard: the agent may only **escalate** (SAFE -> SUSPICIOUS -> SPAM -> SECURITY_REVIEW), never downgrade a rule-based verdict. Without an LLM key it returns the rule verdict with `decided_by: rule`. Everything the agent flags is listed on the Security page (`GET /security/queue`).
@@ -117,8 +117,7 @@ Order of operations for P3: run `0001_schema.sql`, `0002_rls.sql`, `0003_vector.
 
 | Variable | Get it at | Unlocks |
 |---|---|---|
-| `LLM_PROVIDER=anthropic` + `ANTHROPIC_API_KEY=sk-ant-api03-...` | console.anthropic.com -> API Keys | security agent reasoning, intent tie-break, extraction fallback, draft polish, free-form Ask AI, translation |
-| `LLM_PROVIDER=openai` + `OPENAI_API_KEY=sk-proj-...` | platform.openai.com -> API keys | same, with GPT models (`LLM_MODEL=gpt-4o-mini` default) |
+| `LLM_PROVIDER=openai` + `OPENAI_API_KEY=sk-proj-...` | platform.openai.com -> API keys | security agent reasoning, intent tie-break, extraction fallback, draft polish, free-form Ask AI, translation (`LLM_MODEL=gpt-4o-mini` default) |
 | `EMBEDDING_PROVIDER=gemini` + `GOOGLE_API_KEY=AIzaSy...` | aistudio.google.com/app/apikey | Gemini `text-embedding-004` for RAG |
 | `EMBEDDING_PROVIDER=openai` | (uses `OPENAI_API_KEY`) | OpenAI embeddings for RAG |
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET` | Supabase -> Project Settings -> API | persistence, RLS, storage, JWT auth |
@@ -178,7 +177,7 @@ Same commands with `REPO_BACKEND=supabase`. Then check rows: `select count(*) fr
 `EMAIL_PROVIDER=graph` + `MS_*` set. Send a test email with an SI and a Draft BL attached to the shared mailbox, then `POST /connectors/poll?limit=5`. Expect a new case with the right verdict; posting again returns `duplicates_skipped: 1`. Approving a draft with `EMAIL_SEND_MODE=graph` sends through Graph `sendMail` (default `simulate` just records `NOTIFICATION_SENT`).
 
 ### D. After LLM / embedding keys
-`GET /health` log shows `llm=anthropic`; `GET /rag/info` shows the provider; run `case_email_004` again: `security_agent.decided_by = llm`, Ask AI free-form questions get model answers with citations. The scoreboard must still be 1.0 (`python scripts/run_bundle.py`), because the verdict is deterministic.
+`GET /health` log shows `llm=openai`; `GET /rag/info` shows the provider; run `case_email_004` again: `security_agent.decided_by = llm`, Ask AI free-form questions get model answers with citations. The scoreboard must still be 1.0 (`python scripts/run_bundle.py`), because the verdict is deterministic.
 
 ### E. Demo test for P1 (AI) and P4 (frontend)
 P1: open `/agent`, run `case_email_004`, show the trace (extractor confidence, comparator output), then `/verification` for the seven-field statistics and label synonyms column. P4: open `/` filter Mismatch = yes, open the case, seven-field card, evidence, drafts, Collaboration (Notify Party preview + confirm), Audit. Full script in `docs/DEMO_SCRIPT.md`.

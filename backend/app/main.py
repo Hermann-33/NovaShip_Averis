@@ -9,6 +9,13 @@ from __future__ import annotations
 import logging
 import os
 import time
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Direct local runs start in backend/, while the shared environment file lives
+# at the repository root. Existing process/container variables keep precedence.
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware

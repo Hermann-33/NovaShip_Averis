@@ -133,7 +133,7 @@ The extracted **Notify Party is a comparison value only**. Sharing requires an e
 |---|---|---|
 | Frontend | **Next.js 14 (App Router) · React 18 · TypeScript · Tailwind** | fast operator UI, static + dynamic routes, Vercel-native |
 | Backend | **FastAPI · Pydantic v2** | typed contracts, OpenAPI docs for free, async-ready |
-| AI orchestration | LangGraph-style node pipeline (`pipeline/orchestrator.py`); **Anthropic Claude / OpenAI** optional via `LLM_PROVIDER` | deterministic business logic stays outside the LLM; runs fully offline with rules |
+| AI orchestration | LangGraph-style node pipeline (`pipeline/orchestrator.py`); **OpenAI** optional via `LLM_PROVIDER` | deterministic business logic stays outside the LLM; runs fully offline with rules |
 | Document parsing | `pypdf`, `python-docx`, `openpyxl`, optional `pytesseract` OCR | text-layer extraction; image-only PDFs flagged, not guessed |
 | Database | **Supabase (PostgreSQL)** — 24 tables, RLS, append-only audit trigger, private `documents` bucket with signed URLs | tenant-aware persistence, auth, storage in one place |
 | Persistence abstraction | `MemoryRepository` (fixtures/tests/offline) ↔ `SupabaseRepository` (prod) selected by `REPO_BACKEND` | Person 1/2/4 never wait on the database |
@@ -235,7 +235,7 @@ python scripts/run_bundle.py              # writes ../submission.json, prints FI
 # or everything in Docker
 docker compose up --build
 ```
-Switch users in the header (Operations · Supervisor · Admin · Auditor) to see RBAC in action. Go live: set `REPO_BACKEND=supabase` + `SUPABASE_*` (run the two migrations, then `python -m app.seed.make_seed --push`), and/or `LLM_PROVIDER=anthropic` + `ANTHROPIC_API_KEY`.
+Switch users in the header (Operations · Supervisor · Admin · Auditor) to see RBAC in action. Go live: set `REPO_BACKEND=supabase` + `SUPABASE_*` (run the two migrations, then `python -m app.seed.make_seed --push`), and/or `LLM_PROVIDER=openai` + `OPENAI_API_KEY`.
 
 ## 10. User Feedback and Impact Metrics
 
