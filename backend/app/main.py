@@ -24,7 +24,7 @@ from fastapi.responses import JSONResponse
 from app.api.agent_routes import router as agent_router
 from app.api.auth_routes import router as auth_router, seed_demo_credentials
 from app.api.routes import router
-from app.auth.accounts import validate_local_credentials, validate_session_configuration
+from app.auth.accounts import validate_session_configuration
 from app.config import auth_mode, cors_allowed_origins, get_repo
 
 logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO"), format='{"t":"%(asctime)s","lvl":"%(levelname)s","msg":"%(message)s"}')
@@ -58,7 +58,6 @@ def startup() -> None:
     auth_mode()
     validate_session_configuration()
     repo = get_repo()
-    validate_local_credentials(repo)
     seeded = seed_demo_credentials() if auth_mode() == "demo" else 0
     log.info("repository=%s cases=%d llm=%s demo_credentials_seeded=%d", type(repo).__name__, len(repo.list_cases()), os.environ.get("LLM_PROVIDER", "none"), seeded)
 
