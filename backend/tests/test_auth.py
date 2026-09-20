@@ -1,13 +1,18 @@
 """Login / register / logout: session tokens, RBAC through sessions, audit of auth events."""
 import os
 
+import pytest
+
 from fastapi.testclient import TestClient
 
 os.environ.setdefault("REPO_BACKEND", "memory")
 os.environ["AUTO_SEED"] = "0"
 os.environ["LLM_PROVIDER"] = "none"
 
-from app.auth.accounts import DEMO_PASSWORD, hash_password, verify_password  # noqa: E402
+from app.auth.accounts import DEMO_PASSWORD, hash_password, validate_local_credentials, verify_password  # noqa: E402
+from app.config import ConfigurationError  # noqa: E402
+from app.contracts.schemas import Role, UserRecord  # noqa: E402
+from app.repositories.memory import MemoryRepository  # noqa: E402
 from app.main import app  # noqa: E402
 
 client = TestClient(app)
@@ -89,3 +94,17 @@ def test_register_creates_least_privilege_account():
     again = _login("new.user@aprilasia.com", "Secret123!")
     assert again.status_code == 200 and again.json()["user"]["id"] == u["id"]
     assert client.get("/cases", headers=_bearer(again.json()["token"])).status_code == 200
+
+
+def test_local_auth_rejects_demo_credentials_and_accepts_rotated_password(monkeypatch):
+    repo = MemoryRepository()
+    user = UserRecord(id="u_admin_prod", email="admin@example.com", display_name="Admin", roles=[Role.ADMIN])
+    repo.save_user(user)
+    monkeypatch.setenv("AUTH_MODE", "local")
+
+    repo.set_password_hash(user.id, hash_password("novaship123"))
+    with pytest.raises(ConfigurationError, match="shared demo credentials"):
+        validate_local_credentials(repo)
+
+    repo.set_password_hash(user.id, hash_password("A-unique-production-password-2026!"))
+    validate_local_credentials(repo)

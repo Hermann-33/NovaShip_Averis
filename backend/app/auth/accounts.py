@@ -27,6 +27,7 @@ MIN_PASSWORD_LENGTH = 8
 
 _PBKDF2_ROUNDS = 120_000
 _DEMO_SESSION_SECRET = "novaship-dev-session-secret-change-me"
+_DEFAULT_DEMO_PASSWORD = "novaship123"
 _PLACEHOLDER_SECRETS = {
     "",
     _DEMO_SESSION_SECRET,
@@ -55,6 +56,26 @@ def validate_session_configuration() -> None:
 
     if auth_mode() == "local":
         session_secret()
+
+
+def validate_local_credentials(repo) -> None:
+    """Fail closed if production-local auth still contains shared demo credentials."""
+    from app.config import ConfigurationError, auth_mode
+
+    if auth_mode() != "local":
+        return
+    hashes = [(u.id, repo.get_password_hash(u.id)) for u in repo.list_users()]
+    configured = [(uid, stored) for uid, stored in hashes if stored]
+    if not configured:
+        raise ConfigurationError(
+            "AUTH_MODE=local requires at least one configured local credential"
+        )
+    unsafe_passwords = {_DEFAULT_DEMO_PASSWORD, DEMO_PASSWORD}
+    for uid, stored in configured:
+        if any(password and verify_password(password, stored) for password in unsafe_passwords):
+            raise ConfigurationError(
+                f"AUTH_MODE=local refuses shared demo credentials; rotate the credential for {uid} before startup"
+            )
 
 
 # ---------------------------------------------------------------- passwords
