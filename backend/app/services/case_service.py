@@ -170,7 +170,7 @@ class CaseService:
             self._delivery_failure(case, user, d.id or dec.draft_id, exc)
             self.repo.save_case(case)
             raise HTTPException(502, detail={"error": "outbound email was not accepted; the approved draft can be retried", "category": "NOTIFICATION_ERROR", "retryable": True})
-        accepted = mode in {"gmail", "graph"}
+        accepted = mode == "gmail"
         d.status = DraftStatus.SENT if accepted else DraftStatus.SIMULATED
         action = "NOTIFICATION_SENT" if accepted else "NOTIFICATION_SIMULATED"
         self.pipe.audit(case.id, ActorType.SYSTEM, "notifier", action,

@@ -162,7 +162,7 @@ The extracted **Notify Party is a comparison value only**. Sharing requires an e
 | Document parsing        | `pypdf`, `python-docx`, `openpyxl`, optional `pytesseract` OCR                                                     | text-layer extraction; image-only PDFs flagged, not guessed                                |
 | Database                | **Supabase (PostgreSQL)** — 24 tables, RLS, append-only audit trigger, private `documents` bucket with signed URLs | tenant-aware persistence, auth, storage in one place                                       |
 | Persistence abstraction | `MemoryRepository` (fixtures/tests/offline) ↔ `SupabaseRepository` (prod) selected by `REPO_BACKEND`               | Person 1/2/4 never wait on the database                                                    |
-| Email connector         | Gmail API adapter (primary), Microsoft Graph adapter (optional), bundle adapter                                     | adapter-based per spec §2                                                                  |
+| Email connector         | Gmail API adapter and bundle adapter                                                                            | adapter-based; Gmail is the sole live mailbox provider                                      |
 | Auth / RBAC             | Built-in login / register / logout (PBKDF2 password hashes, HMAC-signed 12 h session tokens, audited) · Supabase JWT (HS256) · demo `X-User-Id` for tests/curl; 15 permissions × 4 roles | least privilege                                                                            |
 | Deployment              | Docker (multi-stage), `docker-compose.yml`, Vercel for the frontend, any container host for the API                | reproducible local ↔ cloud                                                                 |
 | Testing                 | `pytest` (101 tests) + official SDOC scorer + browser walkthrough                                                  | acceptance tests from the spec are executable                                              |
@@ -175,7 +175,7 @@ The extracted **Notify Party is a comparison value only**. Sharing requires an e
 ```mermaid
 flowchart LR
     subgraph Sources
-        G[Gmail API<br/>OAuth refresh token] ; O[Outlook / M365<br/>Graph, optional] ; W[Webhook<br/>POST /webhooks/email] ; BND[SDOC bundle<br/>fixtures]
+        G[Gmail API<br/>OAuth refresh token] ; W[Webhook<br/>POST /webhooks/email] ; BND[SDOC bundle<br/>fixtures]
     end
     subgraph Vercel
         FE[Next.js dashboard<br/>Inbox · Case · Policies]
@@ -428,7 +428,7 @@ Never commit `.env` or place service-role/API keys in `NEXT_PUBLIC_*` variables.
 - Supabase persistence: `REPO_BACKEND=supabase`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET`.
 - Durable paused agents: `LANGGRAPH_CHECKPOINT=postgres`, `LANGGRAPH_PG_URL`.
 - Production authentication: `AUTH_MODE=jwt`.
-- Gmail ingestion/sending (recommended): set `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_ADDRESS`, run `python backend/scripts/gmail_authorize.py` once to save a refresh token locally, then use `EMAIL_PROVIDER=gmail`; keep `EMAIL_SEND_MODE=simulate` until the human-approval flow is verified, and switch it to `gmail` only for the real run. Microsoft Graph remains available as an optional compatibility provider with `EMAIL_PROVIDER=graph` / `EMAIL_SEND_MODE=graph` and the `MS_*` variables.
+- Gmail ingestion/sending (recommended): set `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_ADDRESS`, run `python backend/scripts/gmail_authorize.py` once to save a refresh token locally, then use `EMAIL_PROVIDER=gmail`; keep `EMAIL_SEND_MODE=simulate` until the human-approval flow is verified, and switch it to `gmail` only for the real run.
 - Public URLs: `CORS_ORIGINS` for the API and `NEXT_PUBLIC_API_BASE` when building the frontend.
 
 

@@ -122,7 +122,7 @@ Order of operations for P3: run `0001_schema.sql`, `0002_rls.sql`, `0003_vector.
 | `EMBEDDING_PROVIDER=openai` | (uses `OPENAI_API_KEY`) | OpenAI embeddings for RAG |
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET` | Supabase -> Project Settings -> API | persistence, RLS, storage, JWT auth |
 | `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`, `GMAIL_ADDRESS`, `EMAIL_PROVIDER=gmail` | Google Cloud Console + one-time `backend/scripts/gmail_authorize.py` | Primary Gmail ingestion (`POST /connectors/poll`) and approved sending |
-| `MS_TENANT_ID`, `MS_CLIENT_ID`, `MS_CLIENT_SECRET`, `MS_MAILBOX`, `EMAIL_PROVIDER=graph` | Azure Portal -> App registrations | Optional Outlook / Microsoft 365 compatibility provider |
+
 | `LANGGRAPH_CHECKPOINT=postgres`, `LANGGRAPH_PG_URL` | Supabase -> Database -> Connection string | durable paused graphs |
 
 Without any key the whole system runs (rules only). Keys add reasoning quality; they never change the seven-field verdict.
