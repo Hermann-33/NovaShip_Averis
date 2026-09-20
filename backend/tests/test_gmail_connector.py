@@ -12,7 +12,7 @@ import pytest
 
 import app.connectors.email_connectors as email_connectors
 from app.config import ConfigurationError
-from app.connectors.email_connectors import GmailConnector, GraphConnector
+from app.connectors.email_connectors import GmailConnector
 from app.contracts.schemas import DraftDecision, DraftStatus, RecipientType, ShareRequest
 from app.file_security import UnsafeUpload
 from app.pipeline.orchestrator import Pipeline
@@ -271,21 +271,20 @@ def _service_with_draft():
     return repo, CaseService(repo), case, repo.get_user("u_sup_1")
 
 
-def test_simulation_never_calls_gmail_or_graph(monkeypatch):
+def test_simulation_never_calls_gmail(monkeypatch):
     _repo, service, case, supervisor = _service_with_draft()
     monkeypatch.setenv("EMAIL_SEND_MODE", "simulate")
     fail = lambda *_args, **_kwargs: (_ for _ in ()).throw(AssertionError("network provider called"))
     monkeypatch.setattr(GmailConnector, "send", fail)
-    monkeypatch.setattr(GraphConnector, "send", fail)
     result = service.approve_draft(case.id, DraftDecision(draft_id="draft_gmail"), supervisor)
     assert result.drafts[0].status == DraftStatus.SIMULATED
 
 
 def test_unknown_email_provider_modes_fail_configuration(monkeypatch):
     monkeypatch.setenv("EMAIL_PROVIDER", "unexpected")
-    with pytest.raises(ConfigurationError, match="none, bundle, gmail, graph"):
+    with pytest.raises(ConfigurationError, match="none, bundle, gmail"):
         email_connectors.get_connector()
-    with pytest.raises(ConfigurationError, match="simulate, gmail, graph"):
+    with pytest.raises(ConfigurationError, match="simulate, gmail"):
         email_connectors.get_outbound_connector("unexpected")
 
 
