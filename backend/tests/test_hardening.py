@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import copy
 import os
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
@@ -21,7 +22,7 @@ from app.agents.rag import RAG  # noqa: E402
 from app.api import auth_routes  # noqa: E402
 from app.auth import accounts, rbac  # noqa: E402
 from app.config import ConfigurationError, cors_allowed_origins, get_repo, supabase_server_credentials  # noqa: E402
-from app.connectors.email_connectors import GraphConnector  # noqa: E402
+from app.connectors.email_connectors import GmailConnector  # noqa: E402
 from app.contracts.schemas import DraftDecision, DraftStatus, Role, ShareRecord, ShareRequest, RecipientType  # noqa: E402
 from app.file_security import UnsafeUpload, safe_filename, validate_attachment_count, validate_file_size  # noqa: E402
 from app.main import app  # noqa: E402
@@ -34,12 +35,12 @@ ROOT = Path(__file__).resolve().parents[2]
 client = TestClient(app)
 
 
-def _graph_env(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setenv("EMAIL_SEND_MODE", "graph")
-    monkeypatch.setenv("MS_TENANT_ID", "tenant")
-    monkeypatch.setenv("MS_CLIENT_ID", "client")
-    monkeypatch.setenv("MS_CLIENT_SECRET", "not-a-real-secret")
-    monkeypatch.setenv("MS_MAILBOX", "mailbox@example.com")
+def _gmail_env(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("EMAIL_SEND_MODE", "gmail")
+    monkeypatch.setenv("GMAIL_CLIENT_ID", "client")
+    monkeypatch.setenv("GMAIL_CLIENT_SECRET", "not-a-real-secret")
+    monkeypatch.setenv("GMAIL_REFRESH_TOKEN", "not-a-real-refresh-token")
+    monkeypatch.setenv("GMAIL_ADDRESS", "mailbox@example.com")
 
 
 def _service_with_draft():
@@ -147,27 +148,27 @@ def test_share_acknowledgement_is_recipient_bound():
     assert client.post(f"/shares/{share.id}/acknowledge", headers={"X-User-Id": "u_sup_1"}).status_code == 200
 
 
-def test_simulation_never_calls_graph_and_is_explicit(monkeypatch):
+def test_simulation_never_calls_gmail_and_is_explicit(monkeypatch):
     _repo, service, case, supervisor = _service_with_draft()
     monkeypatch.setenv("EMAIL_SEND_MODE", "simulate")
-    monkeypatch.setattr(GraphConnector, "send", lambda *_args, **_kwargs: (_ for _ in ()).throw(AssertionError("Graph called")))
+    monkeypatch.setattr(GmailConnector, "send", lambda *_args, **_kwargs: (_ for _ in ()).throw(AssertionError("Gmail called")))
     result = service.approve_draft(case.id, DraftDecision(draft_id="draft_hardening"), supervisor)
     assert result.drafts[0].status.value == "SIMULATED"
     assert any(event.action == "NOTIFICATION_SIMULATED" for event in service.repo.list_audit(case.id))
 
 
-def test_graph_success_failure_and_sent_idempotency(monkeypatch):
-    _graph_env(monkeypatch)
+def test_gmail_success_failure_and_sent_idempotency(monkeypatch):
+    _gmail_env(monkeypatch)
     repo, service, case, supervisor = _service_with_draft()
     calls = []
-    monkeypatch.setattr(GraphConnector, "send", lambda *_args, **_kwargs: calls.append(True) or {"status": 202})
+    monkeypatch.setattr(GmailConnector, "send", lambda *_args, **_kwargs: calls.append(True) or {"status": 200, "id": "gmail-1"})
     first = service.approve_draft(case.id, DraftDecision(draft_id="draft_hardening"), supervisor)
     assert first.drafts[0].status.value == "SENT"
     service.approve_draft(case.id, DraftDecision(draft_id="draft_hardening"), supervisor)
     assert len(calls) == 1
 
     repo2, service2, case2, supervisor2 = _service_with_draft()
-    monkeypatch.setattr(GraphConnector, "send", lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError("provider failed")))
+    monkeypatch.setattr(GmailConnector, "send", lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError("provider failed")))
     with pytest.raises(Exception) as caught:
         service2.approve_draft(case2.id, DraftDecision(draft_id="draft_hardening"), supervisor2)
     assert getattr(caught.value, "status_code", None) == 502
@@ -177,8 +178,8 @@ def test_graph_success_failure_and_sent_idempotency(monkeypatch):
 
 
 def test_same_share_id_and_custom_message_survive_confirmation(monkeypatch):
-    _graph_env(monkeypatch)
-    monkeypatch.setattr(GraphConnector, "send", lambda *_args, **_kwargs: {"status": 202})
+    _gmail_env(monkeypatch)
+    monkeypatch.setattr(GmailConnector, "send", lambda *_args, **_kwargs: {"status": 200, "id": "gmail-share"})
     repo, service, case, supervisor = _service_with_draft()
     custom = "Custom reviewed message"
     preview = service.share(case.id, ShareRequest(recipient_type=RecipientType.NOTIFY_PARTY_CONTACT, recipient_party_id="p_safqa",
@@ -192,39 +193,42 @@ def test_same_share_id_and_custom_message_survive_confirmation(monkeypatch):
     assert len(repo.list_shares(case.id)) == 1
 
 
-class _Response:
-    def __init__(self, status: int, payload=None):
-        self.status_code = status
-        self._payload = payload or {}
-
-    def json(self):
-        return self._payload
-
-    def raise_for_status(self):
-        if self.status_code >= 400:
-            raise RuntimeError(f"HTTP {self.status_code}")
+class _GmailUnauthorized(Exception):
+    resp = type("Resp", (), {"status": 401})()
 
 
-def test_graph_token_expiry_and_401_refresh(monkeypatch):
-    _graph_env(monkeypatch)
-    tokens = iter(["token-one", "token-two", "token-three"])
-    monkeypatch.setattr("app.connectors.email_connectors.httpx.post", lambda *_a, **_k: _Response(200, {"access_token": next(tokens), "expires_in": 100}))
+def test_gmail_token_expiry_and_401_refresh(monkeypatch):
+    _gmail_env(monkeypatch)
+    tokens = iter(["token-one", "token-two"])
+
+    def refresh(credentials, _request):
+        credentials.token = next(tokens)
+        credentials.expiry = datetime.now(timezone.utc) + timedelta(seconds=100)
+
+    monkeypatch.setattr("app.connectors.email_connectors.GoogleCredentials.refresh", refresh)
     now = [0.0]
     monkeypatch.setattr("app.connectors.email_connectors.time.monotonic", lambda: now[0])
-    connector = GraphConnector()
+    connector = GmailConnector()
     assert connector.token() == "token-one"
     now[0] = 95.0
     assert connector.token() == "token-two"
-    statuses = iter([401, 202])
-    auth_headers = []
 
-    def request(_method, _url, **kwargs):
-        auth_headers.append(kwargs["headers"]["Authorization"])
-        return _Response(next(statuses))
+    attempts = []
+    invalidations = []
+    monkeypatch.setattr(connector, "_service_client", lambda: object())
+    monkeypatch.setattr(connector, "_invalidate_token", lambda: invalidations.append(True))
 
-    monkeypatch.setattr("app.connectors.email_connectors.httpx.request", request)
-    assert connector.send(["recipient@example.com"], "subject", "body")["status"] == 202
-    assert len(auth_headers) == 2 and auth_headers[0] != auth_headers[1]
+    class Request:
+        def execute(self):
+            attempts.append(True)
+            if len(attempts) == 1:
+                raise _GmailUnauthorized()
+            return {"id": "gmail-sent"}
+
+    result = connector._execute(lambda _service: Request())
+    assert result["id"] == "gmail-sent"
+    assert len(attempts) == 2
+    assert len(invalidations) == 1
 
 
 def test_supabase_server_secret_is_required_without_public_fallback(monkeypatch):
