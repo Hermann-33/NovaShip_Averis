@@ -215,6 +215,8 @@ class DraftStatus(str, Enum):
     APPROVED = "APPROVED"
     REJECTED = "REJECTED"
     SENT = "SENT"
+    SIMULATED = "SIMULATED"
+    SEND_FAILED = "SEND_FAILED"
 
 
 # ---------------------------------------------------------------------------
@@ -498,6 +500,7 @@ class UserRecord(BaseModel):
     team_id: Optional[str] = None
     tenant_id: str = "tenant_april"
     is_external: bool = False
+    auth_user_id: Optional[str] = None
 
 
 class PartyContact(BaseModel):

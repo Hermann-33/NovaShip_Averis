@@ -155,7 +155,7 @@ export function CollaborationPanel({ c, onChange, say }: { c: CaseView; onChange
                 <div className="break-words font-semibold text-ink-900">{s.recipient_label}</div>
                 <div className="mt-1 flex flex-wrap items-center gap-1.5"><Badge className={s.is_external ? "bg-accent-soft text-accent-fg" : "bg-ink-100 text-ink-700"}>{s.recipient_type.replace(/_/g, " ")}</Badge><span>{s.status}</span></div>
                 <div className="mt-1 text-[10px] text-ink-500">Sent {fmtDate(s.sent_at)} · {s.acknowledged_at ? `ack ${fmtDate(s.acknowledged_at)}` : s.viewed_at ? `viewed ${fmtDate(s.viewed_at)}` : "not viewed"}</div>
-                {s.status === "SENT" && <div className="mt-2"><Button kind="ghost" onClick={() => ack(s.id)}>Mark acknowledged</Button></div>}
+                {(s.status === "SENT" || s.status === "SIMULATED") && <div className="mt-2"><Button kind="ghost" onClick={() => ack(s.id)}>Mark acknowledged</Button></div>}
               </div>
             ))}</div>
             <div className="hidden max-w-full overflow-x-auto sm:block"><table className="w-full min-w-[640px] text-xs">
@@ -165,7 +165,7 @@ export function CollaborationPanel({ c, onChange, say }: { c: CaseView; onChange
                   <td className="py-1.5 pr-2">{s.recipient_label}<div className="text-[10px] text-ink-500">by {s.shared_by}</div></td>
                   <td><Badge className={s.is_external ? "bg-accent-soft text-accent-fg" : "bg-ink-100 text-ink-700"}>{s.recipient_type.replace(/_/g, " ")}</Badge></td>
                   <td>{s.status}</td><td className="whitespace-nowrap">{fmtDate(s.sent_at)}</td><td className="whitespace-nowrap">{s.acknowledged_at ? `ack ${fmtDate(s.acknowledged_at)}` : s.viewed_at ? fmtDate(s.viewed_at) : "—"}</td>
-                  <td>{s.status === "SENT" && <Button kind="ghost" onClick={() => ack(s.id)}>Mark acknowledged</Button>}</td>
+                  <td>{(s.status === "SENT" || s.status === "SIMULATED") && <Button kind="ghost" onClick={() => ack(s.id)}>Mark acknowledged</Button>}</td>
                 </tr>
               ))}</tbody>
             </table></div>

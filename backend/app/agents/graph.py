@@ -75,17 +75,24 @@ def build_graph(repo: BaseRepository, checkpointer=None):
 
 
 def _make_checkpointer():
-    kind = os.environ.get("LANGGRAPH_CHECKPOINT", "memory").lower()
-    if kind == "postgres" and os.environ.get("LANGGRAPH_PG_URL"):
-        try:
-            from langgraph.checkpoint.postgres import PostgresSaver  # pip install langgraph-checkpoint-postgres psycopg[binary]
+    from app.config import ConfigurationError
 
-            saver = PostgresSaver.from_conn_string(os.environ["LANGGRAPH_PG_URL"]).__enter__()
-            saver.setup()
-            return saver
-        except Exception:
-            pass
-    return MemorySaver()
+    kind = os.environ.get("LANGGRAPH_CHECKPOINT", "memory").lower()
+    if kind == "memory":
+        return MemorySaver()
+    if kind != "postgres":
+        raise ConfigurationError("LANGGRAPH_CHECKPOINT must be memory or postgres")
+    pg_url = os.environ.get("LANGGRAPH_PG_URL", "").strip()
+    if not pg_url:
+        raise ConfigurationError("LANGGRAPH_CHECKPOINT=postgres requires LANGGRAPH_PG_URL")
+    try:
+        from langgraph.checkpoint.postgres import PostgresSaver
+
+        saver = PostgresSaver.from_conn_string(pg_url).__enter__()
+        saver.setup()
+        return saver
+    except Exception as exc:
+        raise ConfigurationError(f"Postgres LangGraph checkpointer initialization failed ({type(exc).__name__})") from exc
 
 
 class CaseAgent:
