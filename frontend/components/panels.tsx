@@ -57,44 +57,156 @@ export function DraftPanel({ c, onChange, say, perms }: { c: CaseView; onChange:
 // ------------------------------------------------------------------ Ask AI
 const SUGGESTED = ["Why is this a mismatch?", "Which six fields match?", "Show the SI evidence", "Who is the Notify Party?", "Who should review this?", "Summarize this case", "Draft a correction email", "What changed since the last review?", "Translate this email to Chinese", "What policy applies?"];
 
+function askStarters(c: CaseView): string[] {
+  const first: string[] = [];
+  if (!c.si_available || !c.bl_available) first.push("What's missing from the documents?");
+  if (c.mismatch_count > 0) first.push("Why is this a mismatch?", "Which six fields match?", "Who is the Notify Party?");
+  else first.push("Summarize this case", "Which six fields match?", "What policy applies?");
+  first.push("Who should review this?", "Draft a correction email", "Show the SI evidence", "What changed since the last review?", "Translate this email to Chinese");
+  return [...new Set([...first, ...SUGGESTED])].slice(0, 8);
+}
+
+type AskTurn = { q: string; a: { answer: string; citations: { kind: string; ref: string; snippet?: string }[]; grounded: boolean; refused: boolean; generated_by: string } | null };
+
 export function AskPanel({ c, say }: { c: CaseView; say: (m: string, k?: "ok" | "err") => void }) {
   const [q, setQ] = useState("");
-  const [log, setLog] = useState<{ q: string; a: any }[]>([]);
+  const [log, setLog] = useState<AskTurn[]>([]);
   const [busy, setBusy] = useState(false);
+  const [openCite, setOpenCite] = useState<string | null>(null);
+  const [copied, setCopied] = useState<number | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [log]);
-  const ask = async (question: string) => {
-    if (!question.trim()) return; setBusy(true); setQ("");
-    try { const a = await post(`/cases/${c.id}/ask`, { question }); setLog((l) => [...l, { q: question, a }]); } catch (e: any) { say(e.message, "err"); } finally { setBusy(false); }
+  const boxRef = useRef<HTMLTextAreaElement>(null);
+  const starters = askStarters(c);
+
+  useEffect(() => { setLog([]); setQ(""); setBusy(false); setOpenCite(null); }, [c.id]);
+  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [log, busy]);
+
+  const resize = (el: HTMLTextAreaElement | null) => {
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${Math.min(el.scrollHeight, 140)}px`;
   };
+
+  const ask = async (question: string) => {
+    const text = question.trim();
+    if (!text || busy) return;
+    setBusy(true); setQ(""); setOpenCite(null);
+    if (boxRef.current) { boxRef.current.style.height = "auto"; }
+    setLog((l) => [...l, { q: text, a: null }]);
+    try {
+      const a = await post(`/cases/${c.id}/ask`, { question: text });
+      setLog((l) => { const next = [...l]; next[next.length - 1] = { q: text, a }; return next; });
+    } catch (e: any) {
+      setLog((l) => l.slice(0, -1));
+      say(e.message, "err");
+    } finally { setBusy(false); }
+  };
+
+  const copyAnswer = async (i: number, text: string) => {
+    try { await navigator.clipboard.writeText(text); setCopied(i); setTimeout(() => setCopied(null), 1600); }
+    catch { say("Could not copy", "err"); }
+  };
+
   return (
-    <div className="grid gap-3 lg:grid-cols-[1fr_280px]">
-      <div className="flex min-h-[420px] flex-col rounded-xl border border-ink-200 bg-white">
-        <div className="flex-1 space-y-3 overflow-auto p-4 scrollbar-thin">
-          {log.length === 0 && <div className="text-sm text-ink-500">Grounded assistant — answers only from this case's email, SI, Draft BL, deterministic comparison, audit history and policy. Every answer cites its evidence.</div>}
-          {log.map((m, i) => (
-            <div key={i}>
-              <div className="ml-auto w-fit max-w-[80%] rounded-lg bg-ink-900 px-3 py-2 text-sm text-white">{m.q}</div>
-              <div className={`mt-2 w-fit max-w-[90%] rounded-lg border px-3 py-2 text-sm ${m.a.refused ? "border-review bg-review-bg" : "border-ink-200 bg-ink-50"}`}>
-                <pre className="whitespace-pre-wrap font-sans">{m.a.answer}</pre>
-                <div className="mt-2 flex flex-wrap gap-1">
-                  {m.a.citations.map((ct: any, j: number) => <span key={j} title={ct.snippet} className="rounded border border-ink-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-ink-600">{ct.kind}:{String(ct.ref).slice(0, 28)}</span>)}
-                  <span className="ml-auto text-[10px] text-ink-400">{m.a.generated_by} · {m.a.grounded ? "grounded" : "ungrounded"}{m.a.refused ? " · refused" : ""}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-          <div ref={endRef} />
+    <div className="flex min-h-[calc(100dvh-5.5rem)] min-w-0 flex-col overflow-hidden rounded-2xl border border-ink-200 bg-white/95 shadow-card lg:h-[min(40rem,calc(100dvh-8rem))] lg:min-h-0">
+      <header className="flex shrink-0 flex-wrap items-start justify-between gap-2 border-b border-ink-100 px-3 py-2.5 sm:px-4">
+        <div className="min-w-0">
+          <div className="text-sm font-semibold text-ink-900">Ask this case</div>
+          <p className="mt-0.5 max-w-[62ch] text-[11px] leading-relaxed text-ink-500">Answers use only this email, SI, Draft BL, comparison, audit and policy. Every reply cites evidence. Nothing is sent from here.</p>
         </div>
-        <form onSubmit={(e) => { e.preventDefault(); ask(q); }} className="flex gap-2 border-t border-ink-100 p-3">
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Ask about this case…" className="flex-1 rounded-md border border-ink-200 px-3 py-2 text-sm" />
-          <Button type="submit" kind="primary" disabled={busy}>Ask</Button>
-        </form>
+        <div className="flex flex-wrap items-center gap-1.5">
+          {c.mismatch_count > 0 ? <Badge className="bg-mismatch-bg text-mismatch-fg">{c.mismatch_count} mismatch{c.mismatch_count === 1 ? "" : "es"}</Badge> : <Badge className="bg-match-bg text-match-fg">No mismatch</Badge>}
+          <Badge className={c.si_available ? "bg-ink-100 text-ink-700" : "bg-review-bg text-review-fg"}>SI {c.si_available ? "ready" : "missing"}</Badge>
+          <Badge className={c.bl_available ? "bg-ink-100 text-ink-700" : "bg-review-bg text-review-fg"}>BL {c.bl_available ? "ready" : "missing"}</Badge>
+          {log.length > 0 && <Button kind="ghost" disabled={busy} onClick={() => { setLog([]); setOpenCite(null); }}>Clear</Button>}
+        </div>
+      </header>
+
+      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain p-3 scrollbar-thin sm:p-4" aria-live="polite">
+        {log.length === 0 && (
+          <div className="rounded-xl border border-dashed border-ink-200 bg-ink-50/70 p-3 sm:p-4">
+            <div className="text-sm font-semibold text-ink-800">Try a question</div>
+            <p className="mt-1 text-xs text-ink-500">Tap a suggestion or type your own. Long questions are fine — Enter sends, Shift+Enter makes a new line.</p>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {starters.map((s) => (
+                <button key={s} type="button" disabled={busy} onClick={() => ask(s)} className="rounded-full border border-ink-200 bg-white px-3 py-1.5 text-left text-xs text-ink-800 transition hover:border-accent hover:text-accent-fg disabled:opacity-50">
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        {log.map((m, i) => (
+          <div key={`${m.q}-${i}`} className="space-y-2">
+            <div className="ml-auto max-w-[min(100%,36rem)] break-words rounded-2xl rounded-br-md bg-ink-900 px-3 py-2 text-sm text-white">{m.q}</div>
+            {m.a ? (
+              <div className={`max-w-[min(100%,40rem)] rounded-2xl rounded-bl-md border px-3 py-2.5 text-sm ${m.a.refused ? "border-review/50 bg-review-bg" : "border-ink-200 bg-ink-50"}`}>
+                <pre className="whitespace-pre-wrap break-words font-sans leading-relaxed text-ink-900">{m.a.answer}</pre>
+                <div className="mt-2 space-y-1.5">
+                  <div className="flex flex-wrap gap-1.5">
+                    {(m.a.citations || []).map((ct, j) => {
+                      const id = `${i}-${j}`;
+                      const open = openCite === id;
+                      return (
+                        <button key={id} type="button" title={ct.snippet || ct.ref} onClick={() => setOpenCite(open ? null : id)} className={`max-w-full truncate rounded-md border px-1.5 py-0.5 font-mono text-[10px] ${open ? "border-accent bg-accent-bg text-accent-fg" : "border-ink-200 bg-white text-ink-600"}`}>
+                          {ct.kind}:{String(ct.ref).slice(0, 18)}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[10px] text-ink-400">{m.a.generated_by} · {m.a.grounded ? "grounded" : "ungrounded"}{m.a.refused ? " · refused" : ""}</span>
+                    <button type="button" onClick={() => copyAnswer(i, m.a!.answer)} className="shrink-0 text-[10px] font-semibold text-accent-fg hover:underline">{copied === i ? "Copied" : "Copy"}</button>
+                  </div>
+                </div>
+                {m.a.citations.find((_, j) => openCite === `${i}-${j}`)?.snippet && (
+                  <p className="mt-2 rounded-lg bg-white px-2 py-1.5 text-[11px] leading-relaxed text-ink-600">{m.a.citations.find((_, j) => openCite === `${i}-${j}`)?.snippet}</p>
+                )}
+              </div>
+            ) : (
+              <div className="w-fit rounded-2xl rounded-bl-md border border-ink-200 bg-ink-50 px-3 py-2.5" aria-label="Assistant is answering">
+                <span className="flex gap-1">
+                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-ink-400 [animation-delay:-0.2s]" />
+                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-ink-400 [animation-delay:-0.1s]" />
+                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-ink-400" />
+                </span>
+              </div>
+            )}
+          </div>
+        ))}
+        <div ref={endRef} />
       </div>
-      <div className="space-y-1">
-        <div className="text-[11px] uppercase tracking-wide text-ink-500">Suggested</div>
-        {SUGGESTED.map((s) => <button key={s} onClick={() => ask(s)} className="block w-full rounded-md border border-ink-200 bg-white px-2 py-1.5 text-left text-xs hover:bg-ink-50">{s}</button>)}
-      </div>
+
+      {log.length > 0 && (
+        <div className="shrink-0 border-t border-ink-100 px-3 pt-2 sm:px-4">
+          <div className="flex gap-1.5 overflow-x-auto pb-2 scrollbar-thin sm:flex-wrap sm:overflow-visible">
+            {starters.slice(0, 6).map((s) => (
+              <button key={s} type="button" disabled={busy} onClick={() => ask(s)} className="shrink-0 rounded-full border border-ink-200 bg-white px-2.5 py-1 text-[11px] text-ink-700 hover:border-accent hover:text-accent-fg disabled:opacity-50">
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <form onSubmit={(e) => { e.preventDefault(); ask(q); }} className="shrink-0 border-t border-ink-100 p-3 sm:p-4">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
+          <label className="sr-only" htmlFor="ask-ai-input">Question about this case</label>
+          <textarea
+            id="ask-ai-input"
+            ref={boxRef}
+            rows={1}
+            value={q}
+            disabled={busy}
+            onChange={(e) => { setQ(e.target.value); resize(e.target); }}
+            onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); ask(q); } }}
+            placeholder="Ask about this case…"
+            className="max-h-36 min-h-[2.6rem] w-full resize-none rounded-xl border border-ink-200 bg-white px-3 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent-ring/60 disabled:bg-ink-50"
+          />
+          <Button type="submit" kind="primary" disabled={busy || !q.trim()} className="w-full sm:w-auto sm:px-4">Ask</Button>
+        </div>
+        <p className="mt-1.5 hidden text-[10px] text-ink-400 sm:block">Enter to send · Shift+Enter for a new line</p>
+      </form>
     </div>
   );
 }
